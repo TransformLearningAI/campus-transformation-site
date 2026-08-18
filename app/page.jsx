@@ -156,11 +156,27 @@ export default function HomePage() {
           <h2 className="v2-h2">Where you&rsquo;re sitting</h2>
           <p className="v2-lede">The first conversation looks different depending on who is having it.</p>
           <div className="v2-aud">
-            <Link href="/inquiry"><div className="role">Municipality or EDC</div><div className="say">&ldquo;There&rsquo;s a campus in my town and no plan for it.&rdquo;</div></Link>
+            <Link href="#towns"><div className="role">Municipality or EDC</div><div className="say">&ldquo;There&rsquo;s a campus in my town and no plan for it.&rdquo;</div></Link>
             <Link href="/inquiry"><div className="role">Board of Trustees</div><div className="say">&ldquo;We need an option that isn&rsquo;t closure.&rdquo;</div></Link>
             <Link href="/inquiry"><div className="role">College President</div><div className="say">&ldquo;I&rsquo;m not in crisis. I&rsquo;d just rather not be, later.&rdquo;</div></Link>
             <Link href="/inquiry"><div className="role">Foundation or Investor</div><div className="say">&ldquo;We want the anchor institution to survive.&rdquo;</div></Link>
           </div>
+        </div>
+      </section>
+      {/* Municipal landing — Fix 10 verbatim */}
+      <section className="v2-section v2-alt" id="towns">
+        <div className="wrap">
+          <h2 className="v2-h2">For the town that hosts a campus</h2>
+          <p style={{ fontSize: 16, color: 'var(--ink-2)', maxWidth: '64ch', lineHeight: 1.62, marginBottom: 20 }}>
+            If the college in your community is struggling &mdash; or already gone &mdash; the campus is still your problem and still your opportunity. You don&rsquo;t need the college&rsquo;s permission to plan.
+          </p>
+          <p style={{ fontSize: 16, color: 'var(--ink-2)', maxWidth: '64ch', lineHeight: 1.62, marginBottom: 20 }}>
+            A campus reuse feasibility study is the fastest, cheapest first step a municipality can take: Ashland, Wisconsin commissioned one for $7,500 after Northland College closed. The Village of Cazenovia commissioned one for its closed college campus and then won a $10 million state revitalization award on the strength of it. Public buyers, public budgets, no confidentiality friction.
+          </p>
+          <p style={{ fontSize: 16, color: 'var(--ink-2)', maxWidth: '64ch', lineHeight: 1.62, marginBottom: 28 }}>
+            We conduct these studies &mdash; one campus, one report, the realistic uses ranked, the funding programs named. And if the college is still open, a town-initiated conversation is often the least threatening way for its board to start one.
+          </p>
+          <Link className="v2-btn v2-btn-a" href="/inquiry">Talk to us about your campus</Link>
         </div>
       </section>
     </>
