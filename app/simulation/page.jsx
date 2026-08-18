@@ -88,7 +88,7 @@ const SECTIONS = [
     questions: [
       { id: 'E1', speaker: 'Peggy Stahl', speakerRole: 'CFO', q: 'Give me a realistic — not optimistic, realistic — picture of what the first three years look like financially. Revenue, costs, and when we stop bleeding.' },
       { id: 'E2', speaker: 'Peggy Stahl', speakerRole: 'CFO', q: 'We have $11 million in bond debt and $1.4 million in annual debt service. Transformation doesn\'t make that go away. How do we handle the bonds?' },
-      { id: 'E3', speaker: 'Thomas Whitfield', speakerRole: 'Board Chair', q: 'Where does the money come from to fund the transformation itself? We don\'t have spare cash. You said your fees are on a sliding scale — what does that actually mean for a campus with a $5.3 million deficit?' },
+      { id: 'E3', speaker: 'Thomas Whitfield', speakerRole: 'Board Chair', q: 'Where does the money come from to fund the transformation itself? We don\'t have spare cash. Your first step is free, you said — what does anything beyond that actually cost for a campus with a $5.3 million deficit?' },
       { id: 'E4', speaker: 'Sandra Chen', speakerRole: 'Board Member', q: 'I\'ve seen consultants before. They charge $300,000 for a report that sits on a shelf. How is this different? How do we know we\'re not just adding another expense to a dying institution?' },
     ]
   },

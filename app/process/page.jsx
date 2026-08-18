@@ -220,8 +220,8 @@ export default function ProcessPage() {
               <span style={{ color: '#00A8A8' }}>thriving community campus.</span>
             </h1>
             <p className="text-white/50 text-lg max-w-xl leading-relaxed">
-              Five phases. 12-18 months. Every meeting, every analysis, every community
-              conversation — mapped out so you know exactly what happens and when.
+              First revenue: months. Self-sustaining: typically 2&ndash;3 years. Every meeting, every analysis, every community
+              conversation &mdash; mapped out so you know exactly what happens and when.
             </p>
           </ScrollReveal>
         </div>
@@ -293,7 +293,7 @@ export default function ProcessPage() {
               {[
                 { num: '30+', label: 'Meetings & sessions' },
                 { num: '100+', label: 'Stakeholders engaged' },
-                { num: '12-18', label: 'Months to self-sustaining' },
+                { num: '2-3', label: 'Years to self-sustaining' },
               ].map(s => (
                 <div key={s.label} className="p-4 rounded-xl bg-white border" style={{ borderColor: '#DDE5EF' }}>
                   <p className="text-2xl font-bold" style={{ color: '#00A8A8' }}>{s.num}</p>

@@ -59,8 +59,8 @@ export default function HomePage() {
           <p className="v2-lede">The reason most transformation proposals go nowhere is not that boards disagree with them. It is that saying yes costs more than saying nothing. A single-pathway project is built the other way around.</p>
           <div className="v2-req">
             <div>
-              <span className="no">No board vote, usually</span>
-              <p>A term lease or license of one building typically sits inside the authority already delegated to a president or CFO. Selling property almost always needs the full board. Leasing it often does not. We read your delegation-of-authority policy first and tell you which side of that line you are on, before you take it to anyone.</p>
+              <span className="no">Within authority your board has already delegated</span>
+              <p>Most boards have already delegated lease, license, and grant-application authority to the president or CFO &mdash; it&rsquo;s in your signature policy. A single-pathway project is designed to fit inside that existing delegation, so that what eventually reaches your board isn&rsquo;t a blank question but a working proposal with the risk already taken out. Boards get better decisions when the first version arrives de-risked. We&rsquo;ll read your bylaws and delegation policy and tell you exactly which side of the line your project falls on.</p>
             </div>
             <div>
               <span className="no">No accreditation change</span>
@@ -93,6 +93,14 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Trust block — Fix 7b */}
+      <section className="v2-section" style={{ padding: '40px 0' }}>
+        <div className="wrap">
+          <p style={{ fontWeight: 800, fontSize: 17, color: 'var(--navy)', marginBottom: 8 }}>Built by people who ran the institutions, not a real estate firm.</p>
+          <p style={{ fontSize: 15.5, color: 'var(--ink-2)', maxWidth: '64ch' }}>Professors, deans, a school superintendent who ran a $137M district, workforce and community developers &mdash; seven advanced degrees among us, and decades inside the schools now facing this market. <Link href="/about" style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>Meet the team &rarr;</Link></p>
         </div>
       </section>
 
