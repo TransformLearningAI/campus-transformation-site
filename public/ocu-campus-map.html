@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCU Campus Reimagined — Oakland City University</title>
+<style>
+  @page { size: landscape; margin: 0.3in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f8f9fa;
+    color: #1a1a2e;
+    padding: 12px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 8px;
+    border-bottom: 3px solid #1a1a2e;
+    padding-bottom: 6px;
+  }
+  .header h1 { font-size: 22px; letter-spacing: 1px; color: #1a1a2e; }
+  .header .subtitle { font-size: 11px; color: #555; margin-top: 2px; }
+  .main-layout { display: flex; gap: 10px; min-height: 620px; }
+
+  .map-area {
+    flex: 1; background: #e8f0e2; border-radius: 10px; position: relative;
+    border: 2px solid #b0c4a8; overflow: visible; min-width: 720px; min-height: 620px;
+  }
+  .map-area::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(139,179,119,0.3) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(139,179,119,0.2) 0%, transparent 35%),
+      radial-gradient(circle at 50% 50%, rgba(200,220,190,0.3) 0%, transparent 50%);
+    pointer-events: none; border-radius: 10px;
+  }
+  .campus-label {
+    position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; font-weight: 600; color: #5a7a4a;
+    letter-spacing: 3px; text-transform: uppercase; opacity: 0.7;
+  }
+  .street {
+    position: absolute; font-size: 8px; color: #7a8a6a;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: 0.6;
+  }
+  .street-top { top: 20px; left: 50%; transform: translateX(-50%); }
+  .street-bottom { bottom: 8px; left: 50%; transform: translateX(-50%); }
+  .street-left { left: 8px; top: 50%; transform: rotate(-90deg) translateX(-50%); transform-origin: left center; }
+  .street-right { right: 8px; top: 50%; transform: rotate(90deg) translateX(-50%); transform-origin: right center; }
+  .road-h { position: absolute; height: 2px; background: rgba(180,170,155,0.4); border-top: 1px dashed rgba(180,170,155,0.3); }
+  .road-v { position: absolute; width: 2px; background: rgba(180,170,155,0.4); border-left: 1px dashed rgba(180,170,155,0.3); }
+  .pathway { position: absolute; background: rgba(200,190,170,0.35); border-radius: 1px; z-index: 1; }
+  .parking { position: absolute; font-size: 7px; color: #8a9a7a; font-weight: 600; letter-spacing: 1px; opacity: 0.5; }
+  .compass { position: absolute; bottom: 12px; right: 12px; width: 36px; height: 36px; z-index: 3; opacity: 0.5; }
+  .compass::before { content: 'N'; position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 800; color: #5a7a4a; }
+  .compass::after { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 14px solid #5a7a4a; }
+
+  .building {
+    position: absolute; border-radius: 6px; padding: 5px 7px;
+    cursor: pointer; border: 2px solid;
+    transition: transform 0.15s, box-shadow 0.15s; z-index: 2;
+  }
+  .building:hover { transform: scale(1.04); box-shadow: 0 4px 16px rgba(0,0,0,0.25); z-index: 10; }
+  .building .bname { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; line-height: 1.1; }
+  .building .bcurrent { font-size: 7.5px; opacity: 0.7; font-style: italic; margin-bottom: 3px; line-height: 1.1; }
+  .building .buse { font-size: 7.5px; line-height: 1.25; margin-bottom: 1px; }
+  .building .buse::before { content: '\25B8 '; font-size: 6px; }
+  .building .brevenue { font-size: 8px; font-weight: 700; margin-top: 2px; letter-spacing: 0.3px; }
+
+  .cat-workforce { background: rgba(41,98,255,0.12); border-color: #2962ff; }
+  .cat-workforce .bname { color: #1a47b3; } .cat-workforce .brevenue { color: #2962ff; }
+  .cat-health { background: rgba(0,150,136,0.12); border-color: #00897b; }
+  .cat-health .bname { color: #00695c; } .cat-health .brevenue { color: #00897b; }
+  .cat-enterprise { background: rgba(245,124,0,0.12); border-color: #f57c00; }
+  .cat-enterprise .bname { color: #e65100; } .cat-enterprise .brevenue { color: #f57c00; }
+  .cat-community { background: rgba(156,39,176,0.12); border-color: #9c27b0; }
+  .cat-community .bname { color: #7b1fa2; } .cat-community .brevenue { color: #9c27b0; }
+  .cat-youth { background: rgba(76,175,80,0.12); border-color: #43a047; }
+  .cat-youth .bname { color: #2e7d32; } .cat-youth .brevenue { color: #43a047; }
+  .cat-revenue { background: rgba(211,47,47,0.12); border-color: #d32f2f; }
+  .cat-revenue .bname { color: #c62828; } .cat-revenue .brevenue { color: #d32f2f; }
+
+  /* POPUP */
+  .popup-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5); z-index: 999; justify-content: center; align-items: center;
+  }
+  .popup-overlay.active { display: flex; }
+  .popup {
+    background: #fff; border-radius: 12px; max-width: 640px; width: 95%;
+    max-height: 88vh; overflow-y: auto; box-shadow: 0 12px 48px rgba(0,0,0,0.3); position: relative;
+  }
+  .popup-header {
+    padding: 16px 20px 12px; border-bottom: 2px solid #eee; position: sticky;
+    top: 0; background: #fff; border-radius: 12px 12px 0 0; z-index: 2;
+  }
+  .popup-header h2 { font-size: 16px; margin-bottom: 2px; }
+  .popup-header .popup-current { font-size: 11px; color: #888; font-style: italic; }
+  .popup-close { position: absolute; top: 12px; right: 16px; font-size: 22px; cursor: pointer; color: #aaa; background: none; border: none; line-height: 1; }
+  .popup-close:hover { color: #333; }
+  .popup-body { padding: 16px 20px 20px; }
+  .popup-section { margin-bottom: 16px; }
+  .popup-section:last-child { margin-bottom: 0; }
+  .popup-section h3 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: #999; margin-bottom: 8px; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px;
+  }
+
+  .popup-uses { list-style: none; }
+  .popup-uses li { font-size: 12px; padding: 4px 0; border-bottom: 1px solid #f8f8f8; line-height: 1.4; }
+  .popup-uses li:last-child { border-bottom: none; }
+  .popup-uses .use-label { font-weight: 600; }
+  .popup-uses .use-rev { color: #2962ff; font-weight: 700; float: right; font-size: 11px; }
+
+  .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .comp-card { background: #f8f9fa; border-radius: 8px; padding: 10px; border: 1px solid #eee; }
+  .comp-card .comp-name { font-size: 11px; font-weight: 700; color: #1a1a2e; margin-bottom: 2px; }
+  .comp-card .comp-loc { font-size: 9px; color: #888; margin-bottom: 4px; }
+  .comp-card .comp-desc { font-size: 10px; line-height: 1.35; color: #555; }
+  .comp-card .comp-rev { font-size: 10px; font-weight: 700; color: #43a047; margin-top: 3px; }
+
+  /* STEPS */
+  .steps-box { background: #f0f7ff; border-radius: 8px; padding: 14px; border: 1px solid #d0e3ff; }
+  .step-item { display: flex; gap: 10px; padding: 6px 0; border-bottom: 1px solid #e4edf8; font-size: 11px; line-height: 1.4; }
+  .step-item:last-child { border-bottom: none; }
+  .step-num { font-weight: 800; color: #2962ff; font-size: 13px; min-width: 20px; }
+  .step-text { flex: 1; color: #333; }
+  .step-cost { font-weight: 700; color: #1a47b3; white-space: nowrap; min-width: 80px; text-align: right; }
+  .steps-total { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-top: 8px; padding-top: 8px; border-top: 2px solid #2962ff; }
+  .steps-note { font-size: 9px; color: #888; margin-top: 6px; line-height: 1.3; font-style: italic; }
+
+  /* PARTNERS */
+  .partners-box {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d2d5e 100%);
+    border-radius: 8px; padding: 14px; color: #fff;
+  }
+  .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .partner-item { background: rgba(255,255,255,0.08); border-radius: 6px; padding: 8px 10px; }
+  .partner-name { font-size: 11px; font-weight: 700; color: #69f0ae; margin-bottom: 2px; }
+  .partner-role { font-size: 10px; color: #aaa; line-height: 1.3; }
+  .partner-why { font-size: 9px; color: #777; margin-top: 3px; font-style: italic; }
+
+  .revenue-realistic { background: #f0f7ff; border-radius: 8px; padding: 12px; border: 1px solid #d0e3ff; }
+  .rev-line { display: flex; justify-content: space-between; font-size: 11px; padding: 3px 0; }
+  .rev-line .rev-label { color: #555; } .rev-line .rev-val { font-weight: 700; color: #1a47b3; }
+  .rev-line.rev-total-line { border-top: 2px solid #2962ff; padding-top: 6px; margin-top: 4px; font-size: 12px; }
+  .rev-basis { font-size: 9px; color: #888; margin-top: 6px; line-height: 1.3; font-style: italic; }
+
+  /* SIDEBAR */
+  .sidebar { width: 290px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .legend { background: #fff; border-radius: 8px; padding: 10px 12px; border: 1px solid #ddd; }
+  .legend h3 { font-size: 10px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; color: #555; }
+  .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; font-size: 9.5px; }
+  .legend-dot { width: 11px; height: 11px; border-radius: 3px; border: 2px solid; flex-shrink: 0; }
+
+  .revenue-box { background: #1a1a2e; color: #fff; border-radius: 8px; padding: 10px 12px; }
+  .revenue-box h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-bottom: 6px; }
+  .rev-row { display: flex; justify-content: space-between; font-size: 9.5px; padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .rev-row:last-of-type { border-bottom: none; }
+  .rev-row .rev-cat { color: #ccc; } .rev-row .rev-amt { font-weight: 700; }
+  .rev-total-row { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-top: 6px; padding-top: 6px; border-top: 2px solid rgba(255,255,255,0.3); }
+
+  .building-index { background: #fff; border-radius: 8px; padding: 8px 12px; border: 1px solid #ddd; flex: 1; overflow-y: auto; }
+  .building-index h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #555; margin-bottom: 4px; }
+  .idx-item { font-size: 8.5px; padding: 2px 0; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: baseline; cursor: pointer; }
+  .idx-item:hover { background: #f8f9fa; }
+  .idx-item:last-child { border-bottom: none; }
+  .idx-num { font-weight: 700; width: 15px; flex-shrink: 0; }
+  .idx-name { flex: 1; font-weight: 600; }
+  .idx-rev { font-weight: 700; color: #2962ff; text-align: right; font-size: 8px; }
+
+  .hint-box { background: #fffde7; border: 1px solid #fff9c4; border-radius: 8px; padding: 8px 10px; font-size: 9px; color: #888; line-height: 1.4; text-align: center; }
+
+  .footer { text-align: center; font-size: 8px; color: #999; margin-top: 6px; padding-top: 4px; border-top: 1px solid #ddd; }
+
+  @media print { body { padding: 0; } .building:hover { transform: none; box-shadow: none; } .popup-overlay { display: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Oakland City University &mdash; Campus Reimagined</h1>
+  <div class="subtitle">34-Acre Campus &bull; Alternative Use Map with Comparables &bull; Implementation Steps &amp; Costs &bull; Key Partners &amp; Funders &bull; Deliverable 3</div>
+</div>
+
+<div class="main-layout">
+  <div class="map-area">
+    <div class="campus-label">34-Acre Main Campus &bull; Oakland City, IN</div>
+    <div class="street street-top">W. Sherman Street</div>
+    <div class="street street-bottom">W. Columbia Street</div>
+    <div class="street street-left">N. Franklin St.</div>
+    <div class="street street-right">N. Lucretia St.</div>
+    <div class="road-h" style="top:32px; left:0; right:0;"></div>
+    <div class="road-h" style="bottom:22px; left:0; right:0;"></div>
+    <div class="road-v" style="left:22px; top:0; bottom:0;"></div>
+    <div class="road-v" style="right:22px; top:0; bottom:0;"></div>
+    <div class="pathway" style="top:48%; left:25%; width:50%; height:2px;"></div>
+    <div class="pathway" style="top:20%; left:48%; width:2px; height:60%;"></div>
+    <div class="pathway" style="top:35%; left:15%; width:2px; height:30%;"></div>
+    <div class="pathway" style="top:35%; left:75%; width:2px; height:30%;"></div>
+    <div class="parking" style="top:88%; left:8%;">P</div>
+    <div class="parking" style="top:88%; left:82%;">P</div>
+    <div class="parking" style="top:42%; left:5%;">P</div>
+    <div class="compass"></div>
+
+    <div class="building cat-workforce" style="top:6%; left:3%; width:170px;" onclick="openPopup('b1')">
+      <div class="bname">1 &bull; Johnson Center</div>
+      <div class="bcurrent">Currently: 1,000-seat arena</div>
+      <div class="buse">Advanced Mfg. Training Center (Toyota pipeline)</div>
+      <div class="buse">Corporate conference &amp; job-fair venue</div>
+      <div class="buse">CDL / heavy-equipment indoor sim lab</div>
+      <div class="brevenue">Yr 1: $85K&ndash;$140K &bull; Yr 3: $220K&ndash;$340K</div>
+    </div>
+    <div class="building cat-health" style="top:6%; left:26%; width:160px;" onclick="openPopup('b2')">
+      <div class="bname">2 &bull; Student Life Center</div>
+      <div class="bcurrent">Currently: Student activities</div>
+      <div class="buse">Community wellness &amp; fitness center</div>
+      <div class="buse">CNA / QMA / Phlebotomy clinical lab</div>
+      <div class="buse">Senior day-program &amp; rehab services</div>
+      <div class="brevenue">Yr 1: $60K&ndash;$95K &bull; Yr 3: $150K&ndash;$240K</div>
+    </div>
+    <div class="building cat-workforce" style="top:6%; left:55%; width:170px;" onclick="openPopup('b3')">
+      <div class="bname">3 &bull; Murray Admin Center</div>
+      <div class="bcurrent">Currently: Admin offices (138 N. Lucretia)</div>
+      <div class="buse">Workforce Development HQ &amp; employer liaison</div>
+      <div class="buse">Testing &amp; certification center (OSHA, MSHA, Six Sigma)</div>
+      <div class="buse">Small Business Development Center</div>
+      <div class="brevenue">Yr 1: $45K&ndash;$75K &bull; Yr 3: $110K&ndash;$175K</div>
+    </div>
+    <div class="building cat-enterprise" style="top:28%; left:3%; width:155px;" onclick="openPopup('b4')">
+      <div class="bname">4 &bull; Provance Chapel</div>
+      <div class="bcurrent">Currently: Campus chapel</div>
+      <div class="buse">Wedding &amp; private-event venue</div>
+      <div class="buse">Concert / performing arts series</div>
+      <div class="buse">Community counseling &amp; recovery center</div>
+      <div class="brevenue">Yr 1: $25K&ndash;$45K &bull; Yr 3: $55K&ndash;$90K</div>
+    </div>
+    <div class="building cat-community" style="top:30%; left:28%; width:165px;" onclick="openPopup('b5')">
+      <div class="bname">5 &bull; Bower-Suhrheinrich Library</div>
+      <div class="bcurrent">Currently: Campus library</div>
+      <div class="buse">Co-working hub &amp; digital skills lab</div>
+      <div class="buse">Small-business incubator / maker space</div>
+      <div class="buse">Community learning commons (GED, ESL)</div>
+      <div class="brevenue">Yr 1: $30K&ndash;$55K &bull; Yr 3: $75K&ndash;$130K</div>
+    </div>
+    <div class="building cat-enterprise" style="top:28%; left:57%; width:150px;" onclick="openPopup('b6')">
+      <div class="bname">6 &bull; Bell Tower &amp; Quad</div>
+      <div class="bcurrent">Currently: Green space / landmark</div>
+      <div class="buse">Farmers market &amp; local-food hub</div>
+      <div class="buse">Outdoor event amphitheater</div>
+      <div class="buse">Food-truck park &amp; seasonal festivals</div>
+      <div class="brevenue">Yr 1: $12K&ndash;$25K &bull; Yr 3: $30K&ndash;$55K</div>
+    </div>
+    <div class="building cat-community" style="top:12%; left:79%; width:145px;" onclick="openPopup('b7')">
+      <div class="bname">7 &bull; Cockrum Hall</div>
+      <div class="bcurrent">Currently: Historic (Nat'l Register, 1978)</div>
+      <div class="buse">Heritage museum &amp; tourism center</div>
+      <div class="buse">Art gallery &amp; cultural programming</div>
+      <div class="buse">Non-profit co-location offices</div>
+      <div class="brevenue">Yr 1: $10K&ndash;$20K &bull; Yr 3: $25K&ndash;$45K</div>
+    </div>
+    <div class="building cat-health" style="top:52%; left:3%; width:160px;" onclick="openPopup('b8')">
+      <div class="bname">8 &bull; Brokaw Hall</div>
+      <div class="bcurrent">Currently: Offices (125 N. Franklin)</div>
+      <div class="buse">Healthcare simulation lab (RN/LPN pathway)</div>
+      <div class="buse">Telehealth clinic (Deaconess partnership)</div>
+      <div class="buse">Health information &amp; medical coding training</div>
+      <div class="brevenue">Yr 1: $65K&ndash;$110K &bull; Yr 3: $160K&ndash;$250K</div>
+    </div>
+    <div class="building cat-workforce" style="top:54%; left:28%; width:155px;" onclick="openPopup('b9')">
+      <div class="bname">9 &bull; Dearing Hall</div>
+      <div class="bcurrent">Currently: Residence + classrooms</div>
+      <div class="buse">Industrial maintenance &amp; robotics lab</div>
+      <div class="buse">EV battery-tech training (Toyota partnership)</div>
+      <div class="buse">Lean manufacturing / quality systems classroom</div>
+      <div class="brevenue">Yr 1: $70K&ndash;$120K &bull; Yr 3: $180K&ndash;$280K</div>
+    </div>
+    <div class="building cat-enterprise" style="top:52%; left:57%; width:155px;" onclick="openPopup('b10')">
+      <div class="bname">10 &bull; McCullough Chapel</div>
+      <div class="bcurrent">Currently: Iconic campus chapel</div>
+      <div class="buse">Premium wedding &amp; event venue</div>
+      <div class="buse">Community lecture &amp; speaker series</div>
+      <div class="buse">Recording studio / podcast hub</div>
+      <div class="brevenue">Yr 1: $30K&ndash;$55K &bull; Yr 3: $70K&ndash;$120K</div>
+    </div>
+    <div class="building cat-revenue" style="top:74%; left:3%; width:155px;" onclick="openPopup('b11')">
+      <div class="bname">11 &bull; Williams Hall</div>
+      <div class="bcurrent">Currently: Upperclass residence (2019)</div>
+      <div class="buse">Workforce apprentice housing (Toyota pipeline)</div>
+      <div class="buse">Extended-stay corporate lodging</div>
+      <div class="buse">Summer camp / retreat center lodging</div>
+      <div class="brevenue">Yr 1: $50K&ndash;$85K &bull; Yr 3: $100K&ndash;$160K</div>
+    </div>
+    <div class="building cat-revenue" style="top:74%; left:28%; width:160px;" onclick="openPopup('b12')">
+      <div class="bname">12 &bull; New Hall</div>
+      <div class="bcurrent">Currently: Freshman res. (2023, $10.1M, 150 beds)</div>
+      <div class="buse">Corporate retreat &amp; training lodging</div>
+      <div class="buse">Transitional housing program</div>
+      <div class="buse">Short-term rental (Airbnb model)</div>
+      <div class="brevenue">Yr 1: $55K&ndash;$95K &bull; Yr 3: $120K&ndash;$200K</div>
+    </div>
+    <div class="building cat-youth" style="top:74%; left:57%; width:155px;" onclick="openPopup('b13')">
+      <div class="bname">13 &bull; Konkler Field &amp; Grounds</div>
+      <div class="bcurrent">Currently: Baseball / athletics</div>
+      <div class="buse">Youth sports academy &amp; summer camps</div>
+      <div class="buse">Tournament hosting &amp; travel-ball revenue</div>
+      <div class="buse">K-12 field-day &amp; outdoor ed programs</div>
+      <div class="brevenue">Yr 1: $20K&ndash;$40K &bull; Yr 3: $50K&ndash;$90K</div>
+    </div>
+    <div class="building cat-youth" style="top:50%; left:79%; width:145px;" onclick="openPopup('b14')">
+      <div class="bname">14 &bull; Open Acreage (East)</div>
+      <div class="bcurrent">Currently: Unused campus land</div>
+      <div class="buse">Ag-tech demonstration farm &amp; greenhouse</div>
+      <div class="buse">Solar array / renewable energy training</div>
+      <div class="buse">CDL driving course &amp; heavy-equipment yard</div>
+      <div class="brevenue">Yr 1: $25K&ndash;$50K &bull; Yr 3: $65K&ndash;$120K</div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="hint-box">Click any building for comparables, implementation steps &amp; costs, and key partners &amp; funders.</div>
+    <div class="legend">
+      <h3>Color Key</h3>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(41,98,255,0.15); border-color:#2962ff;"></div>Workforce Training &amp; Manufacturing</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(0,150,136,0.15); border-color:#00897b;"></div>Healthcare &amp; Wellness</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(245,124,0,0.15); border-color:#f57c00;"></div>Event Venue &amp; Enterprise</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(156,39,176,0.15); border-color:#9c27b0;"></div>Community &amp; Innovation Hub</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(76,175,80,0.15); border-color:#43a047;"></div>Youth, Ag &amp; Outdoor Programs</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(211,47,47,0.15); border-color:#d32f2f;"></div>Lodging &amp; Revenue Property</div>
+    </div>
+    <div class="revenue-box">
+      <h3>Realistic Revenue Ramp</h3>
+      <div style="font-size:9px; color:#aaa; margin-bottom:6px;">Conservative estimates assume 6&ndash;12 month startup, partial occupancy, phased employer partnerships.</div>
+      <div class="rev-row"><span class="rev-cat">Year 1 (Pilot)</span><span class="rev-amt" style="color:#ef9a9a;">$580K &ndash; $950K</span></div>
+      <div class="rev-row"><span class="rev-cat">Year 3 (Traction)</span><span class="rev-amt" style="color:#ffcc80;">$1.41M &ndash; $2.29M</span></div>
+      <div class="rev-row"><span class="rev-cat">Year 5 (Maturity)</span><span class="rev-amt" style="color:#a5d6a7;">$1.9M &ndash; $3.1M</span></div>
+      <div class="rev-total-row"><span>EST. STARTUP COST</span><span style="color:#ef9a9a;">$1.4M &ndash; $2.6M</span></div>
+      <div style="font-size:7.5px; color:#666; margin-top:6px; line-height:1.3;">
+        Based on Deliverable 2 employer demand scan, Ivy Tech/Tri-C benchmarks, and NCHEMS rural-campus models. Most startup costs are grant-eligible through READI 2.0, USDA, Lilly Endowment, EDA, and WIOA.
+      </div>
+    </div>
+    <div class="building-index">
+      <h3>Building Index (click to explore)</h3>
+      <div class="idx-item" onclick="openPopup('b1')"><span class="idx-num">1</span><span class="idx-name">Johnson Center</span><span class="idx-rev">$220-340K</span></div>
+      <div class="idx-item" onclick="openPopup('b2')"><span class="idx-num">2</span><span class="idx-name">Student Life Center</span><span class="idx-rev">$150-240K</span></div>
+      <div class="idx-item" onclick="openPopup('b3')"><span class="idx-num">3</span><span class="idx-name">Murray Admin Center</span><span class="idx-rev">$110-175K</span></div>
+      <div class="idx-item" onclick="openPopup('b4')"><span class="idx-num">4</span><span class="idx-name">Provance Chapel</span><span class="idx-rev">$55-90K</span></div>
+      <div class="idx-item" onclick="openPopup('b5')"><span class="idx-num">5</span><span class="idx-name">Bower-Suhrheinrich Library</span><span class="idx-rev">$75-130K</span></div>
+      <div class="idx-item" onclick="openPopup('b6')"><span class="idx-num">6</span><span class="idx-name">Bell Tower &amp; Quad</span><span class="idx-rev">$30-55K</span></div>
+      <div class="idx-item" onclick="openPopup('b7')"><span class="idx-num">7</span><span class="idx-name">Cockrum Hall</span><span class="idx-rev">$25-45K</span></div>
+      <div class="idx-item" onclick="openPopup('b8')"><span class="idx-num">8</span><span class="idx-name">Brokaw Hall</span><span class="idx-rev">$160-250K</span></div>
+      <div class="idx-item" onclick="openPopup('b9')"><span class="idx-num">9</span><span class="idx-name">Dearing Hall</span><span class="idx-rev">$180-280K</span></div>
+      <div class="idx-item" onclick="openPopup('b10')"><span class="idx-num">10</span><span class="idx-name">McCullough Chapel</span><span class="idx-rev">$70-120K</span></div>
+      <div class="idx-item" onclick="openPopup('b11')"><span class="idx-num">11</span><span class="idx-name">Williams Hall</span><span class="idx-rev">$100-160K</span></div>
+      <div class="idx-item" onclick="openPopup('b12')"><span class="idx-num">12</span><span class="idx-name">New Hall</span><span class="idx-rev">$120-200K</span></div>
+      <div class="idx-item" onclick="openPopup('b13')"><span class="idx-num">13</span><span class="idx-name">Konkler Field</span><span class="idx-rev">$50-90K</span></div>
+      <div class="idx-item" onclick="openPopup('b14')"><span class="idx-num">14</span><span class="idx-name">Open Acreage</span><span class="idx-rev">$65-120K</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Campus Transformation Assessment &bull; Oakland City University &bull; Prepared by Transform Learning AI &bull; June 2026 &bull; Revenue projections are conservative estimates; actual results depend on partnerships, market conditions, grant funding, and implementation pace.
+</div>
+
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+<div class="popup" onclick="event.stopPropagation()">
+  <div class="popup-header">
+    <h2 id="popupTitle"></h2>
+    <div class="popup-current" id="popupCurrent"></div>
+    <button class="popup-close" onclick="closePopup()">&times;</button>
+  </div>
+  <div class="popup-body" id="popupBody"></div>
+</div>
+</div>
+
+<script>
+const buildings = {
+  b1: {
+    title: "1. Johnson Center",
+    current: "1,000-seat arena — men's & women's basketball and volleyball",
+    uses: [
+      { label: "Advanced Manufacturing Training Center", desc: "Toyota/supplier pipeline: robotics, industrial automation, lean mfg., EV battery assembly. Cohort-based 8-16 week programs.", rev: "$120K-$200K" },
+      { label: "Corporate Conference & Job-Fair Venue", desc: "Regional employer events, career fairs, safety-training days for TMMI, Boshoku, Vuteq, Hansen, Norfolk Southern.", rev: "$40K-$65K" },
+      { label: "CDL / Heavy-Equipment Indoor Sim Lab", desc: "Simulator bays for CDL, forklift, mine-equipment training. Lower capital than outdoor courses.", rev: "$60K-$75K" }
+    ],
+    revYr1: "$85K-$140K", revYr3: "$220K-$340K", revYr5: "$300K-$420K",
+    revBasis: "Based on Ivy Tech Elkhart's center serving 700+ mfg. employers, scaled to OCU's smaller catchment. Assumes 4-6 employer contracts at $15K-$35K each + open-enrollment cohorts of 20-30 at ~$1,100/person.",
+    comps: [
+      { name: "Ivy Tech Garatoni Center", loc: "Elkhart, IN", desc: "$3.8M advanced mfg. center. Mechatronics, robotics, industrial maintenance. Serves 700+ manufacturers. Funded by county + $1M Lilly Endowment LIFT grant.", rev: "Est. $800K-$1.2M/yr" },
+      { name: "Miami/Butler Tech AM Hub", loc: "Hamilton, OH", desc: "$31M, 375,000-sq-ft hub. Butler County committed $20M. Butler Tech signed 40-yr lease. 3,000 students/yr.", rev: "$2.5M+ combined" },
+      { name: "WMU AMP Lab", loc: "Grand Rapids, MI", desc: "15,000-sq-ft Advanced Manufacturing Partnership Lab. Prototyping, training, small-scale mfg. Credit-bearing pathways.", rev: "Est. $400K-$600K/yr" },
+      { name: "Cincinnati State WDC", loc: "Cincinnati, OH", desc: "Trains 2,000+ students/yr in advanced mfg., HazMat, industrial maintenance. Corporate contracts with P&G, GE, Kroger.", rev: "Est. $1.5M+/yr" }
+    ],
+    steps: [
+      { text: "Negotiate letter of intent with TMMI workforce development team for 2-3 pilot training cohorts", cost: "$0 (staff time)" },
+      { text: "Apply for Indiana Skills Enhancement Fund (SEF) grant — reimburses 50% of employer training costs", cost: "$0 (grant app)" },
+      { text: "Purchase industrial training equipment: PLC trainers, hydraulic/pneumatic benches, welding stations, CDL simulators", cost: "$250K-$400K" },
+      { text: "Hire workforce program director + 2 part-time instructors (industry veterans preferred)", cost: "$140K-$180K/yr" },
+      { text: "Renovate arena floor for training bays — electrical upgrades, compressed air, ventilation, safety partitions", cost: "$120K-$200K" },
+      { text: "Apply to become WIOA-eligible training provider through Indiana DWD INTraining system", cost: "$0 (6-month process)" },
+      { text: "Launch first Toyota/supplier cohort — target 20 trainees, 12-week industrial maintenance program", cost: "$15K (materials)" }
+    ],
+    stepsTotal: "$525K-$795K startup + $155K/yr staffing",
+    stepsNote: "Equipment costs are grant-eligible through READI 2.0, EDA, and Lilly Endowment LIFT Network. TMMI has donated $55M+ locally over 30 years — equipment sponsorship is realistic.",
+    partners: [
+      { name: "Toyota Motor Mfg. Indiana (TMMI)", role: "Anchor employer partner", why: "7,500+ employees, $1.4B expansion, already funds M4T Academy and AMT programs. Direct demand for trained workers." },
+      { name: "Tami Hack / Gibson County EDC", role: "Economic development lead", why: "President/CEO of Go Gibson. Coordinates employer relationships, READI applications, and workforce pipeline strategy for the county." },
+      { name: "E-REP / READI 2.0", role: "Primary grant funder ($45M regional pot)", why: "Evansville Regional Economic Partnership administers READI 2.0. Already funded $5M Toyota YMCA and $2.5M Princeton workforce housing in Gibson County." },
+      { name: "Indiana DWD / WorkOne", role: "WIOA funding + certification authority", why: "Approves OCU as eligible training provider. Routes WIOA-funded students. Promotes Indiana Industry Certifications." },
+      { name: "Vincennes University", role: "Potential program partner (not competitor)", why: "45 mi away, already runs AMT/FAME. Could co-deliver programs or share accreditation rather than duplicate." },
+      { name: "Lilly Endowment LIFT Network", role: "Equipment and program grants", why: "Funded $1M to Ivy Tech Elkhart for similar center. OCU's rural location and workforce focus fit LIFT priorities." }
+    ]
+  },
+  b2: {
+    title: "2. Student Life Center",
+    current: "Student activities center — 720 W. Sherman St.",
+    uses: [
+      { label: "Community Wellness & Fitness Center", desc: "Open-membership gym, group fitness, nutrition counseling. No commercial gym exists in Oakland City (pop. 3,000).", rev: "$30K-$50K" },
+      { label: "CNA / QMA / Phlebotomy Clinical Lab", desc: "Hands-on clinical skills stations. Pipeline to Deaconess Hospital and The Waters senior-care facilities.", rev: "$45K-$70K" },
+      { label: "Senior Day-Program & Rehab Services", desc: "Adult day services, PT partnerships, fall-prevention. Contracts with Area Agency on Aging.", rev: "$25K-$40K" }
+    ],
+    revYr1: "$60K-$95K", revYr3: "$150K-$240K", revYr5: "$200K-$310K",
+    revBasis: "CNA programs generate $800-$1,200/student for 6-8 week courses. Assumes 3-4 cohorts/yr of 12-15 students. Fitness center at $35-$50/month targeting 80-150 members.",
+    comps: [
+      { name: "Ivy Tech Nursing Sim Lab", loc: "Indianapolis, IN", desc: "Illinois Fall Creek Center reopened as nursing/health sciences hub. $14M renovation. Relocated closer to hospital partners.", rev: "Part of $50M+ campus revenue" },
+      { name: "Vincennes University CNA Program", loc: "Vincennes, IN", desc: "Regional CNA/QMA certification, 45 mi from OCU. Multiple cohorts/yr, high pass rate, employer partnerships.", rev: "Est. $200K-$350K/yr" },
+      { name: "Tri-C Healthcare Training", loc: "Cleveland, OH", desc: "Phlebotomy, medical coding, CNA pathways. Corporate College division handles employer contracts.", rev: "Part of $5M+ workforce division" },
+      { name: "YMCA of SW Indiana", loc: "Evansville, IN", desc: "Comparable community fitness + wellness model in nearest metro. 5,000+ members. Shows demand exists in SW Indiana.", rev: "$1.2M+/yr (larger scale)" }
+    ],
+    steps: [
+      { text: "Negotiate clinical partnership agreement with Deaconess Gibson Hospital for CNA/QMA preceptorships", cost: "$0 (staff time)" },
+      { text: "Purchase CNA clinical equipment: hospital beds, mannequins, IV trainers, vital-signs monitors, phlebotomy arms", cost: "$60K-$90K" },
+      { text: "Hire lead CNA/healthcare instructor (RN with teaching experience)", cost: "$55K-$70K/yr" },
+      { text: "Install fitness equipment in existing activity space — cardio, free weights, group-fitness flooring", cost: "$40K-$65K" },
+      { text: "Apply for Indiana State Board of Health approval as CNA training site", cost: "$0 (90-day process)" },
+      { text: "Market community fitness memberships — Oakland City has zero gym options, captive market", cost: "$3K-$5K" },
+      { text: "Contract with SWIAAA (Area Agency on Aging) for senior day-programming space and services", cost: "$0 (revenue contract)" }
+    ],
+    stepsTotal: "$103K-$160K startup + $58K/yr staffing",
+    stepsNote: "CNA training equipment is eligible for USDA Community Facilities grants. Deaconess Foundation has funded community health projects in Gibson County for 100+ years. Fitness center generates immediate cash flow.",
+    partners: [
+      { name: "Deaconess Gibson Hospital", role: "Clinical partner + employer", why: "25-bed critical access hospital in Princeton. Needs CNA/QMA pipeline. Has foundation that funds community health initiatives." },
+      { name: "The Waters of Princeton", role: "Senior-care employer partner", why: "19 Alzheimer's beds, ongoing CNA/QMA demand. Direct hiring pipeline for OCU graduates." },
+      { name: "Gibson County Community Foundation", role: "Local grant funder", why: "Awards $136K-$182K/yr to local nonprofits. Community health and wellness are stated priority areas." },
+      { name: "SWIAAA (Area Agency on Aging)", role: "Senior programming funder", why: "Federal Older Americans Act funding for adult day services. Would contract with OCU for space and programming." },
+      { name: "USDA Community Facilities Program", role: "Federal grant for equipment", why: "Funds essential community facilities in rural areas. Healthcare training equipment is eligible. Oakland City qualifies." },
+      { name: "Indiana State Dept. of Health", role: "CNA program approval authority", why: "Must approve OCU as training site before CNA courses can run. 90-day application process." }
+    ]
+  },
+  b3: {
+    title: "3. Murray Administration Center",
+    current: "Administrative offices — 138 N. Lucretia St.",
+    uses: [
+      { label: "Workforce Development HQ & Employer Liaison", desc: "Central hub coordinating all employer partnerships. Workforce navigators, grant writers, program coordinators.", rev: "$15K-$25K (indirect)" },
+      { label: "Testing & Certification Center", desc: "Proctored exams: OSHA 10/30, MSHA, ServSafe, Six Sigma, CompTIA, Microsoft. Pearson VUE testing partnership.", rev: "$55K-$90K" },
+      { label: "Small Business Development Center", desc: "SBDC satellite (SBA-funded). Free counseling, workshops, micro-loan facilitation for Gibson County entrepreneurs.", rev: "$40K-$60K (grant-funded)" }
+    ],
+    revYr1: "$45K-$75K", revYr3: "$110K-$175K", revYr5: "$140K-$210K",
+    revBasis: "Pearson VUE testing at $15-$50/exam, 100-200 exams/month. SBDC satellites receive $40K-$80K in SBA pass-through. OSHA 10-hour cards at $75-$150/person.",
+    comps: [
+      { name: "Indiana SBDC at USI", loc: "Evansville, IN", desc: "Nearest SBDC, 30 mi from OCU. Serves 8-county region. Free counseling, workshops, grant-writing. SBA-funded.", rev: "$60K-$80K pass-through" },
+      { name: "Kaskaskia College Testing Center", loc: "Centralia, IL", desc: "Small rural college running Pearson VUE and CLEP testing. Serves 5-county area. Low overhead, steady demand.", rev: "Est. $40K-$70K/yr" },
+      { name: "Vincennes U. Workforce Certifications", loc: "Vincennes, IN", desc: "OSHA, forklift, CDL testing. Regional hub for industrial certifications. Group testing for employers.", rev: "Est. $150K-$250K/yr" },
+      { name: "Purdue MEP (Mfg. Extension)", loc: "Statewide, IN", desc: "Helps manufacturers with lean, quality, workforce. OCU could host regional satellite. $3-$5 economic impact per $1.", rev: "$500K+ per regional office" }
+    ],
+    steps: [
+      { text: "Apply to become Pearson VUE Authorized Test Center — requires dedicated room, proctor, security protocols", cost: "$8K-$15K setup" },
+      { text: "Contact Indiana SBDC network (hosted at USI) about establishing Gibson County satellite office", cost: "$0 (SBA funds the satellite)" },
+      { text: "Hire workforce development director — this person is the face of employer partnerships campus-wide", cost: "$65K-$85K/yr" },
+      { text: "Renovate 2-3 offices into testing rooms with individual workstations, cameras, secure storage", cost: "$15K-$25K" },
+      { text: "Schedule first OSHA 10/30 training sessions — market to Toyota suppliers, Peabody, Norfolk Southern", cost: "$2K (instructor + materials)" },
+      { text: "Establish SCORE volunteer mentor chapter for Gibson County small businesses", cost: "$0 (volunteer-run)" }
+    ],
+    stepsTotal: "$25K-$42K startup + $67K/yr staffing",
+    stepsNote: "Lowest startup cost of any building — mostly repurposing existing office space. SBDC is entirely SBA-funded. Pearson VUE generates revenue from day one. The workforce director hire is the most critical investment on campus.",
+    partners: [
+      { name: "Indiana SBDC / USI", role: "SBDC host institution", why: "SBA funds satellite offices. USI's SBDC already serves the region but has no Gibson County presence." },
+      { name: "Pearson VUE", role: "Testing platform partner", why: "Nearest authorized test centers are in Evansville. Gibson County workers drive 30+ mi for certifications." },
+      { name: "Gibson County Chamber of Commerce", role: "Small business network", why: "Go Gibson connects to 200+ local businesses. Drives demand for SBDC services and certification testing." },
+      { name: "SCORE SW Indiana Chapter", role: "Free business mentoring", why: "Retired executives volunteering as mentors. Zero cost to OCU, high value to community." },
+      { name: "Commissioner Ken Montgomery", role: "County government support", why: "Gibson County Commissioner President. County funding and political support for workforce initiatives." },
+      { name: "Indiana DWD / WorkOne Southwest", role: "WIOA referrals + funding", why: "Routes job-seekers to training. OCU becomes a WorkOne affiliate site for Gibson County." }
+    ]
+  },
+  b4: {
+    title: "4. Provance Memorial Chapel",
+    current: "Campus chapel — historic, central campus",
+    uses: [
+      { label: "Wedding & Private-Event Venue", desc: "15-25 weddings/yr at $750-$1,500 rental. Packages with McCullough Chapel for ceremony + reception.", rev: "$15K-$30K" },
+      { label: "Concert & Performing Arts Series", desc: "Monthly acoustic concerts, community theater, holiday performances. Tickets + sponsorships.", rev: "$8K-$18K" },
+      { label: "Community Counseling & Recovery Center", desc: "Sliding-scale counseling, AA/NA meetings, grief support. Grant-funded + Medicaid billing.", rev: "$20K-$42K" }
+    ],
+    revYr1: "$25K-$45K", revYr3: "$55K-$90K", revYr5: "$70K-$110K",
+    revBasis: "Comparable chapel venues (Drury U. Stone Chapel, Stephens College) charge $750-$1,500/event. Rural Indiana wedding market is price-sensitive. Counseling revenue based on SAMHSA rural behavioral health benchmarks.",
+    comps: [
+      { name: "Drury University Stone Chapel", loc: "Springfield, MO", desc: "Former compulsory-chapel converted to premier wedding/VIP venue. Community events, concerts. Consistently booked.", rev: "Est. $50K-$80K/yr" },
+      { name: "Stephens College Firestone Baars", loc: "Columbia, MO", desc: "Campus chapel rented for weddings at $750/ceremony. 12-hour event blocks.", rev: "Est. $25K-$40K/yr" },
+      { name: "DePauw U. Gobin Memorial Church", loc: "Greencastle, IN", desc: "Historic campus church hosting weddings, concerts, community events. Similar rural-college context.", rev: "Est. $30K-$50K/yr" },
+      { name: "Angel Mounds Historic Site", loc: "Evansville, IN", desc: "Comparable regional event space. Historic setting for weddings, corporate retreats, community programming.", rev: "Est. $40K-$60K/yr" }
+    ],
+    steps: [
+      { text: "Cosmetic refresh — deep clean, paint, lighting upgrades, sound system, accessible restrooms", cost: "$20K-$35K" },
+      { text: "Build wedding/event website and list on The Knot, WeddingWire, and regional wedding directories", cost: "$2K-$4K" },
+      { text: "Hire part-time event coordinator (can cover both chapels + quad events)", cost: "$28K-$35K/yr" },
+      { text: "Apply for SAMHSA rural behavioral health grant for counseling program", cost: "$0 (grant app)" },
+      { text: "Partner with Southwestern Behavioral Healthcare for licensed counselors on-site 2-3 days/week", cost: "$0 (they bill Medicaid)" },
+      { text: "Host inaugural community concert series to build awareness — 4 shows, local musicians", cost: "$3K-$5K" }
+    ],
+    stepsTotal: "$25K-$44K startup + $30K/yr staffing",
+    stepsNote: "Chapel requires minimal renovation — it's already a beautiful space. Event revenue begins within 3-6 months of listing. Counseling program is grant-funded and fills critical rural mental health gap.",
+    partners: [
+      { name: "Southwestern Behavioral Healthcare", role: "Licensed counseling provider", why: "Regional mental health provider. Can place counselors at OCU and bill Medicaid — zero cost to campus." },
+      { name: "Gibson County Community Foundation", role: "Arts & culture grants", why: "Funds community programming. Concert series and cultural events fit their mission." },
+      { name: "Indiana Arts Commission", role: "State arts funding", why: "Grants $5K-$15K for community gallery/performance programs. Chapel venue qualifies." },
+      { name: "SAMHSA", role: "Federal behavioral health grants", why: "Rural communities are priority for substance abuse and mental health funding." },
+      { name: "General Baptist Convention", role: "Denominational partner", why: "OCU's founding denomination. Chapel use preserves religious heritage while expanding community access." },
+      { name: "Princeton Main Street", role: "Cross-promotion for events", why: "Princeton's downtown initiative drives visitor traffic. Joint marketing for chapel events and town activities." }
+    ]
+  },
+  b5: {
+    title: "5. Bower-Suhrheinrich Library",
+    current: "Campus library — central campus",
+    uses: [
+      { label: "Co-Working Hub & Digital Skills Lab", desc: "Hot desks at $50-$150/month, dedicated desks at $200/month. Free Wi-Fi commons. Digital literacy classes.", rev: "$20K-$40K" },
+      { label: "Small-Business Incubator / Maker Space", desc: "3D printers, laser cutters, CNC router, sewing machines. $50-$150/month memberships.", rev: "$18K-$35K" },
+      { label: "Community Learning Commons", desc: "GED prep, ESL classes, digital literacy for seniors, financial literacy. Grant-funded (WIOA, AEL, USDA).", rev: "$30K-$55K (grants)" }
+    ],
+    revYr1: "$30K-$55K", revYr3: "$75K-$130K", revYr5: "$100K-$170K",
+    revBasis: "Lansing Makers Network (MI) charges $50-$150/month. Akron-Summit Center received 150+ co-working applications in year one. GED/ESL funded through WIOA Title II at $30K-$80K/yr.",
+    comps: [
+      { name: "Lansing Makers Network", loc: "Lansing, MI", desc: "14,000-sq-ft makerspace: woodshop, metal shop, 3D printing, laser cutting, electronics. $50-$150/month access.", rev: "Est. $120K-$180K/yr" },
+      { name: "Akron-Summit Microbusiness Center", loc: "Akron, OH", desc: "Library-based co-working + business incubator. Knight Foundation funded. 150+ applications year one.", rev: "Grant-funded, $60K-$100K/yr" },
+      { name: "Missouri Innovation Center", loc: "Columbia, MO", desc: "33,000-sq-ft at Mizzou. Four tiers: touchdown, co-working, private offices, suites. Flexible terms.", rev: "Est. $300K-$500K/yr" },
+      { name: "LaGrange County Library Maker Lab", loc: "LaGrange, IN", desc: "Small-town library maker space in rural NE Indiana. 3D printers, vinyl cutters, sewing. Grant-funded.", rev: "Grant-funded, ~$25K/yr" }
+    ],
+    steps: [
+      { text: "Rearrange existing library space — reduce stacks, create open co-working zones and enclosed focus rooms", cost: "$10K-$20K" },
+      { text: "Install high-speed fiber internet (critical — rural connectivity is the value proposition)", cost: "$8K-$15K" },
+      { text: "Purchase maker equipment: 3D printer ($2K), laser cutter ($5K), CNC router ($8K), vinyl cutter ($500), tools", cost: "$20K-$35K" },
+      { text: "Apply for WIOA Title II Adult Education and Literacy grant through Indiana DWD", cost: "$0 (grant app)" },
+      { text: "Recruit GED/ESL instructors — part-time, can be certified teachers from East Gibson schools", cost: "$20K-$30K/yr" },
+      { text: "Partner with SCORE mentors and SBDC (Murray Center) for on-site entrepreneur office hours", cost: "$0 (shared resource)" },
+      { text: "Launch with free community open-house event to build awareness and sign up first members", cost: "$1K-$2K" }
+    ],
+    stepsTotal: "$39K-$72K startup + $22K/yr staffing",
+    stepsNote: "Library conversion is low-cost because the building, furniture, and utilities already exist. Fiber internet is the single most important investment — it transforms the building's value. Maker equipment can be funded by Lilly Endowment or USDA.",
+    partners: [
+      { name: "Lilly Endowment", role: "Major Indiana funder", why: "Funds community development, education, and workforce. $250M committed to READI 2.0 enhancements including blight reduction and community vibrancy." },
+      { name: "USDA Rural Development", role: "Federal community facilities grants", why: "Community Facilities Direct Loan & Grant Program funds essential community infrastructure in rural areas." },
+      { name: "Indiana DWD Adult Education", role: "WIOA Title II funding", why: "Funds GED, ESL, and digital literacy programs. OCU becomes the Adult Ed provider for Gibson County." },
+      { name: "East Gibson School Corporation", role: "Teacher pipeline for GED/ESL", why: "K-12 system with 255 students, ~76 teachers. Part-time moonlighting instructors for adult ed." },
+      { name: "Gibson County Visitors & Tourism", role: "Maker space promotion", why: "Can promote co-working and maker space to remote workers and visitors considering relocation." },
+      { name: "Smithville Fiber / local ISP", role: "Fiber internet installation", why: "Rural broadband provider. May co-fund installation as anchor tenant opportunity." }
+    ]
+  },
+  b6: {
+    title: "6. Bell Tower & Quad",
+    current: "Green space / historic landmark — campus center",
+    uses: [
+      { label: "Farmers Market & Local-Food Hub", desc: "Weekly Saturday market, May-October. Vendor fees $20-$40/stall. Partners with Gibson County farms.", rev: "$8K-$15K" },
+      { label: "Outdoor Event Amphitheater", desc: "Portable stage, string lights, 200-400 capacity. Concerts, movie nights, graduation ceremonies.", rev: "$10K-$20K" },
+      { label: "Food-Truck Park & Seasonal Festivals", desc: "4-6 seasonal festivals (fall harvest, holiday market, spring arts). Vendor fees + sponsorships.", rev: "$8K-$20K" }
+    ],
+    revYr1: "$12K-$25K", revYr3: "$30K-$55K", revYr5: "$40K-$70K",
+    revBasis: "Rural Indiana farmers markets average $15K-$40K in vendor fees/yr. Festivals in nearby small towns (Jasper Strassenfest) generate $20K-$60K. Zero competition in Oakland City.",
+    comps: [
+      { name: "DePauw University Quad Events", loc: "Greencastle, IN", desc: "Small-college quad for community concerts, farmers markets, homecoming. Similar town size (~10K).", rev: "Est. $20K-$35K/yr" },
+      { name: "Jasper Strassenfest Grounds", loc: "Jasper, IN", desc: "Annual German street festival, 35 mi from OCU. 40K+ attendees over 4 days.", rev: "$60K+ for host org" },
+      { name: "Bloomington Community Farmers Market", loc: "Bloomington, IN", desc: "Saturday market, April-November. 100+ vendors. Shows what's possible at scale.", rev: "$80K+/yr vendor fees" },
+      { name: "Franklin College Quad", loc: "Franklin, IN", desc: "Small Baptist college using quad for community integration. Similar enrollment to OCU.", rev: "Est. $10K-$20K/yr" }
+    ],
+    steps: [
+      { text: "Install permanent electrical hookups (4-6 stations) for vendor booths and food trucks", cost: "$8K-$12K" },
+      { text: "Purchase portable stage, sound system, and string-light infrastructure", cost: "$10K-$18K" },
+      { text: "Recruit first 15-20 vendors — contact Gibson County Farm Bureau, local food producers, artisans", cost: "$0 (outreach)" },
+      { text: "Obtain food-service permits and liability insurance for outdoor events", cost: "$2K-$4K/yr" },
+      { text: "Plan inaugural Fall Harvest Festival — partner with Princeton Main Street for cross-promotion", cost: "$3K-$5K" },
+      { text: "Apply for USDA Farmers Market Promotion Program (FMPP) grant", cost: "$0 (grant app)" }
+    ],
+    stepsTotal: "$23K-$39K startup + $2K/yr permits",
+    stepsNote: "Lowest-cost transformation on campus. The quad is already beautiful. This is really about programming, not construction. Can launch within 60 days of decision.",
+    partners: [
+      { name: "Gibson County Farm Bureau", role: "Farmer recruitment", why: "$220.5M farm income in Gibson County, avg. 379-acre farms. Direct pipeline to market vendors." },
+      { name: "Princeton Main Street", role: "Event co-promotion", why: "Downtown initiative drives visitor traffic. Joint marketing amplifies reach for both." },
+      { name: "USDA FMPP", role: "Federal farmers market grant", why: "Farmers Market Promotion Program funds market development in underserved areas." },
+      { name: "Purdue Extension - Gibson County", role: "Ag programming partner", why: "Master Gardener programs, food preservation workshops, 4-H demonstrations at market events." },
+      { name: "Oakland City Town Council", role: "Permits and promotion", why: "Town of 3,000 has no regular community gathering event. Strong political support likely." },
+      { name: "Toyota Community Grants", role: "Festival sponsorship", why: "TMMI donated $330K in local grants in 2026 alone. Event sponsorship aligns with community investment mission." }
+    ]
+  },
+  b7: {
+    title: "7. Cockrum Hall",
+    current: "Oldest building on campus — National Register of Historic Places (1978)",
+    uses: [
+      { label: "Heritage Museum & Tourism Center", desc: "Gibson County history, General Baptist heritage, Civil War (William Cockrum). Admission + field trips.", rev: "$5K-$12K" },
+      { label: "Art Gallery & Cultural Programming", desc: "Rotating exhibits, student shows, community art classes. Indiana Arts Commission grants.", rev: "$8K-$15K" },
+      { label: "Non-Profit Co-Location Offices", desc: "Below-market space for 3-5 local nonprofits. Shared reception, conference room, copier.", rev: "$10K-$18K" }
+    ],
+    revYr1: "$10K-$20K", revYr3: "$25K-$45K", revYr5: "$35K-$55K",
+    revBasis: "Small rural museums average $5K-$20K in admissions/donations. Historic-preservation tax credits offset renovation. Nonprofit co-location at $200-$400/month per tenant.",
+    comps: [
+      { name: "Carnegie Hall (Wabash College)", loc: "Crawfordsville, IN", desc: "1850s building repurposed for art gallery + events. National Register listed. Anchors cultural programming.", rev: "Est. $15K-$25K/yr" },
+      { name: "Dana College Campus (Angels Share)", loc: "Blair, NE", desc: "Closed college's historic buildings repurposed: transitional housing, community services. $105M project.", rev: "Property tax exceeds college's final years" },
+      { name: "Cannelton Cotton Mill Museum", loc: "Cannelton, IN", desc: "Historic building 40 mi from OCU, converted to museum + event space. Shows rural heritage tourism viability.", rev: "Est. $8K-$15K/yr" },
+      { name: "New Harmony Historic Sites", loc: "New Harmony, IN", desc: "Utopian-community historic site 25 mi from OCU. Museums, galleries, events. USI partnership.", rev: "$200K+/yr (state-backed)" }
+    ],
+    steps: [
+      { text: "Commission historic-structures assessment — required before any renovation of National Register building", cost: "$5K-$10K" },
+      { text: "Apply for Federal Historic Preservation Tax Credit (20% of qualified rehab costs)", cost: "$0 (tax credit)" },
+      { text: "Apply for Indiana Landmarks restoration grant", cost: "$0 (grant app)" },
+      { text: "Renovate ground floor for gallery/museum use — lighting, climate control, ADA compliance", cost: "$50K-$80K" },
+      { text: "Recruit 3-5 nonprofit tenants — CASA, United Way, literacy council, veterans' services", cost: "$0 (outreach)" },
+      { text: "Hire part-time gallery coordinator / building manager", cost: "$22K-$28K/yr" }
+    ],
+    stepsTotal: "$55K-$90K startup + $24K/yr staffing",
+    stepsNote: "National Register status is an asset, not a barrier — it unlocks federal and state tax credits and grants that cover 20-40% of renovation costs. The building's history IS the product.",
+    partners: [
+      { name: "Indiana Landmarks", role: "Preservation funding + expertise", why: "Statewide nonprofit for historic preservation. Grants, technical assistance, advocacy for National Register buildings." },
+      { name: "National Park Service (SHPO)", role: "Historic tax credit authority", why: "Administers 20% federal tax credit for qualified rehabilitation of historic structures." },
+      { name: "Indiana Arts Commission", role: "Gallery/cultural grants", why: "$5K-$15K grants for community arts programs. Gallery programming fits their mission." },
+      { name: "Gibson County Historical Society", role: "Content partner for museum", why: "Local historians with archives, artifacts, and knowledge to populate exhibits." },
+      { name: "Go Gibson / Tourism Bureau", role: "Heritage tourism promotion", why: "Can market Cockrum Hall as a destination alongside New Harmony and Lincoln Boyhood National Memorial." },
+      { name: "Community Foundation Alliance", role: "Regional philanthropy network", why: "Nine-county alliance with pooled resources. Heritage preservation is a stated funding priority." }
+    ]
+  },
+  b8: {
+    title: "8. Brokaw Hall",
+    current: "Office building — 125 N. Franklin St.",
+    uses: [
+      { label: "Healthcare Simulation Lab (RN/LPN Pathway)", desc: "High-fidelity mannequins, IV trainers, patient rooms. Pipeline to Deaconess, Gibson General, The Waters.", rev: "$50K-$85K" },
+      { label: "Telehealth Clinic (Deaconess Partnership)", desc: "2-3 exam rooms with telehealth stations. Deaconess provides remote physicians. OCU provides space + staff.", rev: "$35K-$60K" },
+      { label: "Health Info & Medical Coding Training", desc: "Online-hybrid medical coding/billing certification. High remote-work potential for rural residents.", rev: "$40K-$65K" }
+    ],
+    revYr1: "$65K-$110K", revYr3: "$160K-$250K", revYr5: "$210K-$340K",
+    revBasis: "Sim lab rentals run $200-$500/day. Telehealth: 15-25 visits/day at $30-$50 facility fee. Medical coding programs charge $2,500-$4,000/student.",
+    comps: [
+      { name: "Vincennes University Health Sciences", loc: "Vincennes, IN", desc: "Nursing sim labs, surgical tech, PT assistant. 45 mi from OCU. Shows regional demand.", rev: "Est. $500K+/yr" },
+      { name: "Baptist Health Education Center", loc: "Miami, FL", desc: "38,000-sq-ft simulation facility. Hospital-campus partnership model. Opened Sept 2024.", rev: "Multi-million (larger scale)" },
+      { name: "UTA Mobile Simulation Lab", loc: "Arlington, TX", desc: "Mobile sim unit for rural communities. OCU could be a permanent host site.", rev: "Grant-funded pilot" },
+      { name: "Deaconess Health System Training", loc: "Evansville, IN", desc: "Already runs CNA, phlebotomy training internally. Partnership extends reach into Gibson County.", rev: "Internal budget $1M+" }
+    ],
+    steps: [
+      { text: "Negotiate formal partnership MOU with Deaconess Health System for telehealth clinic and clinical placements", cost: "$0 (staff time)" },
+      { text: "Purchase simulation equipment: high-fidelity mannequin ($40K), hospital bed ($5K), monitors, IV trainers", cost: "$80K-$120K" },
+      { text: "Build out 2-3 telehealth exam rooms with video equipment, vital-signs stations, privacy partitions", cost: "$25K-$40K" },
+      { text: "Hire healthcare program director (BSN or MSN with sim-lab experience)", cost: "$60K-$75K/yr" },
+      { text: "Apply for HRSA (Health Resources & Services Administration) rural health workforce grant", cost: "$0 (grant app)" },
+      { text: "Enroll first medical coding cohort — can launch quickly with online-hybrid curriculum", cost: "$5K (LMS setup)" },
+      { text: "Obtain Medicaid provider number for telehealth clinic billing", cost: "$0 (90-day process)" }
+    ],
+    stepsTotal: "$110K-$165K startup + $62K/yr staffing",
+    stepsNote: "Deaconess is the key relationship. They need the Gibson County presence, and OCU has the building. Telehealth clinic generates revenue AND serves as a clinical training site — double value. HRSA actively funds rural health workforce training.",
+    partners: [
+      { name: "Deaconess Health System", role: "Anchor healthcare partner", why: "Operates Gibson Hospital in Princeton. Needs workforce pipeline. Has foundation with community health mission." },
+      { name: "Deaconess Gibson Hospital Foundation", role: "Local healthcare funder", why: "Funds mammography, AEDs, transportation for Gibson County patients. Sim-lab funding fits mission." },
+      { name: "HRSA", role: "Federal rural health grants", why: "Health Resources & Services Administration prioritizes rural healthcare workforce development." },
+      { name: "Indiana Area Health Education Centers", role: "Clinical training coordination", why: "AHEC network coordinates health professions education in underserved areas." },
+      { name: "Gibson County Health Department", role: "Public health partner", why: "Community health data, vaccination clinics, health screenings could co-locate at Brokaw." },
+      { name: "READI 2.0 (Health Category)", role: "Regional grant funding", why: "$45M Evansville regional pot includes health outcomes as explicit priority." }
+    ]
+  },
+  b9: {
+    title: "9. Dearing Hall",
+    current: "Men's residence hall (lower floors) + classrooms/offices (main floor)",
+    uses: [
+      { label: "Industrial Maintenance & Robotics Lab", desc: "PLC programming, hydraulics, pneumatics, electrical troubleshooting. Core skills for TMMI, Boshoku, Hansen, Berry Global.", rev: "$55K-$90K" },
+      { label: "EV Battery-Tech Training (Toyota)", desc: "Specialized training for TMMI's $1.4B battery-pack expansion. Cell handling, thermal management, high-voltage safety.", rev: "$50K-$80K" },
+      { label: "Lean Mfg. / Quality Systems Classroom", desc: "Six Sigma Green Belt, lean fundamentals, SPC, ISO 9001. Open-enrollment + employer cohorts.", rev: "$40K-$70K" }
+    ],
+    revYr1: "$70K-$120K", revYr3: "$180K-$280K", revYr5: "$250K-$370K",
+    revBasis: "Toyota's $1.4B Princeton expansion = 340+ new workers. Industrial maintenance programs charge $2,500-$5,000/student. Six Sigma at $1,500-$3,000/person. 6-8 cohorts/yr of 10-20.",
+    comps: [
+      { name: "Ivy Tech Advanced Automation", loc: "South Bend-Elkhart, IN", desc: "Mechatronics, robotics, industrial maintenance, CAD, quality/lean. Serves RV and auto-parts manufacturers.", rev: "Est. $400K-$600K/yr" },
+      { name: "Columbus State Advanced Mfg.", loc: "Columbus, OH", desc: "$9.5M center shared by IU-PU Columbus, Ivy Tech, and Purdue College of Technology.", rev: "Est. $300K-$500K/yr" },
+      { name: "Amatrol Training Systems", loc: "Jeffersonville, IN", desc: "Indiana company building industrial training simulators used at 5,000+ facilities worldwide.", rev: "Partnership model" },
+      { name: "VU AMT/FAME Program", loc: "Vincennes, IN", desc: "Advanced Manufacturing Technician program partnered with Toyota. 2-year apprenticeship model.", rev: "Employer-funded" }
+    ],
+    steps: [
+      { text: "Convert residence-hall rooms on ground floor into training bays — remove beds, add workbenches and power", cost: "$40K-$60K" },
+      { text: "Purchase PLC training stations (Allen-Bradley/Siemens), hydraulic/pneumatic trainers, electrical panels", cost: "$150K-$250K" },
+      { text: "Hire 2 industrial maintenance instructors — recruit from retired TMMI/supplier maintenance supervisors", cost: "$90K-$120K/yr" },
+      { text: "Negotiate EV battery training curriculum with Toyota — they may provide proprietary materials and equipment", cost: "$0 (Toyota often provides)" },
+      { text: "Apply for EDA (Economic Development Administration) workforce infrastructure grant", cost: "$0 (grant app)" },
+      { text: "Apply to Indiana SEF (Skills Enhancement Fund) for Toyota-sponsored cohorts — reimburses 50% of training costs", cost: "$0 (grant app)" },
+      { text: "Launch pilot cohort of 15 — industrial maintenance fundamentals, 12 weeks, with guaranteed TMMI interviews", cost: "$10K (materials)" }
+    ],
+    stepsTotal: "$200K-$320K startup + $95K/yr staffing",
+    stepsNote: "This is the building most directly tied to the Deliverable 2 employer demand scan. Toyota's $1.4B expansion is happening NOW — the training demand is not theoretical. Toyota's AMT program at Vincennes shows they will invest in partners who deliver.",
+    partners: [
+      { name: "Toyota Motor Mfg. Indiana", role: "Primary employer partner", why: "$1.4B expansion, 340 new jobs, 7,500+ existing workers. Needs ongoing training pipeline. Has donated $55M+ to local community." },
+      { name: "Toyota Boshoku", role: "Tier-1 supplier employer", why: "1,200+ employees in Gibson County. Interior components for Toyota models. Needs same industrial skills." },
+      { name: "Hansen Corporation", role: "Precision motor manufacturer", why: "236 employees, 100K+ sq ft in Princeton. Electromechanical skills, CNC, soldering — overlapping training needs." },
+      { name: "EDA (Economic Dev. Administration)", role: "Federal workforce infrastructure grants", why: "Funds workforce training facilities in distressed communities. Gibson County's WARN notice strengthens application." },
+      { name: "Indiana Skills Enhancement Fund", role: "State training reimbursement", why: "Reimburses employers 50% of training costs at approved providers. Direct revenue stream for OCU." },
+      { name: "Berry Global / Vuteq / GCQA / Tsusho", role: "Toyota supplier network employers", why: "Combined hundreds of employees in Gibson County. All need industrial maintenance, quality, and lean training." }
+    ]
+  },
+  b10: {
+    title: "10. Lucretia McCullough Chapel",
+    current: "Iconic campus chapel — architectural centerpiece",
+    uses: [
+      { label: "Premium Wedding & Event Venue", desc: "20-35 weddings/yr at $1,500-$3,000. Package deals with New Hall lodging.", rev: "$35K-$65K" },
+      { label: "Community Lecture & Speaker Series", desc: "Monthly talks: business leaders, authors, public officials. Ticket + sponsor revenue.", rev: "$8K-$18K" },
+      { label: "Recording Studio & Podcast Hub", desc: "Professional acoustic space for podcast recording, audiobooks, music. Hourly rental.", rev: "$12K-$25K" }
+    ],
+    revYr1: "$30K-$55K", revYr3: "$70K-$120K", revYr5: "$90K-$150K",
+    revBasis: "Duke Chapel: $3,900/wedding. Rural Indiana pricing: $1,500-$3,000. U of Maryland Memorial Chapel: $1,025-$1,475. Podcast studio rental at $50-$100/hr.",
+    comps: [
+      { name: "Duke University Chapel", loc: "Durham, NC", desc: "$3,900/wedding, 500-guest capacity. Shows the ceiling for chapel-as-venue.", rev: "Est. $200K+/yr" },
+      { name: "U of Maryland Memorial Chapel", loc: "College Park, MD", desc: "Dedicated wedding website. $1,025-$1,475 packages.", rev: "Est. $80K-$120K/yr" },
+      { name: "Muhlenberg College Chapel", loc: "Allentown, PA", desc: "Small liberal-arts college running chapel wedding program. Works at smaller scale.", rev: "Est. $30K-$50K/yr" },
+      { name: "French Lick Springs Hotel Events", loc: "French Lick, IN", desc: "Historic SW Indiana venue, 60 mi. Shows regional appetite for destination events.", rev: "$1M+/yr (larger)" }
+    ],
+    steps: [
+      { text: "Professional photography of chapel interior/exterior for marketing materials and website", cost: "$1K-$2K" },
+      { text: "Upgrade lighting (dimmable, event-ready), sound system, and HVAC for year-round comfort", cost: "$25K-$40K" },
+      { text: "Build event website, list on The Knot/WeddingWire, hire wedding photographer for styled shoot", cost: "$3K-$6K" },
+      { text: "Purchase podcast/recording equipment — professional mics, soundproofing panels, mixing board", cost: "$8K-$15K" },
+      { text: "Create event packages combining McCullough (ceremony) + Provance (reception) + New Hall (lodging)", cost: "$0 (packaging)" },
+      { text: "Host grand-opening gala / open house — invite regional wedding planners, event coordinators, media", cost: "$3K-$5K" }
+    ],
+    stepsTotal: "$40K-$68K startup + shared event coordinator",
+    stepsNote: "McCullough Chapel is likely the most photographable building on campus. Wedding venues in rural areas succeed when they offer something unique — this chapel has character that hotel ballrooms cannot match. Podcast studio is low-cost, high-margin add-on.",
+    partners: [
+      { name: "Evansville Convention & Visitors Bureau", role: "Regional tourism promotion", why: "Promotes SW Indiana as wedding/event destination. Can feature McCullough Chapel in regional marketing." },
+      { name: "French Lick Resort / West Baden", role: "Destination wedding network", why: "60 mi away. Overflow referrals and regional wedding-tourism positioning." },
+      { name: "Princeton Main Street", role: "Local event coordination", why: "Cross-promote chapel events with downtown restaurants, shops, lodging." },
+      { name: "Toyota Community Grants", role: "Event sponsorship", why: "$330K in local grants in 2026. Speaker series and community programming align with their giving priorities." },
+      { name: "Indiana Office of Tourism Development", role: "State tourism grants", why: "Funds destination marketing for unique venues. Chapel qualifies as heritage/cultural tourism." },
+      { name: "Local wedding vendors", role: "Referral partnerships", why: "Caterers, florists, DJs, photographers. Mutual referral network drives bookings." }
+    ]
+  },
+  b11: {
+    title: "11. Williams Hall",
+    current: "Upperclassman residence hall — completed 2019",
+    uses: [
+      { label: "Workforce Apprentice Housing", desc: "Furnished rooms for Toyota/supplier apprentices and out-of-area trainees. $400-$600/month, 6-12 month stays.", rev: "$40K-$70K" },
+      { label: "Extended-Stay Corporate Lodging", desc: "Visiting engineers, project managers, contractor teams. Nightly/weekly rates. No hotel in Oakland City.", rev: "$30K-$50K" },
+      { label: "Summer Camp & Retreat Lodging", desc: "Youth camps, church retreats, sports teams. Weekend/weekly blocks, May-August.", rev: "$15K-$30K" }
+    ],
+    revYr1: "$50K-$85K", revYr3: "$100K-$160K", revYr5: "$130K-$200K",
+    revBasis: "Dana College (Blair, NE) dorms converted to 73 apartments — near-full occupancy with waiting lists. Workforce housing in rural areas: $400-$700/month. Oakland City has zero hotels = captive demand.",
+    comps: [
+      { name: "Dana Suites (Former Dana College)", loc: "Blair, NE", desc: "1960s dorm to 12-unit workforce apartments. Full occupancy + waiting list. $2.8M blended funding.", rev: "Rents $500-$700/mo, full occupancy" },
+      { name: "Dana Village Phase 2", loc: "Blair, NE", desc: "$105M campus redevelopment: workforce housing, transitional housing, community services. 73 units, nearly all occupied.", rev: "Exceeds former college revenue" },
+      { name: "Hanover College Summer Lodging", loc: "Hanover, IN", desc: "Small Indiana college renting residence halls to summer groups: retreats, sports camps, reunions.", rev: "Est. $30K-$50K/yr" },
+      { name: "Wabash College Conference Housing", loc: "Crawfordsville, IN", desc: "Summer conference housing. Corporate groups, academic conferences, camps. $35-$65/night.", rev: "Est. $25K-$40K/yr" }
+    ],
+    steps: [
+      { text: "Assess room configuration — determine how many units can function as furnished apartments vs. nightly rooms", cost: "$0 (walkthrough)" },
+      { text: "Furnish units for extended-stay: kitchenettes, linens, Wi-Fi, laundry access, basic cookware", cost: "$30K-$50K" },
+      { text: "Establish nightly/weekly/monthly rate structure and online booking system", cost: "$2K-$4K" },
+      { text: "Market workforce housing to Toyota HR, Boshoku, Hansen, and staffing agencies (Tsusho, GCQA)", cost: "$0 (direct outreach)" },
+      { text: "Hire part-time property manager / front-desk coordinator", cost: "$25K-$32K/yr" },
+      { text: "List summer/weekend availability on retreat booking platforms and contact regional churches, camps, sports orgs", cost: "$1K-$2K" },
+      { text: "Apply for READI 2.0 workforce housing funds — Gibson County already received $2.5M for Princeton housing", cost: "$0 (grant app)" }
+    ],
+    stepsTotal: "$33K-$56K startup + $27K/yr staffing",
+    stepsNote: "Williams Hall is only 7 years old — no major renovation needed, just furnishing and programming. The zero-hotel situation in Oakland City creates immediate demand. READI 2.0 already funded $2.5M for workforce housing in Gibson County.",
+    partners: [
+      { name: "READI 2.0 / E-REP", role: "Workforce housing grant funder", why: "Already awarded $2.5M for Princeton workforce housing project (The District). OCU project is a natural extension." },
+      { name: "Toyota HR Department", role: "Corporate lodging demand", why: "7,500+ employees. Visiting engineers, trainers, contractors need lodging. Currently drive to Evansville hotels." },
+      { name: "Tsusho Staffing / GCQA", role: "Staffing agency partnerships", why: "Place temporary workers at Toyota suppliers. Need housing for out-of-area workers." },
+      { name: "Indiana Housing & Community Dev.", role: "State housing authority", why: "Administers Low-Income Housing Tax Credits, workforce housing programs." },
+      { name: "Nebraska Rural Workforce Housing Fund (model)", role: "Funding model to replicate", why: "Funded Dana Suites in Blair, NE. Indiana could create similar program — OCU is a test case." },
+      { name: "Oakland City Town Government", role: "Zoning and permits", why: "May need zoning variance for lodging use. Small-town government, likely supportive." }
+    ]
+  },
+  b12: {
+    title: "12. New Hall",
+    current: "Freshman residence — built 2023, $10.1M, 150-bed pod-style, co-ed",
+    uses: [
+      { label: "Corporate Retreat & Training Lodging", desc: "Modern pod-style rooms for multi-day corporate training. Package with classroom buildings.", rev: "$45K-$75K" },
+      { label: "Transitional Housing Program", desc: "Partnership with Lutheran Family Services or similar. Grant-funded beds for foster-age-out or re-entry populations.", rev: "$30K-$50K (grants)" },
+      { label: "Short-Term Rental (Airbnb Model)", desc: "Nightly rentals for family visits, tournaments, regional events. $45-$75/night per pod.", rev: "$25K-$50K" }
+    ],
+    revYr1: "$55K-$95K", revYr3: "$120K-$200K", revYr5: "$160K-$260K",
+    revBasis: "Newest building on campus — minimal renovation. Dana Village: 73 units at near-full occupancy. Transitional housing: HUD/FEMA grants at $15K-$25K/bed/yr. Rural Airbnb: $50-$85/night avg.",
+    comps: [
+      { name: "Dana Village Transitional Housing", loc: "Blair, NE", desc: "Closed college dorms for foster-care youth. Lutheran Family Services partnership. 73 units, nearly all occupied.", rev: "Grant + rental income" },
+      { name: "Marian University Retreat Housing", loc: "Indianapolis, IN", desc: "Summer/weekend conference housing in modern residence halls. Corporate, religious, sports groups.", rev: "Est. $40K-$70K/yr" },
+      { name: "Camp Tecumseh Lodging", loc: "Brookston, IN", desc: "Year-round retreat center, dormitory-style. Churches, schools, corporate groups.", rev: "Est. $300K+/yr (larger)" },
+      { name: "Airbnb Rural Indiana Market", loc: "SW Indiana", desc: "Limited supply in Gibson/Pike/Dubois counties. $55-$85/night, 50-65% occupancy for well-reviewed listings.", rev: "Per-unit: $8K-$15K/yr" }
+    ],
+    steps: [
+      { text: "Assess which pods convert best to transitional housing vs. short-term rental vs. corporate retreat", cost: "$0 (internal planning)" },
+      { text: "Contact Lutheran Family Services of Indiana about transitional housing partnership (Dana Village model)", cost: "$0 (outreach)" },
+      { text: "Apply for HUD Continuum of Care or FEMA transitional housing grants for designated units", cost: "$0 (grant app)" },
+      { text: "Furnish corporate retreat pods — better linens, coffee stations, conference-table in common areas", cost: "$20K-$35K" },
+      { text: "List short-term rental units on Airbnb, VRBO, and retreat booking platforms", cost: "$2K-$3K" },
+      { text: "Hire shared property manager (split with Williams Hall)", cost: "$0 (shared staff)" },
+      { text: "Create marketing packages: 'Train + Stay' bundles combining Dearing/Johnson training with New Hall lodging", cost: "$1K-$2K" }
+    ],
+    stepsTotal: "$23K-$40K startup + shared staffing",
+    stepsNote: "This is OCU's newest and most valuable building ($10.1M, completed 2023). Minimal renovation needed. The transitional housing model from Dana College in Blair, NE is directly replicable — same building type, same funding sources, proven demand.",
+    partners: [
+      { name: "Lutheran Family Services of Indiana", role: "Transitional housing operator", why: "Runs Dana Village at former Dana College campus in Blair, NE. Proven model for campus housing conversion." },
+      { name: "HUD / Indiana IHCDA", role: "Federal/state housing grants", why: "Continuum of Care, Low-Income Housing Tax Credits, workforce housing programs." },
+      { name: "Gibson County DCS (Child Services)", role: "Foster-age-out referrals", why: "Youth aging out of foster care need transitional housing. County has direct referral pipeline." },
+      { name: "Toyota / Regional Employers", role: "Corporate retreat demand", why: "'Train + Stay' packages make OCU a one-stop workforce development destination." },
+      { name: "READI 2.0", role: "Workforce housing funding", why: "Quality-of-life improvements including housing are explicit READI priorities." },
+      { name: "Indiana Criminal Justice Institute", role: "Re-entry housing funding", why: "Funds transitional housing for individuals re-entering community after incarceration." }
+    ]
+  },
+  b13: {
+    title: "13. Konkler Field & Athletic Grounds",
+    current: "Baseball field (renovated 2023) + general athletic grounds",
+    uses: [
+      { label: "Youth Sports Academy & Summer Camps", desc: "8-12 week summer programs, weekend clinics. Baseball, softball, soccer, flag football. $150-$400/camper.", rev: "$15K-$30K" },
+      { label: "Tournament Hosting & Travel-Ball Revenue", desc: "Weekend tournaments for travel baseball/softball. Entry fees, concessions, parking. 4-8 events/yr.", rev: "$12K-$25K" },
+      { label: "K-12 Field Day & Outdoor Ed Programs", desc: "School-district partnerships for PE days, nature education, team-building. $5-$15/student.", rev: "$8K-$20K" }
+    ],
+    revYr1: "$20K-$40K", revYr3: "$50K-$90K", revYr5: "$65K-$120K",
+    revBasis: "Travel-ball tournaments charge $300-$700/team. 4-8 tournaments x 8-16 teams = $10K-$45K. Summer camps at $200-$400/week with 20-40 campers/session.",
+    comps: [
+      { name: "Grand Park Sports Campus", loc: "Westfield, IN", desc: "400-acre, $45M complex. 26 baseball diamonds. $100M+ annual economic impact. Shows industry ceiling.", rev: "$10M+/yr" },
+      { name: "Deaconess Sports Park", loc: "Evansville, IN", desc: "Multi-sport complex 30 mi from OCU. Travel tournaments, youth leagues. Regional competition.", rev: "Est. $500K+/yr" },
+      { name: "Dubois County Youth Sports", loc: "Jasper, IN", desc: "35 mi. Community-run youth baseball, softball, soccer. Limited infrastructure but strong demand.", rev: "Volunteer-run, $20K-$40K/yr" },
+      { name: "Wabash College Athletic Camps", loc: "Crawfordsville, IN", desc: "Small college youth sports camps on campus. Baseball, basketball, football. $200-$400/camper.", rev: "Est. $30K-$50K/yr" }
+    ],
+    steps: [
+      { text: "Assess field condition post-2023 renovation — determine what additional investment is needed for tournaments", cost: "$0 (walkthrough)" },
+      { text: "Install permanent concession stand, portable bleachers, and scoreboard if not already present", cost: "$15K-$30K" },
+      { text: "Hire seasonal sports camp director (May-August) — recruit from local coaching community", cost: "$12K-$18K/season" },
+      { text: "Register on tournament-hosting platforms (USSSA, NSA, travel-ball directories)", cost: "$500-$1K" },
+      { text: "Contact East Gibson, North Gibson, and Pike County school districts for field-day partnerships", cost: "$0 (outreach)" },
+      { text: "Apply for Toyota community grant for youth sports programming", cost: "$0 (grant app)" },
+      { text: "Launch first summer camp session — 4 weeks, 20-30 kids, baseball + multi-sport", cost: "$3K-$5K (supplies)" }
+    ],
+    stepsTotal: "$19K-$36K startup + $14K/season staffing",
+    stepsNote: "Konkler Field was renovated in 2023 — most infrastructure is already in place. This is a programming play more than a capital play. Travel-ball is a growing industry ($28B nationally) with limited rural infrastructure.",
+    partners: [
+      { name: "Toyota Community Grants", role: "Youth sports funding", why: "TMMI donated to Camp Carson and North Gibson schools in 2026. Youth sports and STEM are stated priorities." },
+      { name: "East Gibson School Corp.", role: "K-12 field-day partner", why: "255 students, limited PE facilities. Campus fields solve a real need." },
+      { name: "North Gibson School Corp.", role: "K-12 partner + coaching pipeline", why: "Larger district. Coaches can moonlight as summer camp staff." },
+      { name: "USSSA / NSA", role: "Tournament sanctioning bodies", why: "Register fields for official tournament hosting. Drives travel-ball teams to Oakland City." },
+      { name: "Gibson County Parks & Recreation", role: "Shared programming", why: "County parks department can co-sponsor programs and share maintenance costs." },
+      { name: "YMCA of SW Indiana", role: "Youth programming model", why: "Toyota funded $5M YMCA in Gibson County. Partnership or programming model for campus sports." }
+    ]
+  },
+  b14: {
+    title: "14. Open Acreage (East Campus)",
+    current: "Unused campus land — part of 34-acre footprint",
+    uses: [
+      { label: "Ag-Tech Demonstration Farm & Greenhouse", desc: "Precision ag, drone mapping, soil sensors, vertical farming. Partnership with Purdue Extension.", rev: "$15K-$30K" },
+      { label: "Solar Array & Renewable Energy Training", desc: "Community solar + training lab. Duke Energy reskilling (Owensville coal transition). USDA REAP grants.", rev: "$20K-$40K" },
+      { label: "CDL Driving Course & Heavy-Equipment Yard", desc: "Outdoor course for CDL road test, forklift cert, mine-equipment operation. Peabody/Norfolk Southern pipeline.", rev: "$25K-$50K" }
+    ],
+    revYr1: "$25K-$50K", revYr3: "$65K-$120K", revYr5: "$90K-$160K",
+    revBasis: "CDL training: $3,000-$7,000/student, 4-8 week programs. Solar training funded by DOE/USDA. Ag-tech demos funded through Purdue Extension ($15K-$30K/yr).",
+    comps: [
+      { name: "Purdue Extension Ag Innovation", loc: "Statewide, IN", desc: "Ag-tech demonstration farms across Indiana. Precision agriculture, drone mapping, soil health.", rev: "Grant-funded, $30K-$50K/site" },
+      { name: "Vincennes University CDL Program", loc: "Vincennes, IN", desc: "45 mi. CDL-A training with outdoor course. 4-week program at $5,500. Consistent enrollment.", rev: "Est. $150K-$250K/yr" },
+      { name: "Ivy Tech Solar Energy Training", loc: "Bloomington, IN", desc: "Solar installation and renewable energy tech program. State workforce and DOE grants.", rev: "Est. $80K-$120K/yr" },
+      { name: "Gibson County Farm Bureau", loc: "Princeton, IN", desc: "$220.5M farm income, avg. 379-acre farms. $176.1M crop receipts. Strong demand for ag-tech upskilling.", rev: "N/A (demand context)" }
+    ],
+    steps: [
+      { text: "Survey and grade 3-5 acres for CDL driving course — flat surface, turning lanes, backing dock mockup", cost: "$25K-$45K" },
+      { text: "Purchase or lease 2 CDL training trucks (used Class A tractors) and 1 forklift trainer", cost: "$60K-$100K" },
+      { text: "Hire CDL instructor (requires CDL-A + 3 yrs experience) and apply for Indiana BMV third-party testing authority", cost: "$45K-$55K/yr" },
+      { text: "Install 50-100 kW community solar array with training lab — apply for USDA REAP grant (25% cost share)", cost: "$80K-$150K (before grants)" },
+      { text: "Partner with Purdue Extension Gibson County for ag-tech demonstration plots and greenhouse", cost: "$10K-$20K (OCU share)" },
+      { text: "Contact Duke Energy about coal-plant transition reskilling partnership (Owensville plant retirement)", cost: "$0 (outreach)" },
+      { text: "Apply for Indiana Next Level Jobs Workforce Ready Grant for CDL students", cost: "$0 (student funding)" }
+    ],
+    stepsTotal: "$175K-$315K startup + $47K/yr staffing",
+    stepsNote: "CDL training has the fastest payback — students pay $3K-$7K each, and truck-driver demand is insatiable. Solar installation costs drop 40-60% with USDA REAP grants. Purdue Extension partnership brings credibility and shared costs for ag-tech.",
+    partners: [
+      { name: "Purdue Extension - Gibson County", role: "Ag-tech programming partner", why: "Master Gardener, 4-H, precision ag expertise. Shared programming and credibility for ag-tech demos." },
+      { name: "Duke Energy Indiana", role: "Energy transition partner", why: "Retiring Owensville coal units. Workers need reskilling. Solar/renewable training serves their transition plan." },
+      { name: "Peabody Energy / Francisco Mine", role: "Mining equipment training demand", why: "Underground mine in Gibson County, 1.3M tons/yr. MSHA training and heavy-equipment operators needed." },
+      { name: "Norfolk Southern Railroad", role: "CDL/logistics employer", why: "Rail and warehousing growth through 2031. CDL, hazmat, dispatch training demand." },
+      { name: "USDA REAP (Rural Energy for America)", role: "Solar installation grants", why: "Covers 25-50% of renewable energy system costs for rural entities. OCU qualifies." },
+      { name: "Indiana BMV / Third-Party Testing", role: "CDL test-site authority", why: "Approval to administer CDL road tests on campus. Eliminates student travel to Evansville." }
+    ]
+  }
+};
+
+function openPopup(id) {
+  const b = buildings[id];
+  if (!b) return;
+  document.getElementById('popupTitle').innerHTML = b.title;
+  document.getElementById('popupCurrent').innerHTML = b.current;
+  let html = '';
+
+  // Uses + Revenue
+  html += '<div class="popup-section"><h3>Alternative Uses & Revenue</h3><div class="revenue-realistic"><ul class="popup-uses">';
+  b.uses.forEach(u => {
+    html += '<li><span class="use-rev">'+u.rev+'</span><span class="use-label">'+u.label+'</span><br><span style="color:#777;font-size:11px;">'+u.desc+'</span></li>';
+  });
+  html += '</ul>';
+  html += '<div class="rev-line rev-total-line"><span class="rev-label">Year 1 (Pilot)</span><span class="rev-val">'+b.revYr1+'</span></div>';
+  html += '<div class="rev-line"><span class="rev-label">Year 3 (Traction)</span><span class="rev-val">'+b.revYr3+'</span></div>';
+  html += '<div class="rev-line"><span class="rev-label">Year 5 (Maturity)</span><span class="rev-val">'+b.revYr5+'</span></div>';
+  html += '<div class="rev-basis">'+b.revBasis+'</div></div></div>';
+
+  // Comparables
+  html += '<div class="popup-section"><h3>Midwest Comparables</h3><div class="comp-grid">';
+  b.comps.forEach(c => {
+    html += '<div class="comp-card"><div class="comp-name">'+c.name+'</div><div class="comp-loc">'+c.loc+'</div><div class="comp-desc">'+c.desc+'</div><div class="comp-rev">'+c.rev+'</div></div>';
+  });
+  html += '</div></div>';
+
+  // Implementation Steps
+  html += '<div class="popup-section"><h3>Implementation Steps & Costs</h3><div class="steps-box">';
+  b.steps.forEach((s, i) => {
+    html += '<div class="step-item"><span class="step-num">'+(i+1)+'</span><span class="step-text">'+s.text+'</span><span class="step-cost">'+s.cost+'</span></div>';
+  });
+  html += '<div class="steps-total"><span>ESTIMATED TOTAL</span><span>'+b.stepsTotal+'</span></div>';
+  html += '<div class="steps-note">'+b.stepsNote+'</div></div></div>';
+
+  // Partners & Funders
+  html += '<div class="popup-section"><h3>Key Partners, Funders & Local Leaders</h3><div class="partners-box"><div class="partner-grid">';
+  b.partners.forEach(p => {
+    html += '<div class="partner-item"><div class="partner-name">'+p.name+'</div><div class="partner-role">'+p.role+'</div><div class="partner-why">'+p.why+'</div></div>';
+  });
+  html += '</div></div></div>';
+
+  document.getElementById('popupBody').innerHTML = html;
+  document.getElementById('popupOverlay').classList.add('active');
+}
+
+function closePopup(e) {
+  if (e && e.target !== document.getElementById('popupOverlay')) return;
+  document.getElementById('popupOverlay').classList.remove('active');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('popupOverlay').classList.remove('active'); });
+</script>
+</body>
+</html>

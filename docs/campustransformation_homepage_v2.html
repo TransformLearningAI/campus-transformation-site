@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Transformation — Start with one building</title>
+<meta name="description" content="Small colleges don't have to choose between reinventing everything and closing. Match one underused building to what your region needs — and let someone else pay to build it.">
+<meta property="og:title" content="Campus Transformation — Start with one building">
+<meta property="og:description" content="One pathway. One signature. No grand plan. See what one building on your campus could do.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --navy:#12294a;
+    --navy-deep:#0b1c34;
+    --navy-soft:#1e3d68;
+    --amber:#e0a02e;
+    --amber-deep:#b87d15; --amber-text:#8a5d0c;
+    --paper:#fbfaf7;
+    --paper-2:#f3f1ec;
+    --ink:#1a1d21;
+    --ink-2:#4a5159;
+    --rule:#dcd8d0;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  a{color:inherit}
+
+  /* ---------- header ---------- */
+  header{
+    background:var(--navy);
+    color:#fff;
+    position:sticky;top:0;z-index:20;
+    border-bottom:3px solid var(--amber);
+  }
+  .bar{display:flex;align-items:center;gap:28px;height:74px}
+  .mark{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto}
+  .door{width:23px;height:30px;flex:0 0 auto}
+  .wordmark{font-weight:800;letter-spacing:-.025em;font-size:19px;line-height:1.05}
+  .wordmark span{display:block;font-weight:400;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-top:2px}
+  nav{margin-left:auto;display:flex;gap:24px;align-items:center;font-size:14.5px}
+  nav a{color:#cfd8e6;text-decoration:none}
+  nav a:hover{color:#fff}
+  .navcta{
+    background:var(--amber);color:var(--navy-deep);font-weight:700;
+    padding:9px 17px;border-radius:3px;text-decoration:none;font-size:14.5px;
+  }
+  @media(max-width:860px){nav a:not(.navcta){display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--navy);color:#fff;padding:72px 0 84px;position:relative;overflow:hidden}
+  .hero:after{
+    content:"";position:absolute;right:-140px;top:-60px;width:520px;height:520px;
+    background:radial-gradient(circle at center,rgba(224,160,46,.16),transparent 62%);
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .kicker{
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
+    font-weight:700;margin:0 0 22px;
+  }
+  h1{
+    font-size:clamp(42px,7vw,74px);line-height:1.02;letter-spacing:-.035em;
+    font-weight:800;margin:0 0 26px;max-width:16ch;
+  }
+  .sub{font-size:19.5px;line-height:1.62;color:#c9d4e4;max-width:62ch;margin:0 0 34px}
+  .sub strong{color:#fff;font-weight:600}
+  .ctas{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
+  .btn{
+    display:inline-block;padding:15px 28px;border-radius:3px;text-decoration:none;
+    font-weight:700;font-size:16px;
+  }
+  .btn-a{background:var(--amber);color:var(--navy-deep)}
+  .btn-a:hover{background:#eeb244}
+  .btn-b{border:1.5px solid rgba(255,255,255,.42);color:#fff}
+  .btn-b:hover{border-color:#fff}
+  .tagline{
+    margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.15);
+    font-size:14px;color:#8fa2bd;
+  }
+  .tagline b{color:var(--amber);font-weight:700;letter-spacing:.04em}
+
+  /* ---------- sections ---------- */
+  section{padding:74px 0;border-bottom:1px solid var(--rule)}
+  .alt{background:var(--paper-2)}
+  h2{
+    font-size:clamp(28px,4vw,40px);line-height:1.12;letter-spacing:-.03em;
+    font-weight:800;margin:0 0 14px;color:var(--navy);max-width:20ch;
+  }
+  .lede{font-size:18.5px;color:var(--ink-2);max-width:66ch;margin:0 0 40px}
+  h3{font-size:19px;font-weight:700;margin:0 0 8px;letter-spacing:-.015em}
+
+  /* requirements grid */
+  .req{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .req > div{background:var(--paper);padding:28px 26px}
+  .alt .req > div{background:var(--paper-2)}
+  .req .no{
+    display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:800;color:var(--amber-text);margin-bottom:11px;
+  }
+  .req p{margin:0;font-size:15.5px;color:var(--ink-2);line-height:1.58}
+
+  /* case cards */
+  .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:22px}
+  .case{
+    background:#fff;border:1px solid var(--rule);border-top:4px solid var(--navy);
+    padding:26px 24px;
+  }
+  .case .school{font-weight:800;font-size:17.5px;color:var(--navy);letter-spacing:-.015em;margin:0 0 2px}
+  .case .where{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:#667085;margin:0 0 14px}
+  .case p{margin:0 0 14px;font-size:15.5px;color:var(--ink-2)}
+  .result{
+    border-left:3px solid var(--amber);padding-left:13px;font-size:15px;
+    font-weight:600;color:var(--navy);
+  }
+
+  /* streams */
+  .streams{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:14px}
+  .stream{background:#fff;border:1px solid var(--rule);padding:20px 20px 18px}
+  .alt .stream{background:var(--paper)}
+  .tag{
+    display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.13em;
+    text-transform:uppercase;padding:4px 9px;border-radius:2px;margin-bottom:12px;
+  }
+  .t-start{background:#e8f0e4;color:#3c6b2e}
+  .t-partner{background:#fdf0d8;color:var(--amber-text)}
+  .t-board{background:#e9edf4;color:var(--navy-soft)}
+  .stream p{margin:0;font-size:14.5px;color:var(--ink-2)}
+
+  /* scan offer */
+  .offer{background:var(--navy);color:#fff;padding:74px 0}
+  .offer h2{color:#fff;max-width:24ch}
+  .offer .lede{color:#c2cfe0}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:26px;margin:34px 0 38px}
+  .step .n{
+    font-size:12px;font-weight:800;letter-spacing:.18em;color:var(--amber);
+    display:block;margin-bottom:9px;
+  }
+  .step p{margin:0;font-size:15.5px;color:#c2cfe0}
+  .offer .note{font-size:14.5px;color:#8fa2bd;max-width:60ch;margin:0 0 30px}
+
+  /* early */
+  blockquote{
+    margin:0;border-left:4px solid var(--amber);padding:6px 0 6px 26px;
+    font-size:21px;line-height:1.5;color:var(--navy);font-weight:600;max-width:56ch;
+  }
+
+  /* audience */
+  .aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .aud a{
+    display:block;text-decoration:none;background:#fff;border:1px solid var(--rule);
+    padding:24px 22px;transition:border-color .15s,transform .15s;
+  }
+  .aud a:hover{border-color:var(--navy);transform:translateY(-2px)}
+  .aud .role{font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--amber-text);font-weight:800;margin-bottom:9px}
+  .aud .say{font-size:16.5px;color:var(--navy);font-weight:600;line-height:1.4}
+
+  footer{background:var(--navy-deep);color:#7f92ab;padding:44px 0;font-size:14px;border:0}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+  footer b{color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="#">
+      <svg class="door" viewBox="0 0 24 32" fill="none" aria-hidden="true">
+        <path d="M2 30V4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v26" stroke="#e0a02e" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M17 4l5 4v22" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="13.5" cy="17" r="1.4" fill="#ffffff"/>
+      </svg>
+      <span class="wordmark">Campus Transformation<span>A Transform Learning initiative</span></span>
+    </a>
+    <nav>
+      <a href="#lookup">Look up your school</a>
+      <a href="#not-require">What it takes</a>
+      <a href="#cases">Colleges doing this</a>
+      <a href="#streams">Eight pathways</a>
+      <a href="#scan">The Scan</a>
+      <a class="navcta" href="#scan">One-Pathway Scan</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">For colleges that are still working, and would rather stay that way</p>
+    <h1>Start with one building.</h1>
+    <p class="sub">Most colleges under financial pressure get handed the same two options: reinvent everything, or close. There is a third one almost nobody talks about. Find <strong>one underused building or one unused parcel</strong>, match it to something the region is actually short of, and let somebody else pay to build it. One pathway. One signature. No grand plan.</p>
+    <div class="ctas">
+      <a class="btn btn-a" href="#scan">See what one building could do</a>
+      <a class="btn btn-b" href="#lookup">Look up your school</a>
+    </div>
+    <p class="tagline"><b>DON'T CLOSE. TRANSFORM.</b> &nbsp;·&nbsp; Campus Transformation is an initiative of Transform Learning.</p>
+  </div>
+</div>
+
+<section id="not-require">
+  <div class="wrap">
+    <h2>What this does not require</h2>
+    <p class="lede">The reason most transformation proposals go nowhere is not that boards disagree with them. It is that saying yes costs more than saying nothing. A single-pathway project is built the other way around.</p>
+    <div class="req">
+      <div>
+        <span class="no">No board vote, usually</span>
+        <p>A term lease or license of one building typically sits inside the authority already delegated to a president or CFO. Selling property almost always needs the full board. Leasing it often does not. We read your delegation-of-authority policy first and tell you which side of that line you are on, before you take it to anyone.</p>
+      </div>
+      <div>
+        <span class="no">No accreditation change</span>
+        <p>Sale or lease of real property is not a substantive change under federal rules, and is not a reportable category for SACSCOC, HLC, or MSCHE. New England institutions accredited by NECHE do carry a filing on significant leases and asset dispositions. We will say so up front rather than let you find out later.</p>
+      </div>
+      <div>
+        <span class="no">No change to your mission</span>
+        <p>That is the one thing we will not ask you to touch. A substantial change to an institution's mission requires accreditor approval, and reopening the mission statement starts a board fight on top of it. Every pathway on this site is designed to work with your mission exactly as written.</p>
+      </div>
+      <div>
+        <span class="no">No capital from the college</span>
+        <p>In every model below, somebody else funded the building — a developer, a state workforce grant, a federal rural facilities program, a health system, a community foundation, an employer. Your contribution is the site.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lookup" class="alt">
+  <div class="wrap">
+    <h2>Look up your school</h2>
+    <p class="lede">Type your institution's name and get a free regional needs report: what your county is short of, what you already have that could supply it, and which federal and state programs could pay for it. Built from the public record. No email required to see it.</p>
+    <form onsubmit="return false" style="display:flex;gap:10px;max-width:560px;flex-wrap:wrap">
+      <label for="school-q" style="position:absolute;left:-9999px">Institution name</label>
+      <input id="school-q" type="text" placeholder="e.g., Bethany College (WV)" autocomplete="off"
+        style="flex:1;min-width:260px;padding:14px 16px;font-size:16px;border:1.5px solid var(--rule);border-radius:3px;background:#fff">
+      <button class="btn btn-a" type="submit" style="border:0;cursor:pointer">See your report</button>
+    </form>
+    <p style="margin-top:12px;font-size:13.5px;color:#667085">Covers every private nonprofit four-year college in the U.S. If two schools share a name, we'll ask which state.</p>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="wrap">
+    <h2>Colleges doing this right now — and still open</h2>
+    <p class="lede">Not turnaround stories. Not closure stories. Colleges that stayed colleges and found money somewhere other than tuition.</p>
+    <div class="cases">
+
+      <div class="case">
+        <p class="school">Cheyney University</p>
+        <p class="where">Pennsylvania</p>
+        <p>Had close to 400,000 square feet of building space sitting unoccupied or underused, and opened it to private tenants. Eight companies are on campus now — agribusiness, cancer research, solar manufacturing, additive manufacturing — alongside stadium and auditorium rentals.</p>
+        <p class="result">A $7.4M deficit became a $2.1M surplus. First balanced budget in eight years.</p>
+      </div>
+
+      <div class="case">
+        <p class="school">Purchase College, SUNY</p>
+        <p class="where">New York</p>
+        <p>Ground-leased 40 acres to a life-plan senior living community, financed with public bonds. No college capital at risk at any point.</p>
+        <p class="result">$2 million a year in rent, directed by statute to student scholarships and new faculty lines.</p>
+      </div>
+
+      <div class="case">
+        <p class="school">Warren Wilson College</p>
+        <p class="where">North Carolina</p>
+        <p>Sold 191 of its 1,100 acres to a land conservancy — with a cooperative management agreement that keeps the college grazing the pasture and teaching in the forest.</p>
+        <p class="result">$4.7 million, against a $5.5 million deficit. They sold the asset without losing the use of it.</p>
+      </div>
+
+      <div class="case">
+        <p class="school">Goucher College</p>
+        <p class="where">Maryland</p>
+        <p>Ground-leased three acres out of 287 to a neighboring senior living operator for 127 independent-living apartments.</p>
+        <p class="result">Zero construction capital from the college. Three acres is a proposal a president can carry into a room.</p>
+      </div>
+
+      <div class="case">
+        <p class="school">D'Youville University</p>
+        <p class="where">New York</p>
+        <p>Built a health professions building in which a regional health system staffs and operates a community clinic, alongside student simulation space and workforce retraining.</p>
+        <p class="result">The health system raised $5.07 million toward the project. It is the tenant and the operator.</p>
+      </div>
+
+      <div class="case">
+        <p class="school">Lackawanna College</p>
+        <p class="where">Pennsylvania</p>
+        <p>A $10 million technology center in a former factory, funded by state money, the Appalachian Regional Commission, and a private energy company. Separately, employers pay tuition directly for their own staff.</p>
+        <p class="result">The college built it without spending its own capital.</p>
+      </div>
+
+      <div class="case">
+        <p class="school">Dakota Wesleyan University</p>
+        <p class="where">South Dakota</p>
+        <p>A regional health system funds nursing students' junior and senior years in exchange for a three-year work commitment after graduation.</p>
+        <p class="result">$20,000 per student, employer-funded. The health system asked for it.</p>
+      </div>
+
+      <div class="case">
+        <p class="school">Alvernia University</p>
+        <p class="where">Pennsylvania</p>
+        <p>Bought and repurposed downtown buildings instead of expanding the campus — a community health center with a local provider, an incubator, a YMCA partnership, ground-floor retail.</p>
+        <p class="result">$43 million invested, $18.5 million of it in secured redevelopment resources including state capital grants.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="early" class="alt">
+  <div class="wrap">
+    <h2>You do not have to be in crisis to read this page</h2>
+    <p class="lede">Almost everything written about small colleges is written about the ones already in trouble. This is for the ones still working — enrolling students, making payroll, doing it on a thinner margin every year — that would rather add a revenue line now than have the other conversation later.</p>
+    <blockquote>A college with three good years left has options a college with three good months does not. It can negotiate a lease instead of accepting an offer, choose a partner instead of taking the only one, and move on its own calendar.</blockquote>
+  </div>
+</section>
+
+<section id="streams">
+  <div class="wrap">
+    <h2>Eight ways a campus earns without becoming something else</h2>
+    <p class="lede">You do not need eight. You need one. Each is tagged by what it actually asks of you, because the right first move is almost always the one requiring the fewest signatures.</p>
+    <div class="streams">
+      <div class="stream"><span class="tag t-start">Start here</span><h3>Space leasing</h3><p>Unused classroom, lab, or office space to private tenants. Officer-level signature in most delegation policies.</p></div>
+      <div class="stream"><span class="tag t-start">Start here</span><h3>Facility rental</h3><p>Stadium, gym, auditorium, commercial kitchen, conference and summer use. Revenue from assets you already heat.</p></div>
+      <div class="stream"><span class="tag t-start">Start here</span><h3>Agency and nonprofit co-location</h3><p>Child care, health clinic, county services, workforce center. Often the thing the region is most visibly short of.</p></div>
+      <div class="stream"><span class="tag t-partner">Partner-funded</span><h3>Employer-paid training</h3><p>Employers fund seats or full tuition for their own workforce. Apprenticeships and custom contracts.</p></div>
+      <div class="stream"><span class="tag t-partner">Partner-funded</span><h3>Health system partnership</h3><p>A hospital operates clinical or training space on campus and brings its own capital and staffing.</p></div>
+      <div class="stream"><span class="tag t-partner">Partner-funded</span><h3>Housing on surplus land</h3><p>Senior living, workforce housing, or dorm conversion. A developer builds it; you contribute the site.</p></div>
+      <div class="stream"><span class="tag t-board">Board decision</span><h3>Ground lease of acreage</h3><p>Long-term lease of unused land. Larger and slower, and usually a scheduled board item.</p></div>
+      <div class="stream"><span class="tag t-board">Board decision</span><h3>Conservation or parcel sale</h3><p>Selling land you no longer use, sometimes while keeping the right to use it. Full board, every time.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="offer" id="scan">
+  <div class="wrap">
+    <h2>The One-Pathway Scan</h2>
+    <p class="lede">Free, confidential, and narrow on purpose.</p>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><p>Tell us which building or parcel is least used. That is the entire intake.</p></div>
+      <div class="step"><span class="n">02</span><p>We spend two weeks on the public record — what your region is short of, what federal and state money already flows there, what your zoning permits, and who at your institution can sign what.</p></div>
+      <div class="step"><span class="n">03</span><p>You get one recommendation. Not eight. One, with the funding program named and the approval path mapped.</p></div>
+    </div>
+    <p class="note">No presentation to your board. No engagement letter. No obligation of any kind. One conversation and one document, and if the answer is that nothing here fits your campus, we will tell you that instead.</p>
+    <div class="ctas">
+      <a class="btn btn-a" href="#">Request a One-Pathway Scan</a>
+      <a class="btn btn-b" href="mailto:jeff@transformlearning.ai">Email Jeff directly</a>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>Where you're sitting</h2>
+    <p class="lede">The first conversation looks different depending on who is having it.</p>
+    <div class="aud">
+      <a href="#"><div class="role">Municipality or EDC</div><div class="say">"There's a campus in my town and no plan for it."</div></a>
+      <a href="#"><div class="role">College President</div><div class="say">"I'm not in crisis. I'd just rather not be, later."</div></a>
+      <a href="#"><div class="role">Board of Trustees</div><div class="say">"We need an option that isn't closure."</div></a>
+      <a href="#"><div class="role">Foundation or Investor</div><div class="say">"We want the anchor institution to survive."</div></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><b>Campus Transformation</b> — an initiative of Transform Learning</div>
+    <div>jeff@transformlearning.ai</div>
+  </div>
+</footer>
+
+</body>
+</html>
