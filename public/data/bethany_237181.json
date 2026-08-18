@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.0",
+  "data_version": "2026.08",
+  "built_at": "2026-08-18",
+  "institution": {
+    "unitid": 237181,
+    "name": "Bethany College",
+    "aliases": [
+      "Bethany College WV"
+    ],
+    "city": "Bethany",
+    "state": "WV",
+    "zip": "26032",
+    "county_fips": "54009",
+    "county_name": "Brooke County",
+    "cbsa": "48260",
+    "cbsa_name": "Weirton-Steubenville, WV-OH",
+    "control": "private_nonprofit",
+    "sector": "4yr",
+    "accreditor": "HLC",
+    "enrollment": {
+      "value": 640,
+      "year": 2024,
+      "source": "IPEDS",
+      "note": "Fall 2025 new-student enrollment up 31% YoY, largest new cohort in 15 years"
+    }
+  },
+  "position": {
+    "tuition_dependence": {
+      "value": null,
+      "year": null,
+      "source": "IPEDS F2 D01/D16",
+      "note": "Not yet pulled. Requires IPEDS F2 download."
+    },
+    "earned_and_public_revenue": {
+      "value": null,
+      "year": null
+    },
+    "philanthropy_share": {
+      "value": null,
+      "year": null
+    },
+    "diversification_delta_5yr": {
+      "value": null,
+      "window": null
+    },
+    "peer_set": {
+      "definition": "Pending decision from Jeff per addendum \u00a76",
+      "n": null
+    },
+    "form_990_net": {
+      "fy2023": -5920000,
+      "fy2024": 2510000,
+      "fy2025": -110000,
+      "source": "Form 990"
+    },
+    "endowment": {
+      "value": 52400000,
+      "year": "FY2024",
+      "source": "Form 990"
+    }
+  },
+  "regional_gaps": [
+    {
+      "domain": "labor",
+      "headline": "Behavioral health counselors are under-supplied here",
+      "metric": "Location quotient 0.71",
+      "detail": "70 employed in the Weirton-Steubenville area; median $21.96/hr; above the area all-occupation median of $20.58/hr. WV projects +25% through 2034, 250 annual openings",
+      "geography": "MSA 48260 (labor), WV (growth)",
+      "vintage": "OEWS May 2023; Projections Central 2024-2034",
+      "source_url": "https://www.bls.gov/oes/2023/may/oes_48260.htm",
+      "confidence": "high",
+      "lq": 0.71,
+      "median_wage": 21.96,
+      "employment": 70,
+      "growth_projection": "+25%",
+      "note": "Re-pull from May 2025 before schema freeze. MSA definitions changed."
+    },
+    {
+      "domain": "labor",
+      "headline": "HVAC and refrigeration mechanics are under-supplied here",
+      "metric": "Location quotient 0.75",
+      "detail": "70 employed; median $22.02/hr; above the area all-occupation median of $20.58/hr. WV projects +17%",
+      "geography": "MSA 48260 (labor), WV (growth)",
+      "vintage": "OEWS May 2023; Projections Central",
+      "source_url": "https://www.bls.gov/oes/2023/may/oes_48260.htm",
+      "confidence": "high",
+      "lq": 0.75,
+      "median_wage": 22.02,
+      "employment": 70,
+      "growth_projection": "+17%",
+      "note": "Re-pull from May 2025 before schema freeze."
+    },
+    {
+      "domain": "health",
+      "headline": "Primary care access is designated short here",
+      "metric": "HPSA score 16",
+      "detail": "Mental health score 12; dental score 11. All three are Low Income Population HPSA designations \u2014 the designation covers the county's low-income population, not every resident. No MUA covers the county.",
+      "geography": "Brooke County (WV)",
+      "vintage": "HRSA, reconfirmed August 2026",
+      "source_url": "https://data.hrsa.gov/tools/shortage-area",
+      "confidence": "high"
+    },
+    {
+      "domain": "housing",
+      "headline": "Nearly a third of renters are cost-burdened",
+      "metric": "30.8% of renters pay over 30% of income on housing",
+      "detail": "12.7% pay over 50%. 9,675 households, 25.4% renter-occupied.",
+      "geography": "Brooke County (WV)",
+      "vintage": "CHAS 2017-2021 (WV Housing Development Fund tabulation)",
+      "source_url": "https://www.huduser.gov/portal/datasets/cp.html",
+      "confidence": "partial",
+      "note": "Superseded vintage and third-party source. Must re-pull from CHAS 2018-2022 (HUD, released Dec 2025) before schema freeze."
+    }
+  ],
+  "oversupplied": [
+    {
+      "occupation": "LPNs",
+      "lq": 2.39
+    },
+    {
+      "occupation": "Nursing assistants",
+      "lq": 1.98
+    },
+    {
+      "occupation": "Healthcare practitioners overall",
+      "lq": 1.4
+    },
+    {
+      "occupation": "Industrial machinery mechanics",
+      "lq": 2.66
+    }
+  ],
+  "assets_to_gaps": [
+    {
+      "gap_domain": "labor",
+      "suggested_pathway": "employer_paid_training",
+      "asset_required": "classroom or lab space",
+      "stream_id": 4
+    },
+    {
+      "gap_domain": "health",
+      "suggested_pathway": "health_system_partnership",
+      "asset_required": "science labs, clinical training space",
+      "stream_id": 5
+    },
+    {
+      "gap_domain": "housing",
+      "suggested_pathway": "housing_on_surplus_land",
+      "asset_required": "surplus acreage or dorm conversion",
+      "stream_id": 6
+    }
+  ],
+  "funding": [
+    {
+      "program": "USDA Community Facilities",
+      "area_eligible": {
+        "value": true,
+        "confidence": "high",
+        "reasoning": "Bethany WV population 756 (2020 Census) is within the 20,000 rural-area cap."
+      },
+      "grant_tier_eligible": {
+        "value": null,
+        "tier": null,
+        "confidence": "unverified",
+        "reasoning": "Requires the WV published SNMHI, not yet obtained. USDA distributes this figure internally to state offices; there is no public table. Contact: USDA RD WV State Office, Morgantown, 304-284-4860, Steve Collins, steve.collins@usda.gov."
+      },
+      "county_mhi": {
+        "value": 54316,
+        "source": "ACS 2020-2024",
+        "note": "Used as approximation for service_area_MHI per spec \u00a73.1"
+      },
+      "poverty_line": {
+        "value": 33000,
+        "source": "91 FR 1797, effective January 13, 2026",
+        "region": "48 contiguous states and DC"
+      },
+      "applicant": "the college or the municipality",
+      "cadence": "continuous",
+      "url": "https://www.rd.usda.gov/programs-services/community-facilities/community-facilities-direct-loan-grant-program"
+    },
+    {
+      "program": "HUD Section 202 Supportive Housing for the Elderly",
+      "sponsor_eligible": {
+        "value": true,
+        "confidence": "high",
+        "reasoning": "Bethany College is a private nonprofit institution. Under 24 CFR 891.205, a 501(c)(3) organization qualifies as a Sponsor. A separate single-asset nonprofit entity would be formed to serve as Owner."
+      },
+      "url": "https://www.ecfr.gov/current/title-24/subtitle-B/chapter-VIII/part-891/subpart-B/section-891.205"
+    },
+    {
+      "program": "CDBG",
+      "route": "state_small_cities",
+      "reasoning": "Brooke County does not appear in HUD's WV CDBG grantee set. West Virginia has zero urban-county grantees. Bethany routes through WV NONENTITLEMENT (UOGID 549999), the state small-cities program.",
+      "nearest_entitlement": {
+        "name": "Weirton",
+        "uogid": "541392",
+        "type": 51
+      },
+      "confidence": "high",
+      "note": "Confirmed from HUD ArcGIS FeatureServer, August 2026"
+    },
+    {
+      "program": "ARC",
+      "county_status": "Transitional",
+      "fiscal_year": "FY2026",
+      "distressed_areas": 0,
+      "confidence": "high",
+      "source": "ARC county economic status, FY2026"
+    }
+  ],
+  "partners": {
+    "named": [
+      {
+        "type": "health_system",
+        "name": "Weirton Medical Center",
+        "operator": "WVU Medicine",
+        "city": "Weirton, WV",
+        "note": "Became a full WVU Health System member Jan 1, 2025",
+        "source_url": "https://wvumedicine.org/locations/weirton/"
+      },
+      {
+        "type": "health_system",
+        "name": "WVU Medicine Wheeling Hospital",
+        "operator": "WVU Medicine",
+        "city": "Wheeling, WV",
+        "note": "Runs family medicine and podiatric residencies",
+        "source_url": "https://wvumedicine.org/locations/wheeling/"
+      },
+      {
+        "type": "health_system",
+        "name": "Trinity Health System",
+        "operator": "CommonSpirit (UPMC acquisition pending)",
+        "city": "Steubenville, OH",
+        "note": "UPMC and CommonSpirit signed a definitive agreement May 4, 2026; transaction expected to close fall 2026, pending regulatory review.",
+        "source_url": null
+      },
+      {
+        "type": "college",
+        "name": "West Liberty University",
+        "city": "West Liberty, WV",
+        "note": "3 miles from Bethany",
+        "source_url": null
+      },
+      {
+        "type": "college",
+        "name": "Wheeling University",
+        "city": "Wheeling, WV",
+        "note": "11 miles",
+        "source_url": null
+      },
+      {
+        "type": "college",
+        "name": "Franciscan University of Steubenville",
+        "city": "Steubenville, OH",
+        "note": "12 miles",
+        "source_url": null
+      },
+      {
+        "type": "college",
+        "name": "WV Northern Community College",
+        "city": "Wheeling, WV",
+        "note": "13 miles",
+        "source_url": null
+      },
+      {
+        "type": "college",
+        "name": "Washington & Jefferson College",
+        "city": "Washington, PA",
+        "note": "17 miles",
+        "source_url": null
+      },
+      {
+        "type": "planning_commission",
+        "name": "Brooke-Hancock-Jefferson Metropolitan Planning Commission",
+        "note": "WV Region 11 PDC, ARC Local Development District",
+        "ceds_url": "https://www.bhjmpc.org/wp-content/uploads/2025/06/CEDS-2024-2029-FINAL-2024-03-20.pdf",
+        "source_url": "https://www.bhjmpc.org/"
+      },
+      {
+        "type": "workforce_board",
+        "name": "Northern Panhandle Workforce Development Board",
+        "note": "American Job Center at 100 Municipal Plaza, Weirton",
+        "source_url": null
+      }
+    ],
+    "counted": [
+      {
+        "type": "manufacturing_establishments",
+        "count": null,
+        "geography": "Brooke County",
+        "source": "QCEW",
+        "note": "Counts only. QCEW does not publish employer names."
+      }
+    ]
+  },
+  "governance": {
+    "accreditor": "HLC",
+    "property_lease_triggers_substantive_change": false,
+    "note": "HLC does not treat a property lease as a substantive change. NECHE institutions do carry a filing."
+  },
+  "regional_shocks": [
+    {
+      "event": "Cleveland-Cliffs idled the Weirton tinplate mill in 2024 (~900 workers)",
+      "follow_up": "Announced 600-job transformer plant July 2024, then halted development May 2025",
+      "source": "Multiple news sources"
+    },
+    {
+      "event": "Eastern Gateway Community College (Steubenville, 13 mi) closed October 2024",
+      "follow_up": "Youngstown State is moving toward taking over the building",
+      "source": "Multiple news sources"
+    },
+    {
+      "event": "Ohio Valley Medical Center in Wheeling closed 2019",
+      "source": "Multiple news sources"
+    }
+  ],
+  "flags": [
+    "oews_vintage_2023_must_repull_from_2025",
+    "chas_vintage_2017_2021_must_repull_from_2018_2022",
+    "snmhi_not_obtained",
+    "ipeds_f2_not_yet_pulled",
+    "peer_set_definition_pending",
+    "nmtc_tract_status_unresolved"
+  ]
+}

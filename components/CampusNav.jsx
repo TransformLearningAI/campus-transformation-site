@@ -23,6 +23,7 @@ export default function CampusNav() {
           <Link href="/about" className="nav-link" style={{ color: '#cfd8e6', textDecoration: 'none' }}>About</Link>
           <Link href="/blog" className="nav-link" style={{ color: '#cfd8e6', textDecoration: 'none' }}>Blog</Link>
           <Link href="/cases" className="nav-link" style={{ color: '#cfd8e6', textDecoration: 'none' }}>Case Studies</Link>
+          <Link href="/lookup" className="nav-link" style={{ color: '#cfd8e6', textDecoration: 'none' }}>Look Up Your School</Link>
           <Link href="/sample-report.html" className="nav-link" style={{ color: '#cfd8e6', textDecoration: 'none' }}>Sample Report</Link>
           <Link href="/inquiry" style={{ background: '#e0a02e', color: '#0b1c34', fontWeight: 700, padding: '9px 17px', borderRadius: 3, textDecoration: 'none', fontSize: 14.5 }}>
             One-Pathway Scan

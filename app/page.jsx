@@ -44,7 +44,7 @@ export default function HomePage() {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 13, alignItems: 'center' }}>
             <a className="v2-btn v2-btn-a" href="#scan">See what one building could do</a>
-            <a className="v2-btn v2-btn-b" href="#cases">Look up your school</a>
+            <Link className="v2-btn v2-btn-b" href="/lookup">Look up your school</Link>
           </div>
           <p style={{ marginTop: 44, paddingTop: 22, borderTop: '1px solid rgba(255,255,255,.15)', fontSize: 14, color: '#8fa2bd' }}>
             <b style={{ color: 'var(--amber)', fontWeight: 700, letterSpacing: '.04em' }}>ONE BUILDING. ONE SIGNATURE. ONE NEW REVENUE LINE.</b> &nbsp;&middot;&nbsp; Campus Transformation is an initiative of Transform Learning.
