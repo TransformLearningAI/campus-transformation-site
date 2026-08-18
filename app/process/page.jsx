@@ -307,7 +307,7 @@ export default function ProcessPage() {
               We stand on stage at the grand re-opening. We stay until the campus is alive
               and the community owns it. That&rsquo;s not consulting — that&rsquo;s building something together.
             </p>
-            <a href="/campus-transformation#contact"
+            <a href="/inquiry"
                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-white text-lg font-bold hover:opacity-90"
                style={{ background: '#00A8A8' }}>
               Start the Conversation

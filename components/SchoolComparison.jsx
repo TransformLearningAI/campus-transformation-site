@@ -195,7 +195,7 @@ export default function SchoolComparison() {
               liabilities into a different kind of asset: a workforce center, community hub, and
               revenue-generating campus that doesn&rsquo;t depend on 18-year-olds choosing your school.
             </p>
-            <a href="#contact"
+            <a href="/inquiry"
                className="inline-block mt-3 text-xs font-bold hover:opacity-80"
                style={{ color: '#00A8A8' }}>
               Talk to us about your options →

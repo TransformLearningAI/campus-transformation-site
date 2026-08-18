@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         <footer className="v2-footer">
           <div className="wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: 18, justifyContent: 'space-between', alignItems: 'center' }}>
             <div><b>Campus Transformation</b> — an initiative of Transform Learning</div>
-            <div>jeff@transformlearning.ai</div>
+            <div><a href="/market-context" style={{ color: '#7f92ab', textDecoration: 'none' }}>Market context</a> · jeff@transformlearning.ai</div>
           </div>
         </footer>
         <Analytics />

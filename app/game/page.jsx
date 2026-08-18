@@ -428,7 +428,7 @@ export default function CollegeGame() {
     return (
       <section className="min-h-screen" style={{ background: '#0A0A0A' }}>
         <div className="max-w-2xl mx-auto px-6 py-20">
-          <Link href="/campus-transformation" className="text-sm text-gray-600 hover:text-gray-400 mb-8 inline-block">&larr; Campus Transformation</Link>
+          <Link href="/" className="text-sm text-gray-600 hover:text-gray-400 mb-8 inline-block">&larr; Campus Transformation</Link>
           <h1 className="font-serif text-white mb-2" style={{ fontSize: 'clamp(32px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
             Don't Close.<br /><span style={{ color: '#00A8A8' }}>Transform.</span>
           </h1>
@@ -455,7 +455,7 @@ export default function CollegeGame() {
               Based on real financial data, real board dynamics, and real human consequences from colleges across America. No names are real. Everything else is.
             </p>
             <div className="flex gap-3">
-              <a href="/campus-transformation" className="text-[10px] font-bold hover:underline" style={{ color: '#00A8A8' }}>
+              <a href="/" className="text-[10px] font-bold hover:underline" style={{ color: '#00A8A8' }}>
                 Learn about Campus Transformation &rarr;
               </a>
               <a href="mailto:jeff@transformlearning.ai?subject=Feedback on the College Survival Game" className="text-[10px] font-bold text-gray-600 hover:underline">
@@ -536,7 +536,7 @@ export default function CollegeGame() {
                 Real colleges are facing these decisions right now. Two close every week. If you're a president, board member, faculty member, or community leader — or if you just want to learn more — we'd love to hear from you.
               </p>
               <div className="space-y-2">
-                <a href="/campus-transformation"
+                <a href="/"
                    className="block w-full text-center py-2.5 rounded-lg text-white text-sm font-bold"
                    style={{ background: '#00A8A8' }}>
                   Learn About Campus Transformation
@@ -554,7 +554,7 @@ export default function CollegeGame() {
             </div>
 
             <p className="text-[10px] text-gray-700 max-w-sm mx-auto">
-              Built by <a href="/campus-transformation" className="underline" style={{ color: '#00A8A8' }}>Campus Transformation</a> — a Pittsburgh-based consultancy helping communities transform at-risk colleges into workforce and community hubs.
+              Built by <a href="/" className="underline" style={{ color: '#00A8A8' }}>Campus Transformation</a> — a Pittsburgh-based consultancy helping communities transform at-risk colleges into workforce and community hubs.
             </p>
           </div>
         </div>

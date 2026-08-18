@@ -665,13 +665,13 @@ I've seen it happen too many times. I taught for 25 years at a university where 
 
 **That's what we're building.**
 
-At [Transform Learning](/campus-transformation), we've put together a team — educators, business developers, community builders, data analysts, operations leaders — distributed across the country, all focused on one thing: helping campuses plan and execute the transition from struggling college to thriving community asset. We call it Campus Transformation, and we've built the tools, the process, the financial models, and the case studies to show exactly how it works.
+At [Transform Learning](/), we've put together a team — educators, business developers, community builders, data analysts, operations leaders — distributed across the country, all focused on one thing: helping campuses plan and execute the transition from struggling college to thriving community asset. We call it Campus Transformation, and we've built the tools, the process, the financial models, and the case studies to show exactly how it works.
 
 A clear path to a new beginning. Community learning. Workforce development. Year-round programming for all ages. Flexible, agile, built to move with the times instead of against them.
 
 The buildings are trying to tell us something. The enrollment numbers are trying to tell us something. The question is whether we listen while there's still time to act — or wait until the only option left is condos.
 
-*Jeff Ritter, PhD, is the founder of [Campus Transformation at Transform Learning](/campus-transformation). He spent 25 years as a professor and now helps boards and communities reimagine what their campuses can become.*`,
+*Jeff Ritter, PhD, is the founder of [Campus Transformation at Transform Learning](/). He spent 25 years as a professor and now helps boards and communities reimagine what their campuses can become.*`,
   },
   {
     slug: 'beyond-the-college',
@@ -747,7 +747,7 @@ Option three is **transformation** — stop being a struggling college and start
 
 If you're on a board and your school has been declining for more than three years, do three things:
 
-**First,** look up your school's data. Federal data is public. [Our tool lets you search your school and compare it to peers](/campus-transformation). If your completion rate is below 40%, your enrollment is under 1,000, or your Pell rate is above 50%, the trajectory is clear.
+**First,** look up your school's data. Federal data is public. [Our tool lets you search your school and compare it to peers](/). If your completion rate is below 40%, your enrollment is under 1,000, or your Pell rate is above 50%, the trajectory is clear.
 
 **Second,** ask your president one question: "If we couldn't be a college anymore, what could this campus become?" Watch the reaction. If there's no answer, that's the answer.
 
@@ -755,6 +755,6 @@ If you're on a board and your school has been declining for more than three year
 
 That's what we do. The conversation is free. It's confidential. And it might be the most important meeting your board never scheduled.
 
-*Jeff Ritter, PhD, is the founder of [Campus Transformation](/campus-transformation). He spent 25 years as a professor and now helps boards reimagine what their campuses can become.*`,
+*Jeff Ritter, PhD, is the founder of [Campus Transformation](/). He spent 25 years as a professor and now helps boards reimagine what their campuses can become.*`,
   },
 ]

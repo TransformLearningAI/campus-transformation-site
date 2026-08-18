@@ -99,18 +99,17 @@ export default function InquiryPage() {
                   <option value="500-1,000">500 – 1,000</option>
                   <option value="1,000-2,500">1,000 – 2,500</option>
                   <option value="2,500+">2,500+</option>
-                  <option value="Already closed">Already closed</option>
                 </select>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
                 <select style={selectStyle} value={form.situation} onChange={e => setForm(f => ({ ...f, situation: e.target.value }))}>
-                  <option value="">Current situation</option>
+                  <option value="">Current situation (optional)</option>
+                  <option value="Planning ahead">Planning ahead</option>
                   <option value="Exploring alternatives">Exploring alternatives</option>
-                  <option value="Financial distress">Under financial distress</option>
                   <option value="Enrollment declining">Enrollment declining</option>
+                  <option value="Under financial pressure">Under financial pressure</option>
                   <option value="Considering closure">Considering closure</option>
                   <option value="Already closed">Already closed</option>
-                  <option value="Just curious">Just learning about options</option>
                 </select>
                 <select style={selectStyle} value={form.timeline} onChange={e => setForm(f => ({ ...f, timeline: e.target.value }))}>
                   <option value="">Timeline</option>
@@ -138,6 +137,9 @@ export default function InquiryPage() {
               <p style={{ fontSize: 13, color: 'var(--ink-2)', textAlign: 'center', marginTop: 16 }}>
                 Or email directly: <a href="mailto:jeff@transformlearning.ai" style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>jeff@transformlearning.ai</a>
                 <br />No obligation. Response within 48 hours.
+              </p>
+              <p style={{ fontSize: 13, color: 'var(--ink-2)', textAlign: 'center', marginTop: 8, fontStyle: 'italic' }}>
+                You don&rsquo;t need to label your situation to talk to us.
               </p>
             </form>
           )}
