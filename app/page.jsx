@@ -149,8 +149,8 @@ export default function HomePage() {
           <p className="v2-lede">The first conversation looks different depending on who is having it.</p>
           <div className="v2-aud">
             <Link href="/inquiry"><div className="role">Municipality or EDC</div><div className="say">&ldquo;There&rsquo;s a campus in my town and no plan for it.&rdquo;</div></Link>
-            <Link href="/inquiry"><div className="role">College President</div><div className="say">&ldquo;I&rsquo;m not in crisis. I&rsquo;d just rather not be, later.&rdquo;</div></Link>
             <Link href="/inquiry"><div className="role">Board of Trustees</div><div className="say">&ldquo;We need an option that isn&rsquo;t closure.&rdquo;</div></Link>
+            <Link href="/inquiry"><div className="role">College President</div><div className="say">&ldquo;I&rsquo;m not in crisis. I&rsquo;d just rather not be, later.&rdquo;</div></Link>
             <Link href="/inquiry"><div className="role">Foundation or Investor</div><div className="say">&ldquo;We want the anchor institution to survive.&rdquo;</div></Link>
           </div>
         </div>
