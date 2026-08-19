@@ -36,6 +36,9 @@ export default function BlogPage() {
               </Link>
             ))}
           </div>
+          <p style={{ fontSize: 13, color: '#8b9099', textAlign: 'center', marginTop: 40, fontStyle: 'italic', maxWidth: '56ch', marginLeft: 'auto', marginRight: 'auto' }}>
+            We never write about prospects, clients, or identifiable conversations. What&rsquo;s discussed with us stays with us.
+          </p>
         </div>
       </section>
     </>
