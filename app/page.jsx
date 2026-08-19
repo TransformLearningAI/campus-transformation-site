@@ -133,31 +133,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Fix 16 — Team as doers (supersedes Fix 7b) */}
+      {/* Team section — anonymized for now */}
       <section className="v2-section">
         <div className="wrap">
           <h2 className="v2-h2">Not a consulting report. A crew.</h2>
-          <p className="v2-lede">We don&rsquo;t hand your school a binder and a bill. We make the calls, knock on the doors, find the money, and sit in the rooms until something gets signed. Problem solvers, creative thinkers, negotiators, and connectors who see what a campus could become &mdash; and then go get it.</p>
-          <div style={{ display: 'grid', gap: 20, marginTop: 28 }}>
-            <div>
-              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Jeff Ritter, PhD</p>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>25 years a professor, now a builder. Creates AI tools deployed in multiple countries, and opens doors nobody expects to open &mdash; from accreditors to state capitols. He&rsquo;ll be the one on the phone.</p>
+          <p className="v2-lede">We don&rsquo;t hand your school a binder and a bill. We make the calls, knock on the doors, find the money, and sit in the rooms until something gets signed.</p>
+          <div style={{ display: 'grid', gap: 16, marginTop: 28 }}>
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '16px 20px' }}>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>A 25-year professor turned builder. AI tools deployed in multiple countries. The one on the phone.</p>
             </div>
-            <div>
-              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Sarah Russell, PhD</p>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Associate Academic Dean at Duke. The strategist who sees the whole board: what a faculty will accept, what a president can carry, and what a plan needs before it can survive a meeting.</p>
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '16px 20px' }}>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>An associate academic dean at a major research university. Sees the whole board: what a faculty will accept, what a president can carry, what a plan needs to survive a meeting.</p>
             </div>
-            <div>
-              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Debbie Brockett, EdD</p>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Ran a $137M school system, then oversaw 108 schools and 6,400 staff. Knows how to move a large, proud, worried institution &mdash; because she&rsquo;s done it, with unions, boards, and communities at the table.</p>
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '16px 20px' }}>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>A former superintendent who ran a $137M school system and oversaw 108 schools. Knows how to move a large, proud, worried institution.</p>
             </div>
-            <div>
-              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Kevin McAllister</p>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Founder and builder. Started his own company and built one of the largest academic programs on a college campus from scratch. The one who turns &ldquo;we should&rdquo; into &ldquo;we did.&rdquo;</p>
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '16px 20px' }}>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>A founder and builder who started his own company and built one of the largest academic programs on a college campus from scratch.</p>
             </div>
-            <div>
-              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Krystal Friesth</p>
-              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Peace Corps veteran who then delivered projects for global development firms in places where nothing is easy. Process, follow-through, and the phone calls that actually get returned.</p>
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '16px 20px' }}>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>A Peace Corps veteran who delivered projects for global development firms in places where nothing is easy. Process, follow-through, and the calls that get returned.</p>
             </div>
           </div>
           <p style={{ fontSize: 14, color: 'var(--ink-2)', maxWidth: '62ch', marginTop: 24, lineHeight: 1.6 }}>More than a group of academic executives: a team that&rsquo;s run the institutions, built the programs, and knows the people. The deal work &mdash; leases, bonds, land &mdash; happens with specialized higher-ed counsel and development partners we bring to your side of the table.</p>
