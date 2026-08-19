@@ -61,6 +61,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Fix 17 — What's free and what isn't */}
+      <section style={{ padding: '32px 0', background: 'var(--paper)' }}>
+        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, maxWidth: '64ch' }}>
+          <div>
+            <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 8px' }}>What&rsquo;s free, and what you&rsquo;re paying for when you pay.</p>
+          </div>
+          <div></div>
+          <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '18px 20px' }}>
+            <p style={{ fontWeight: 700, fontSize: 14, color: '#3c6b2e', margin: '0 0 8px', letterSpacing: '.04em', textTransform: 'uppercase' }}>Free, forever</p>
+            <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>The report on your region and campus, built from public records. The sample report. The two-week One-Pathway Scan, ending in one recommendation. Free because software and public data do that work, and because you shouldn&rsquo;t pay to find out whether there&rsquo;s anything here.</p>
+          </div>
+          <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '18px 20px' }}>
+            <p style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber-deep)', margin: '0 0 8px', letterSpacing: '.04em', textTransform: 'uppercase' }}>What costs money</p>
+            <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>The part no software can do. The phone calls that turn public data into real terms. Reading your bylaws and mapping who signs. Writing the proposal a funder says yes to, and sitting with you until it&rsquo;s signed. That&rsquo;s the work &mdash; scoped and priced before you commit to a dollar.</p>
+          </div>
+        </div>
+      </section>
+
       {/* What this does not require */}
       <section className="v2-section" id="not-require">
         <div className="wrap">

@@ -183,3 +183,17 @@ Replace the Fix 7b homepage trust block with the following fuller team feature. 
 > **Krystal Friesth** — Peace Corps veteran who then delivered projects for global development firms in places where nothing is easy. Process, follow-through, and the phone calls that actually get returned.
 >
 > More than a group of academic executives: a team that's run the institutions, built the programs, and knows the people. The deal work — leases, bonds, land — happens with specialized higher-ed counsel and development partners we bring to your side of the table.
+
+Design note: five short profiles, photos if available, no titles-first formatting — the verb leads, the credential supports. The final sentence keeps the deal-credentials claim honest (Fix 14's candor applies here too).
+
+## FIX 17 — "What's free and what isn't" (cost, value, and the giveaway answered in one strip)
+
+Place on the homepage directly after the plain-words box (Fix 11), and echo above the pricing sentence on any services page. **VERBATIM:**
+
+> **What's free, and what you're paying for when you pay.**
+>
+> **Free, forever:** the report on your region and campus, built from public records. The sample report. The two-week One-Pathway Scan, ending in one recommendation. Free because software and public data do that work, and because you shouldn't pay to find out whether there's anything here.
+>
+> **What costs money:** the part no software can do. The phone calls that turn public data into real terms. Reading your bylaws and mapping who signs. Writing the proposal a funder says yes to, and sitting with you until it's signed. That's the work — scoped and priced before you commit to a dollar.
+
+Design note: two-column or two-block strip, visually paired. This is also the sales team's script: "the research is free; you pay for the doing."
