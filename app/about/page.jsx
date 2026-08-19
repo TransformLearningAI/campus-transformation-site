@@ -32,30 +32,43 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Fix 16 — Team as doers (opening of team section) */}
       <section className="v2-section v2-alt">
         <div className="wrap">
-          <h2 className="v2-h2">Who we are</h2>
-          <p className="v2-lede">
-            Professors, administrators, business strategists, workforce developers, and community builders. People who watched campuses close from the inside and decided to do something about it.
-          </p>
-          <div className="v2-req">
+          <h2 className="v2-h2">Not a consulting report. A crew.</h2>
+          <p className="v2-lede">We don&rsquo;t hand your school a binder and a bill. We make the calls, knock on the doors, find the money, and sit in the rooms until something gets signed. Problem solvers, creative thinkers, negotiators, and connectors who see what a campus could become &mdash; and then go get it.</p>
+          <div style={{ display: 'grid', gap: 20, marginTop: 28 }}>
             <div>
-              <span className="no">Education</span>
-              <p>25+ years in higher education. Curriculum design, accreditation navigation, faculty transition planning. We understand the institutional culture because we lived in it.</p>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Jeff Ritter, PhD</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>25 years a professor, now a builder. Creates AI tools deployed in multiple countries, and opens doors nobody expects to open &mdash; from accreditors to state capitols. He&rsquo;ll be the one on the phone.</p>
             </div>
             <div>
-              <span className="no">Workforce</span>
-              <p>Workforce program design, employer partnership development, industry certification pathways. We know what employers actually pay for, because we ask them.</p>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Sarah Russell, PhD</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Associate Academic Dean at Duke. The strategist who sees the whole board: what a faculty will accept, what a president can carry, and what a plan needs before it can survive a meeting.</p>
             </div>
             <div>
-              <span className="no">Finance</span>
-              <p>Grant writing, bond restructuring strategy, revenue modeling, federal funding navigation. WIOA, EDA, USDA Rural Development, New Markets Tax Credits &mdash; we know the programs and the application processes.</p>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Debbie Brockett, EdD</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Ran a $137M school system, then oversaw 108 schools and 6,400 staff. Knows how to move a large, proud, worried institution &mdash; because she&rsquo;s done it, with unions, boards, and communities at the table.</p>
             </div>
             <div>
-              <span className="no">Community</span>
-              <p>Municipal partnership development, community visioning, stakeholder engagement. A campus transformation that ignores the community around it will fail. We start there.</p>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Kevin McAllister</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Founder and builder. Started his own company and built one of the largest academic programs on a college campus from scratch. The one who turns &ldquo;we should&rdquo; into &ldquo;we did.&rdquo;</p>
+            </div>
+            <div>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Krystal Friesth</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Peace Corps veteran who then delivered projects for global development firms in places where nothing is easy. Process, follow-through, and the phone calls that actually get returned.</p>
             </div>
           </div>
+          <p style={{ fontSize: 14, color: 'var(--ink-2)', maxWidth: '62ch', marginTop: 24, lineHeight: 1.6 }}>More than a group of academic executives: a team that&rsquo;s run the institutions, built the programs, and knows the people. The deal work &mdash; leases, bonds, land &mdash; happens with specialized higher-ed counsel and development partners we bring to your side of the table.</p>
+        </div>
+      </section>
+
+      {/* Fix 14 — Track record honesty */}
+      <section className="v2-section">
+        <div className="wrap">
+          <p style={{ fontSize: 15.5, color: 'var(--ink-2)', maxWidth: '64ch', lineHeight: 1.7, margin: 0 }}>
+            <strong style={{ color: 'var(--navy)' }}>A note on our track record, because you&rsquo;ll ask.</strong> Campus Transformation is a young practice built by people with long careers inside these institutions. We don&rsquo;t yet have a list of completed client engagements to hand you &mdash; what we have is our published research, our case files on colleges that did this successfully, the sample report you can read right now, and a working method we&rsquo;ll demonstrate on your campus for free. We&rsquo;d rather show you than assure you. And when you&rsquo;re ready to check us out, we&rsquo;ll gladly connect you with people who know our work.
+          </p>
         </div>
       </section>
 
@@ -69,6 +82,13 @@ export default function AboutPage() {
           <p style={{ color: 'var(--ink-2)', maxWidth: '66ch' }}>
             Campus Transformation is an initiative of <a href="https://transformlearning.ai" style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>Transform Learning</a>.
           </p>
+        </div>
+      </section>
+
+      {/* Fix 15a — Disclosure */}
+      <section style={{ padding: '20px 0', background: 'var(--paper)' }}>
+        <div className="wrap">
+          <p style={{ fontSize: 12.5, color: '#8b9099', maxWidth: '64ch', margin: 0, lineHeight: 1.6 }}>This is general information, not legal or financial advice. Decisions about debt, accreditation, and property belong with your counsel and advisors &mdash; we work alongside them, not in place of them.</p>
         </div>
       </section>
 

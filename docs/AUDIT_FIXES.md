@@ -123,3 +123,63 @@ Phase 2 = Fixes 2, 4, 5, 6, 7, 9 (copy replacements — every block provided ver
 Phase 3 = Fix 10 (new section) and Fix 3a (de-naming).
 Fix 3c is proposed to Jeff, never auto-executed.
 After each phase: summary of diffs → Jeff approves → deploy.
+
+---
+---
+
+# APPENDIX: Fixes 11–16 (from CLIENT_WALKTHROUGH_REVIEW.md and Jeff's team direction)
+
+Same rules as above: VERBATIM blocks are final. Execute as Phase 4 after Phases 1–3.
+
+## FIX 11 — The plain-words box
+
+High on the homepage, before any section that requires scrolling. **VERBATIM:**
+
+> **This site in five sentences.** Your campus probably has one building or one piece of land that could earn money without changing what your college is. We find it, match it to something your region needs, and identify who would pay to build it — usually a government program, an employer, or a development partner, not you. The first step is a free report built from public records. The second is a free two-week study of your specific campus. You can stop at any step, and if we find nothing worth doing, we'll say so.
+
+## FIX 12 — The enrollment leader exists
+
+12a. Add to the audience selector: role "Enrollment / Admissions Leader", card copy **VERBATIM:** "I need the revenue pressure taken off my enrollment number."
+12b. Add "Enrollment / Admissions Leader" to the inquiry form's relationship dropdown.
+12c. Add near the case studies, **VERBATIM:**
+
+> **Some pathways make money. Some make students. Several do both.** Employer-sponsored training seats become degree pipelines — at Dakota Wesleyan, a health system pays $20,000 per nursing student who commits to work there after graduation. A health-system partnership brings clinical placements that recruit for you. New revenue isn't a rival to enrollment; done right, it's a feeder — and it means your enrollment target stops being the only thing holding up the budget.
+
+## FIX 13 — "What can go wrong" (the risk section)
+
+On the homepage after the after-the-Scan ladder, linked from the sample report close. **VERBATIM:**
+
+> ## What can go wrong — because something can
+>
+> A serious proposal names its risks, so here are ours. **A partner can walk** — which is why we structure first commitments as leases and MOUs you can unwind, not conveyances you can't. **A tenant can underperform or default** — which is why the lease, not a revenue projection, defines your downside, and why we never publish projected revenue for your campus. **A town can resist** — which is why community benefit leads every proposal we write, and why we check zoning before you spend anything. **A grant can fall through** — which is why we prefer programs with rolling deadlines and name a second funding path in every proposal. **And the whole idea can simply be wrong for your campus** — which is why the Scan is free, and why "nothing here is worth doing" is an answer we actually give.
+
+## FIX 14 — Early-stage honesty (the references answer)
+
+On the About page, after the team. **VERBATIM:**
+
+> **A note on our track record, because you'll ask.** Campus Transformation is a young practice built by people with long careers inside these institutions. We don't yet have a list of completed client engagements to hand you — what we have is our published research, our case files on colleges that did this successfully, the sample report you can read right now, and a working method we'll demonstrate on your campus for free. We'd rather show you than assure you. And when you're ready to check us out, we'll gladly connect you with people who know our work.
+
+## FIX 15 — The two disclosure lines
+
+15a. Wherever debt, bonds, or accreditation are discussed, once per page, **VERBATIM:** "This is general information, not legal or financial advice. Decisions about debt, accreditation, and property belong with your counsel and advisors — we work alongside them, not in place of them."
+15b. Footer, sitewide, **VERBATIM:** "We use AI extensively in our research and verify what matters by hand and by phone. We never publish or share who reads, runs a report, or talks to us."
+
+## FIX 16 — The team as doers (SUPERSEDES Fix 7b's trust block)
+
+Replace the Fix 7b homepage trust block with the following fuller team feature. Also use it as the new opening of the About page's team section, above the individual bios. Every biographical claim below matches the existing About page — do not embellish beyond it. **VERBATIM:**
+
+> ## Not a consulting report. A crew.
+>
+> We don't hand your school a binder and a bill. We make the calls, knock on the doors, find the money, and sit in the rooms until something gets signed. Problem solvers, creative thinkers, negotiators, and connectors who see what a campus could become — and then go get it.
+>
+> **Jeff Ritter, PhD** — 25 years a professor, now a builder. Creates AI tools deployed in multiple countries, and opens doors nobody expects to open — from accreditors to state capitols. He'll be the one on the phone.
+>
+> **Sarah Russell, PhD** — Associate Academic Dean at Duke. The strategist who sees the whole board: what a faculty will accept, what a president can carry, and what a plan needs before it can survive a meeting.
+>
+> **Debbie Brockett, EdD** — Ran a $137M school system, then oversaw 108 schools and 6,400 staff. Knows how to move a large, proud, worried institution — because she's done it, with unions, boards, and communities at the table.
+>
+> **Kevin McAllister** — Founder and builder. Started his own company and built one of the largest academic programs on a college campus from scratch. The one who turns "we should" into "we did."
+>
+> **Krystal Friesth** — Peace Corps veteran who then delivered projects for global development firms in places where nothing is easy. Process, follow-through, and the phone calls that actually get returned.
+>
+> More than a group of academic executives: a team that's run the institutions, built the programs, and knows the people. The deal work — leases, bonds, land — happens with specialized higher-ed counsel and development partners we bring to your side of the table.

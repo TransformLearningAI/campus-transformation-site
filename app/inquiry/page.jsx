@@ -87,6 +87,7 @@ export default function InquiryPage() {
                   <option value="Board Member / Trustee">Board Member / Trustee</option>
                   <option value="President / Chancellor">President / Chancellor</option>
                   <option value="VP / Provost / CFO">VP / Provost / CFO</option>
+                  <option value="Enrollment / Admissions Leader">Enrollment / Admissions Leader</option>
                   <option value="Faculty / Staff">Faculty / Staff</option>
                   <option value="Municipal / Government">Municipal / Government</option>
                   <option value="Foundation / Investor">Foundation / Investor</option>

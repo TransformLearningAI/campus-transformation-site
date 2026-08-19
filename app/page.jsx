@@ -52,6 +52,15 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Fix 11 — Plain-words box */}
+      <section style={{ padding: '28px 0', background: '#f8f5ee', borderBottom: '1px solid #e8e0d0' }}>
+        <div className="wrap" style={{ maxWidth: '64ch' }}>
+          <p style={{ fontSize: 15.5, color: 'var(--navy)', lineHeight: 1.7, margin: 0 }}>
+            <strong>This site in five sentences.</strong> Your campus probably has one building or one piece of land that could earn money without changing what your college is. We find it, match it to something your region needs, and identify who would pay to build it &mdash; usually a government program, an employer, or a development partner, not you. The first step is a free report built from public records. The second is a free two-week study of your specific campus. You can stop at any step, and if we find nothing worth doing, we&rsquo;ll say so.
+          </p>
+        </div>
+      </section>
+
       {/* What this does not require */}
       <section className="v2-section" id="not-require">
         <div className="wrap">
@@ -75,6 +84,7 @@ export default function HomePage() {
               <p>In every model below, somebody else funded the building &mdash; a developer, a state workforce grant, a federal rural facilities program, a health system, a community foundation, an employer. Your contribution is the site.</p>
             </div>
           </div>
+          <p style={{ fontSize: 12.5, color: '#8b9099', maxWidth: '64ch', marginTop: 24, lineHeight: 1.6 }}>This is general information, not legal or financial advice. Decisions about debt, accreditation, and property belong with your counsel and advisors &mdash; we work alongside them, not in place of them.</p>
         </div>
       </section>
 
@@ -96,11 +106,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust block — Fix 7b */}
+      {/* Fix 12c — Enrollment and revenue */}
       <section className="v2-section" style={{ padding: '40px 0' }}>
         <div className="wrap">
-          <p style={{ fontWeight: 800, fontSize: 17, color: 'var(--navy)', marginBottom: 8 }}>Built by people who ran the institutions, not a real estate firm.</p>
-          <p style={{ fontSize: 15.5, color: 'var(--ink-2)', maxWidth: '64ch' }}>Professors, deans, a school superintendent who ran a $137M district, workforce and community developers &mdash; seven advanced degrees among us, and decades inside the schools now facing this market. <Link href="/about" style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>Meet the team &rarr;</Link></p>
+          <p style={{ fontSize: 15.5, color: 'var(--ink-2)', maxWidth: '64ch', lineHeight: 1.7, margin: 0 }}>
+            <strong style={{ color: 'var(--navy)' }}>Some pathways make money. Some make students. Several do both.</strong> Employer-sponsored training seats become degree pipelines &mdash; at Dakota Wesleyan, a health system pays $20,000 per nursing student who commits to work there after graduation. A health-system partnership brings clinical placements that recruit for you. New revenue isn&rsquo;t a rival to enrollment; done right, it&rsquo;s a feeder &mdash; and it means your enrollment target stops being the only thing holding up the budget.
+          </p>
+        </div>
+      </section>
+
+      {/* Fix 16 — Team as doers (supersedes Fix 7b) */}
+      <section className="v2-section">
+        <div className="wrap">
+          <h2 className="v2-h2">Not a consulting report. A crew.</h2>
+          <p className="v2-lede">We don&rsquo;t hand your school a binder and a bill. We make the calls, knock on the doors, find the money, and sit in the rooms until something gets signed. Problem solvers, creative thinkers, negotiators, and connectors who see what a campus could become &mdash; and then go get it.</p>
+          <div style={{ display: 'grid', gap: 20, marginTop: 28 }}>
+            <div>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Jeff Ritter, PhD</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>25 years a professor, now a builder. Creates AI tools deployed in multiple countries, and opens doors nobody expects to open &mdash; from accreditors to state capitols. He&rsquo;ll be the one on the phone.</p>
+            </div>
+            <div>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Sarah Russell, PhD</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Associate Academic Dean at Duke. The strategist who sees the whole board: what a faculty will accept, what a president can carry, and what a plan needs before it can survive a meeting.</p>
+            </div>
+            <div>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Debbie Brockett, EdD</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Ran a $137M school system, then oversaw 108 schools and 6,400 staff. Knows how to move a large, proud, worried institution &mdash; because she&rsquo;s done it, with unions, boards, and communities at the table.</p>
+            </div>
+            <div>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Kevin McAllister</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Founder and builder. Started his own company and built one of the largest academic programs on a college campus from scratch. The one who turns &ldquo;we should&rdquo; into &ldquo;we did.&rdquo;</p>
+            </div>
+            <div>
+              <p style={{ fontWeight: 800, fontSize: 15, color: 'var(--navy)', margin: '0 0 4px' }}>Krystal Friesth</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', margin: 0, lineHeight: 1.6 }}>Peace Corps veteran who then delivered projects for global development firms in places where nothing is easy. Process, follow-through, and the phone calls that actually get returned.</p>
+            </div>
+          </div>
+          <p style={{ fontSize: 14, color: 'var(--ink-2)', maxWidth: '62ch', marginTop: 24, lineHeight: 1.6 }}>More than a group of academic executives: a team that&rsquo;s run the institutions, built the programs, and knows the people. The deal work &mdash; leases, bonds, land &mdash; happens with specialized higher-ed counsel and development partners we bring to your side of the table.</p>
+          <p style={{ marginTop: 16 }}><Link href="/about" style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>More about us &rarr;</Link></p>
         </div>
       </section>
 
@@ -150,6 +193,14 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Fix 13 — What can go wrong */}
+      <section className="v2-section">
+        <div className="wrap">
+          <h2 className="v2-h2">What can go wrong &mdash; because something can</h2>
+          <p className="v2-lede" style={{ maxWidth: '64ch' }}>A serious proposal names its risks, so here are ours. <strong>A partner can walk</strong> &mdash; which is why we structure first commitments as leases and MOUs you can unwind, not conveyances you can&rsquo;t. <strong>A tenant can underperform or default</strong> &mdash; which is why the lease, not a revenue projection, defines your downside, and why we never publish projected revenue for your campus. <strong>A town can resist</strong> &mdash; which is why community benefit leads every proposal we write, and why we check zoning before you spend anything. <strong>A grant can fall through</strong> &mdash; which is why we prefer programs with rolling deadlines and name a second funding path in every proposal. <strong>And the whole idea can simply be wrong for your campus</strong> &mdash; which is why the Scan is free, and why &ldquo;nothing here is worth doing&rdquo; is an answer we actually give.</p>
+        </div>
+      </section>
+
       {/* Audience */}
       <section className="v2-section">
         <div className="wrap">
@@ -159,6 +210,7 @@ export default function HomePage() {
             <Link href="#towns"><div className="role">Municipality or EDC</div><div className="say">&ldquo;There&rsquo;s a campus in my town and no plan for it.&rdquo;</div></Link>
             <Link href="/inquiry"><div className="role">Board of Trustees</div><div className="say">&ldquo;We need an option that isn&rsquo;t closure.&rdquo;</div></Link>
             <Link href="/inquiry"><div className="role">College President</div><div className="say">&ldquo;I&rsquo;m not in crisis. I&rsquo;d just rather not be, later.&rdquo;</div></Link>
+            <Link href="/inquiry"><div className="role">Enrollment / Admissions Leader</div><div className="say">&ldquo;I need the revenue pressure taken off my enrollment number.&rdquo;</div></Link>
             <Link href="/inquiry"><div className="role">Foundation or Investor</div><div className="say">&ldquo;We want the anchor institution to survive.&rdquo;</div></Link>
           </div>
         </div>

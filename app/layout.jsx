@@ -46,6 +46,9 @@ export default function RootLayout({ children }) {
             <div><b>Campus Transformation</b> — an initiative of Transform Learning</div>
             <div><a href="/market-context" style={{ color: '#7f92ab', textDecoration: 'none' }}>Market context</a> · jeff@transformlearning.ai</div>
           </div>
+          <div className="wrap" style={{ marginTop: 12, fontSize: 12, color: '#6b7a8d', lineHeight: 1.6 }}>
+            We use AI extensively in our research and verify what matters by hand and by phone. We never publish or share who reads, runs a report, or talks to us.
+          </div>
         </footer>
         <Analytics />
       </body>
