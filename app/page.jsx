@@ -74,7 +74,7 @@ export default function HomePage() {
           </div>
           <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '18px 20px' }}>
             <p style={{ fontWeight: 700, fontSize: 14, color: 'var(--amber-deep)', margin: '0 0 8px', letterSpacing: '.04em', textTransform: 'uppercase' }}>What costs money</p>
-            <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>The part no software can do. Building relationships with the health system, the workforce board, the developer who would fund your project. Deep research into your bylaws, your delegation policy, and the specific grant programs that fit. Communication strategy for your board, your faculty, and your community. Writing the proposal a funder says yes to, and staying with you through the first signature. That&rsquo;s the work &mdash; strategy, relationships, and execution, scoped and priced before you commit to a dollar.</p>
+            <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.6 }}>The part no software can do. Helping you understand what the data means for your specific campus and turning it into a plan you can act on. Building relationships with the health system, the workforce board, the developer who would fund your project. Deep research into your bylaws, your delegation policy, and the specific grant programs that fit. Communication strategy for your board, your faculty, and your community. Writing the proposal a funder says yes to &mdash; and then executing alongside your team through the first signature and beyond. Strategy, relationships, and partnership, scoped and priced before you commit to a dollar.</p>
           </div>
         </div>
       </section>
