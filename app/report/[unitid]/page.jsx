@@ -149,10 +149,14 @@ export default function ReportPage() {
   const [checked, setChecked] = useState({})
 
   useEffect(() => {
-    fetch(`/data/bethany_${unitid}.json`)
-      .then(r => { if (!r.ok) throw new Error('Not found'); return r.json() })
-      .then(setRecord)
-      .catch(() => setError('Report not found for this institution.'))
+    fetch('/data/institutions.json')
+      .then(r => r.json())
+      .then(data => {
+        const match = data.find(rec => String(rec.institution?.unitid) === String(unitid))
+        if (match) setRecord(match)
+        else setError('Report not found for this institution.')
+      })
+      .catch(() => setError('Could not load report data.'))
   }, [unitid])
 
   if (error) return (
@@ -182,6 +186,14 @@ export default function ReportPage() {
     <>
       <style>{RPT}</style>
 
+      {/* Beta banner — BETA_LAUNCH_SPEC.md §1 verbatim */}
+      <div style={{ background: '#fdf0d8', padding: '10px 0', fontSize: 14, color: 'var(--navy)' }}>
+        <div className="wrap">
+          <strong style={{ color: 'var(--amber-text)' }}>Beta.</strong>{' '}
+          This report is generated from public federal records and covers every private nonprofit four-year college in the U.S. If a number looks wrong for your campus, it might be — <a href={`mailto:jeff@transformlearning.ai?subject=${encodeURIComponent(`[Beta feedback] ${inst.name} (${inst.unitid})`)}&body=${encodeURIComponent(`School: ${inst.name}, ${inst.city} ${inst.state} (UNITID ${inst.unitid})\nData version: ${record.data_version}\nWhat looks wrong (please describe):\n\n`)}`} style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>tell us</a> and a person will check it within two business days.
+        </div>
+      </div>
+
       {/* Report header */}
       <div className="rephead">
         <div className="wrap">
@@ -210,6 +222,8 @@ export default function ReportPage() {
               </p>
             </div>
           ))}
+
+          <FeedbackLink inst={inst} record={record} section="The region" />
 
           {/* Oversupplied contrast per spec §7 */}
           {record.oversupplied && record.oversupplied.length > 0 && (
@@ -248,6 +262,7 @@ export default function ReportPage() {
               <p className="pathhint">Check an asset above to see matching pathways.</p>
             )}
           </div>
+          <FeedbackLink inst={inst} record={record} section="Your campus" />
         </div>
       </section>
 
@@ -264,49 +279,48 @@ export default function ReportPage() {
             </thead>
             <tbody>
               {funding.map((f, i) => {
-                if (f.program === 'USDA Community Facilities') {
+                const prog = f.program || ''
+                if (prog.includes('USDA')) {
                   const ae = f.area_eligible || {}
-                  const gt = f.grant_tier_eligible || {}
-                  // Per spec §5 rule 5: don't show unqualified boolean for half-computed test
                   return (
                     <tr key={i}>
-                      <td><b>{f.program}</b><br />{f.cadence || 'continuous'} applications</td>
-                      <td className="yes">Area eligible</td>
+                      <td><b>USDA Community Facilities</b><br />{f.cadence || 'continuous'} applications</td>
+                      <td>{ae.value ? <span className="yes">Area eligible</span> : ae.confidence === 'unverified' ? <span className="call">Unverified</span> : 'Not eligible'}</td>
                       <td>
-                        {ae.reasoning}
-                        {' '}The grant share (up to 75% of project cost) depends on one income figure USDA publishes only by phone — <span className="call">call to confirm</span>.
-                        {' '}The applicant can be the town, not the college.
+                        {ae.reasoning || ''}
+                        {ae.value && <> The grant share (up to 75% of project cost) depends on one income figure USDA publishes only by phone — <span className="call">call to confirm</span>. The applicant can be the town, not the college.</>}
                       </td>
                     </tr>
                   )
                 }
-                if (f.program === 'HUD Section 202 Supportive Housing for the Elderly') {
+                if (prog.includes('Section 202')) {
+                  const se = f.sponsor_eligible || {}
+                  if (se.confidence === 'unverified') return null
                   return (
                     <tr key={i}>
                       <td><b>HUD Section 202</b><br />supportive housing for elderly</td>
                       <td className="yes">Sponsor eligible</td>
-                      <td>{f.sponsor_eligible?.reasoning}</td>
+                      <td>{se.reasoning}</td>
                     </tr>
                   )
                 }
-                if (f.program === 'CDBG') {
+                if (prog.includes('CDBG')) {
                   return (
                     <tr key={i}>
-                      <td><b>CDBG</b><br />state small cities program</td>
-                      <td className="call">State route</td>
+                      <td><b>CDBG</b><br />{f.route || 'state program'}</td>
+                      <td className={f.route === 'state small cities' ? 'call' : 'yes'}>{f.route === 'state small cities' ? 'State route' : f.route}</td>
                       <td>{f.reasoning}</td>
                     </tr>
                   )
                 }
-                if (f.program === 'ARC') {
+                if (prog.includes('ARC')) {
+                  const status = f.county_status?.value || f.county_status || ''
+                  if (!status) return null
                   return (
                     <tr key={i}>
-                      <td><b>Appalachian Regional Commission</b><br />FY{f.fiscal_year?.replace('FY','')}</td>
-                      <td>{f.county_status === 'Distressed' ? <span className="yes">Distressed</span> : f.county_status}</td>
-                      <td>
-                        {inst.county_name} ARC status: <b>{f.county_status}</b>. {f.distressed_areas} distressed areas in county.
-                        {f.county_status === 'Transitional' && ' Transitional counties receive a moderate federal cost share.'}
-                      </td>
+                      <td><b>Appalachian Regional Commission</b></td>
+                      <td>{status === 'Distressed' ? <span className="yes">Distressed</span> : status}</td>
+                      <td>County status: <b>{status}</b>.{status === 'Transitional' && ' Transitional counties receive a moderate federal cost share.'}{status === 'Distressed' && ' Distressed counties receive the highest federal cost share.'}</td>
                     </tr>
                   )
                 }
@@ -317,6 +331,7 @@ export default function ReportPage() {
           <p style={{ fontSize: 14, color: '#667085', marginTop: 14, maxWidth: '64ch' }}>
             One thing we will not do: put a projected revenue number on any of this. Anyone who gives you a dollar figure before the phone calls is guessing.
           </p>
+          <FeedbackLink inst={inst} record={record} section="Who would pay" />
         </div>
       </section>
 
@@ -346,6 +361,8 @@ export default function ReportPage() {
               </div>
             </div>
           ))}
+
+          <FeedbackLink inst={inst} record={record} section="The neighbors" />
 
           {/* Regional shocks per spec §7 */}
           {record.regional_shocks && (
@@ -404,12 +421,12 @@ export default function ReportPage() {
             </div>
           )}
 
-          {inst.enrollment && (
+          {inst.enrollment?.value && (
             <p className="standnote">
-              Current enrollment: <b>{inst.enrollment.value.toLocaleString()}</b> ({inst.enrollment.source}, fall {inst.enrollment.year}).
-              {inst.enrollment.note && <> {inst.enrollment.note}.</>}
+              Current enrollment: <b>{inst.enrollment.value.toLocaleString()}</b> ({inst.enrollment.source}).
             </p>
           )}
+          <FeedbackLink inst={inst} record={record} section="Your position" />
         </div>
       </section>
 
@@ -449,6 +466,19 @@ export default function ReportPage() {
         </section>
       )}
     </>
+  )
+}
+
+function FeedbackLink({ inst, record, section }) {
+  const subject = encodeURIComponent(`[Beta feedback] ${inst.name} (${inst.unitid}) — ${section}`)
+  const body = encodeURIComponent(`School: ${inst.name}, ${inst.city} ${inst.state} (UNITID ${inst.unitid})\nReport section: ${section}\nData version: ${record.data_version}\nWhat looks wrong (please describe):\n\n`)
+  return (
+    <p style={{ fontSize: 12.5, color: '#98a1ab', marginTop: 20 }}>
+      See something wrong in this section?{' '}
+      <a href={`mailto:jeff@transformlearning.ai?subject=${subject}&body=${body}`}
+         style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>Tell us.</a>
+      {' '}Answered by a person, within two business days.
+    </p>
   )
 }
 

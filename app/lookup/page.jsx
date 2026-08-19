@@ -2,24 +2,25 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-// Schools with prebuilt reports
-const PREBUILT = new Set([237181]) // Bethany College
-
 export default function LookupPage() {
   const [institutions, setInstitutions] = useState([])
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [selected, setSelected] = useState(null)
-  const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('/data/institutions.json')
       .then(r => r.json())
-      .then(setInstitutions)
-      .catch(() => {})
+      .then(data => {
+        const flat = data.map(rec => ({
+          ...rec.institution,
+          _record: rec,
+        }))
+        setInstitutions(flat)
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
   }, [])
 
   useEffect(() => {
@@ -29,10 +30,10 @@ export default function LookupPage() {
     }
     const q = query.toLowerCase()
     const matches = institutions.filter(inst =>
-      inst.name.toLowerCase().includes(q) ||
+      (inst.name || '').toLowerCase().includes(q) ||
       (inst.aliases || []).some(a => a.toLowerCase().includes(q)) ||
-      (inst.city.toLowerCase().includes(q) && q.length > 2) ||
-      inst.state.toLowerCase() === q
+      ((inst.city || '').toLowerCase().includes(q) && q.length > 2) ||
+      (inst.state || '').toLowerCase() === q
     ).slice(0, 12)
     setResults(matches)
   }, [query, institutions])
@@ -43,36 +44,12 @@ export default function LookupPage() {
     setResults([])
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault()
-    if (!email || !selected) return
-    setSending(true)
-    try {
-      await fetch('/api/survey', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          site: 'campus-transformation-lookup',
-          rating: 5,
-          audience: 'lookup-request',
-          features: [selected.name, selected.state],
-          comment: `REPORT REQUEST\n\nName: ${name}\nEmail: ${email}\nInstitution: ${selected.name}\nCity: ${selected.city}, ${selected.state}\nCounty: ${selected.county_name}\nCounty FIPS: ${selected.county_fips}\nUNITID: ${selected.unitid}`,
-        }),
-      })
-      setSubmitted(true)
-    } catch {
-      alert('Something went wrong. Please email jeff@transformlearning.ai directly.')
-    }
-    setSending(false)
-  }
-
-  const hasReport = selected && PREBUILT.has(selected.unitid)
 
   return (
     <>
       <div style={{ background: 'var(--navy)', color: '#fff', padding: '60px 0 70px' }}>
         <div className="wrap">
-          <p className="v2-kicker">Look Up Your School</p>
+          <p className="v2-kicker">Look Up Your School <span style={{ background: 'var(--amber)', color: 'var(--navy-deep)', fontSize: 10, fontWeight: 800, letterSpacing: '.13em', padding: '3px 8px', borderRadius: 2, marginLeft: 8, verticalAlign: 'middle' }}>BETA</span></p>
           <h1 style={{ fontSize: 'clamp(32px, 5vw, 56px)', lineHeight: 1.05, letterSpacing: '-0.035em', fontWeight: 800, margin: '0 0 20px', maxWidth: '20ch' }}>
             What is your county short of?
           </h1>
@@ -80,7 +57,7 @@ export default function LookupPage() {
             Type your institution's name. We'll pull federal labor, housing, health, and funding data for your region and show you what your campus could do about the gaps — free.
           </p>
           <p style={{ fontSize: 14, color: '#8fa2bd', marginTop: 12 }}>
-            {institutions.length.toLocaleString()} private nonprofit 4-year colleges in the database
+            {loading ? 'Loading database...' : `${institutions.length.toLocaleString()} private nonprofit 4-year colleges · reports ready for all of them`}
           </p>
         </div>
       </div>
@@ -92,7 +69,7 @@ export default function LookupPage() {
               type="text"
               placeholder="Start typing your college name..."
               value={query}
-              onChange={e => { setQuery(e.target.value); setSelected(null); setSubmitted(false) }}
+              onChange={e => { setQuery(e.target.value); setSelected(null) }}
               style={{
                 width: '100%', padding: '18px 22px', fontSize: 18,
                 border: '2px solid var(--rule)', borderRadius: 3,
@@ -127,12 +104,13 @@ export default function LookupPage() {
             )}
           </div>
 
-          {/* School selected — has prebuilt report */}
-          {hasReport && (
+          {/* School selected — link to report */}
+          {selected && (
             <div style={{ marginTop: 20, padding: 24, background: '#fff', border: '2px solid var(--amber)', borderRadius: 3 }}>
               <h3 style={{ margin: '0 0 8px', color: 'var(--navy)', fontSize: 18 }}>{selected.name}</h3>
               <p style={{ margin: '0 0 16px', color: 'var(--ink-2)', fontSize: 15 }}>
-                {selected.city}, {selected.state} · {selected.county_name}
+                {selected.city}, {selected.state}{selected.county_name ? ` · ${selected.county_name}` : ''}
+                {selected.enrollment?.value ? ` · ${selected.enrollment.value.toLocaleString()} students` : ''}
               </p>
               <Link
                 href={`/report/${selected.unitid}`}
@@ -141,60 +119,6 @@ export default function LookupPage() {
               >
                 View your regional needs report →
               </Link>
-            </div>
-          )}
-
-          {/* School selected — no prebuilt report, show email capture */}
-          {selected && !hasReport && !submitted && (
-            <div style={{ marginTop: 20, padding: 28, background: '#fff', border: '2px solid var(--navy)', borderRadius: 3 }}>
-              <h3 style={{ margin: '0 0 8px', color: 'var(--navy)', fontSize: 18 }}>{selected.name}</h3>
-              <p style={{ margin: '0 0 4px', color: 'var(--ink-2)', fontSize: 15 }}>
-                {selected.city}, {selected.state} · {selected.county_name}
-              </p>
-              <p style={{ margin: '0 0 20px', color: 'var(--ink-2)', fontSize: 15 }}>
-                We're pulling federal labor, housing, health, and funding data for {selected.county_name} right now. Your report will show what the region is short of, what programs your campus qualifies for, and who's already nearby to partner with.
-              </p>
-              <form onSubmit={handleSubmit}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
-                  <input
-                    type="text" placeholder="Your name"
-                    value={name} onChange={e => setName(e.target.value)}
-                    style={{ padding: '12px 16px', border: '1px solid var(--rule)', borderRadius: 3, fontSize: 15, fontFamily: 'inherit' }}
-                  />
-                  <input
-                    type="email" placeholder="Email *" required
-                    value={email} onChange={e => setEmail(e.target.value)}
-                    style={{ padding: '12px 16px', border: '1px solid var(--rule)', borderRadius: 3, fontSize: 15, fontFamily: 'inherit' }}
-                  />
-                </div>
-                <button
-                  type="submit" disabled={sending}
-                  style={{
-                    width: '100%', padding: '14px 24px', background: 'var(--amber)',
-                    color: 'var(--navy-deep)', fontWeight: 700, fontSize: 16,
-                    border: 'none', borderRadius: 3, cursor: 'pointer', fontFamily: 'inherit',
-                    opacity: sending ? 0.5 : 1,
-                  }}
-                >
-                  {sending ? 'Sending...' : 'Send me the report — free'}
-                </button>
-                <p style={{ fontSize: 13, color: 'var(--ink-2)', marginTop: 10, textAlign: 'center' }}>
-                  Free. No login required. We never share who looks up their school.
-                </p>
-              </form>
-            </div>
-          )}
-
-          {/* Submitted */}
-          {submitted && selected && (
-            <div style={{ marginTop: 20, padding: 28, background: '#fff', border: '2px solid #3c6b2e', borderRadius: 3, textAlign: 'center' }}>
-              <h3 style={{ margin: '0 0 8px', color: 'var(--navy)', fontSize: 20 }}>Your report is on the way.</h3>
-              <p style={{ margin: '0 0 8px', color: 'var(--ink-2)', fontSize: 15 }}>
-                We're pulling federal data for <strong>{selected.county_name}</strong> — labor gaps, health designations, housing need, grant eligibility, and nearby partners. Your {selected.name} report will arrive at <strong>{email}</strong> within 24 hours.
-              </p>
-              <p style={{ margin: 0, fontSize: 14, color: '#667085' }}>
-                Questions in the meantime? <a href="mailto:jeff@transformlearning.ai" style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>jeff@transformlearning.ai</a>
-              </p>
             </div>
           )}
 
