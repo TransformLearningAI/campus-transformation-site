@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Future of Post-Secondary Education — 15-Stakeholder Innovation Summit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --navy: #0A1628;
+    --blue: #1E5AA8;
+    --gold: #D4A843;
+    --teal: #0D9488;
+    --purple: #7C3AED;
+    --red: #DC2626;
+    --green: #16A34A;
+    --slate: #334155;
+    --light: #F8FAFC;
+    --border: #E2E8F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #1E293B;
+    background: white;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media print {
+    .page-break { page-break-before: always; }
+    body { font-size: 11pt; }
+    .no-print { display: none; }
+  }
+
+  /* ========== COVER PAGE ========== */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, #1A3A6B 50%, #0D2147 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,168,67,0.15) 0%, transparent 70%);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(30,90,168,0.2) 0%, transparent 70%);
+  }
+  .cover-content { position: relative; z-index: 1; }
+  .cover-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover-sub {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    max-width: 550px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+  .cover-meta strong { color: var(--gold); }
+  .cover-badge {
+    position: absolute;
+    bottom: 60px;
+    right: 80px;
+    z-index: 1;
+    width: 140px;
+    height: 140px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover-badge .num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+  .cover-badge .lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+  /* ========== SECTION PAGES ========== */
+  .page {
+    padding: 60px 80px;
+    min-height: 100vh;
+  }
+  .page-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--navy);
+  }
+  .page-header .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .page-header h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .page-header p {
+    font-size: 15px;
+    color: var(--slate);
+    margin-top: 8px;
+    max-width: 600px;
+  }
+
+  /* ========== STAT GRID ========== */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .stat-card {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .stat-card .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 24px;
+  }
+  .stat-card .value {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat-card .label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--slate);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ========== PANELIST CARDS ========== */
+  .panelist-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .panelist-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .panelist-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+  .panelist-card.gov::before { background: var(--blue); }
+  .panelist-card.industry::before { background: var(--teal); }
+  .panelist-card.community::before { background: var(--gold); }
+  .panelist-card.education::before { background: var(--purple); }
+  .panelist-card.finance::before { background: var(--red); }
+  .panelist-card .num {
+    font-size: 11px;
+    font-weight: 800;
+    color: white;
+    background: var(--navy);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .panelist-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .panelist-card .vision {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  /* ========== POSITION PAPERS ========== */
+  .paper {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .paper:last-child { border-bottom: none; }
+  .paper-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .paper-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    color: white;
+    font-weight: 800;
+  }
+  .paper-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .paper-header .role {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .paper-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #374151;
+  }
+  .paper-body p { margin-bottom: 14px; }
+  .paper-body strong { color: var(--navy); }
+  .paper-vision {
+    background: var(--light);
+    border-left: 4px solid var(--gold);
+    padding: 16px 20px;
+    margin-top: 20px;
+    border-radius: 0 8px 8px 0;
+  }
+  .paper-vision p {
+    font-size: 14px;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--navy);
+    margin: 0;
+  }
+  .paper-vision .lbl {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  /* ========== CONSENSUS SECTION ========== */
+  .consensus-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .consensus-num {
+    width: 40px;
+    height: 40px;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .consensus-item h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .consensus-item p {
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+
+  /* ========== TIER MODEL ========== */
+  .tier {
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tier h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .tier .subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .tier ul {
+    list-style: none;
+    padding: 0;
+  }
+  .tier li {
+    font-size: 13px;
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .tier li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .tier-1 { background: linear-gradient(135deg, #ECFDF5, #D1FAE5); color: #064E3B; }
+  .tier-1 h3 { color: #064E3B; }
+  .tier-1 li::before { background: #10B981; }
+  .tier-2 { background: linear-gradient(135deg, #EFF6FF, #DBEAFE); color: #1E3A5F; }
+  .tier-2 h3 { color: #1E3A5F; }
+  .tier-2 li::before { background: #3B82F6; }
+  .tier-3 { background: linear-gradient(135deg, #F5F3FF, #EDE9FE); color: #3B0764; }
+  .tier-3 h3 { color: #3B0764; }
+  .tier-3 li::before { background: #8B5CF6; }
+  .tier-infra { background: linear-gradient(135deg, #FEF9EC, #FEF3C7); color: #78350F; }
+  .tier-infra h3 { color: #78350F; }
+  .tier-infra li::before { background: #F59E0B; }
+
+  /* ========== TENSION TABLE ========== */
+  .tension-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 13px;
+  }
+  .tension-table th {
+    background: var(--navy);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tension-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .tension-table tr:nth-child(even) td { background: var(--light); }
+  .tension-table .vs {
+    font-weight: 800;
+    color: var(--red);
+    text-align: center;
+    width: 40px;
+  }
+
+  /* ========== BAR CHART ========== */
+  .bar-chart {
+    margin: 24px 0;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .bar-label {
+    width: 180px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--slate);
+    text-align: right;
+    padding-right: 12px;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 28px;
+    background: var(--light);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    transition: width 0.6s ease;
+  }
+
+  /* ========== CONNECTION SECTION ========== */
+  .connect-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .connect-card {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+  }
+  .connect-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .connect-card .url {
+    font-size: 12px;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .connect-card p {
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+  .connect-card .match {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 12px;
+  }
+
+  /* ========== FOOTER ========== */
+  .page-footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 12px;
+    color: var(--slate);
+    border-top: 1px solid var(--border);
+  }
+  .page-footer strong { color: var(--navy); }
+
+  /* ========== PIE CHART CSS ========== */
+  .pie-container {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin: 24px 0;
+  }
+  .pie {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--blue) 0deg 100deg,
+      var(--teal) 100deg 172deg,
+      var(--gold) 172deg 230deg,
+      var(--purple) 230deg 288deg,
+      var(--green) 288deg 330deg,
+      var(--red) 330deg 360deg
+    );
+    flex-shrink: 0;
+    position: relative;
+  }
+  .pie::after {
+    content: '';
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background: white;
+    border-radius: 50%;
+  }
+  .pie-legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .pie-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--slate);
+  }
+  .pie-legend-item .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== COVER PAGE ========== -->
+<div class="cover">
+  <div class="cover-content">
+    <div class="cover-eyebrow">Innovation Summit Report &mdash; September 2026</div>
+    <h1>The Future of<br>Post-Secondary<br>Education in <span>America</span></h1>
+    <p class="cover-sub">
+      15 stakeholders. 15 perspectives. One unified vision for transforming
+      higher education in the age of AI, economic disruption, and $1.7 trillion in student debt.
+    </p>
+    <div class="cover-meta">
+      <span>Prepared by <strong>Transform Learning AI</strong></span>
+      <span>For meeting with <strong>Rep. Dan Frankel</strong></span>
+      <span><strong>September 23, 2026</strong></span>
+    </div>
+  </div>
+  <div class="cover-badge">
+    <div class="num">15</div>
+    <div class="lbl">Stakeholders</div>
+  </div>
+</div>
+
+<!-- ========== THE CRISIS ========== -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="eyebrow">The Crisis</div>
+    <h2>American Higher Education Is Breaking</h2>
+    <p>The numbers tell a story of a system designed for a world that no longer exists.</p>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="icon" style="background:#FEE2E2;color:var(--red);">$</div>
+      <div class="value">$1.7T</div>
+      <div class="label">Student Debt</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="background:#DBEAFE;color:var(--blue);">&#9662;</div>
+      <div class="value">40%</div>
+      <div class="label">Don't Finish</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="background:#FEF3C7;color:#B45309;">&#9650;</div>
+      <div class="value">1,200%</div>
+      <div class="label">Cost Increase Since 1980</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon" style="background:#ECFDF5;color:var(--green);">&#9679;</div>
+      <div class="value">70%</div>
+      <div class="label">Jobs Don't Need a BA</div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; font-size:20px; color:var(--navy); margin:32px 0 16px;">What's Driving the Crisis</h3>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">Tuition Inflation</div>
+      <div class="bar-track"><div class="bar-fill" style="width:95%;background:var(--red);">1,200% since 1980</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">AI Job Displacement</div>
+      <div class="bar-track"><div class="bar-fill" style="width:72%;background:var(--purple);">Reshaping all knowledge work</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Campus Closures</div>
+      <div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--blue);">7 Penn State campuses closing</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Trades Shortage</div>
+      <div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--teal);">650,000 open construction jobs</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Credential Mismatch</div>
+      <div class="bar-track"><div class="bar-fill" style="width:68%;background:var(--gold);">46% of grads underemployed</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== THE PANEL ========== -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="eyebrow">The Panel</div>
+    <h2>15 Stakeholders, 15 Visions</h2>
+    <p>Each panelist represents a distinct constituency with different needs, fears, and ideas.</p>
+  </div>
+
+  <div class="panelist-grid">
+    <div class="panelist-card gov"><div class="num">1</div><h4>State Legislator</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">A pragmatic state legislator chairing an education committee. Balances rural and urban constituent needs while managing shrinking budgets and closing campuses.</p><div class="vision">"Every citizen earns a living-wage credential within 30 miles of home."</div></div>
+    <div class="panelist-card industry"><div class="num">2</div><h4>Tech CEO</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Runs a 500-person tech company. Stopped requiring degrees 3 years ago. Hires based on demonstrated skill. Still needs PhDs for AI/ML research.</p><div class="vision">"Learn what no machine can do &mdash; and prove it before you graduate."</div></div>
+    <div class="panelist-card community"><div class="num">3</div><h4>Parent Advocate</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Middle-class parent earning $85K with two teenagers. Terrified of the cost. One kid is college-bound, the other isn't sure. Still paying off their own student loans at 47.</p><div class="vision">"A launchpad you can afford, not a casino where institutions always win."</div></div>
+    <div class="panelist-card community"><div class="num">4</div><h4>College Student</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Junior at a mid-tier state university. $40K in debt. Switched majors once. Learns more from YouTube and side projects than lectures. Half their friends dropped out.</p><div class="vision">"A launchpad you return to, not a cage you survive."</div></div>
+    <div class="panelist-card community"><div class="num">5</div><h4>Small Town Mayor</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Leads a borough of 12,000. The local Penn State campus is closing &mdash; 200 direct jobs and 300 downstream jobs at risk. The campus is the town's second-largest employer.</p><div class="vision">"Every closing campus should become a workforce hub."</div></div>
+    <div class="panelist-card education"><div class="num">6</div><h4>Land-Grant President</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Leads a flagship state university with 40,000 students, $2B budget, and Division I athletics. Enrollment is plateauing. State funding keeps shrinking as a share of revenue.</p><div class="vision">"Join once and never leave &mdash; a lifelong engine of discovery."</div></div>
+    <div class="panelist-card education"><div class="num">7</div><h4>Community College</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Runs a community college with 8,000 students. Average student is 26, works 32 hrs/week. Tuition is $3,800/year. Completion rate is 30%. Chronically underfunded.</p><div class="vision">"America's universal talent platform at any stage of life."</div></div>
+    <div class="panelist-card industry"><div class="num">8</div><h4>AI Futurist</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Studies how AI reshapes work, learning, and society. Believes AI tutors will surpass most human instructors at knowledge transfer within 5 years. Focuses on what remains uniquely human.</p><div class="vision">"Build humans capable of wielding knowledge machines made infinite."</div></div>
+    <div class="panelist-card industry"><div class="num">9</div><h4>Workforce Expert</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Runs apprenticeship programs and employer partnerships. Knows 70% of jobs don't need a bachelor's but employers use it as a filter. Studies Germany and Singapore models.</p><div class="vision">"A system you access for life, not a place you go for four years."</div></div>
+    <div class="panelist-card education"><div class="num">10</div><h4>K-12 Superintendent</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Runs a 15,000-student district. 87% of grads enroll in college but 40% don't finish. CTE completers report 94% employment. Trapped in a system that measures "college readiness" only.</p><div class="vision">"A resource students draw from, not a destination they're sent to."</div></div>
+    <div class="panelist-card industry"><div class="num">11</div><h4>Trades Advocate</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Master electrician making $140K/year with zero student debt. Runs a training program. Watches college grads struggle while apprentices thrive. Fighting the stigma every day.</p><div class="vision">"The most respected diploma is the one earned with your hands."</div></div>
+    <div class="panelist-card gov"><div class="num">12</div><h4>International Expert</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Has studied education in Germany, Singapore, Finland, South Korea, and Australia. Knows what works elsewhere and why America spends the most per student with middling results.</p><div class="vision">"A public utility &mdash; funded when you learn, repaid when you earn."</div></div>
+    <div class="panelist-card finance"><div class="num">13</div><h4>Debt Reformer</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Career advocate fighting the $1.7T student loan crisis. 45 million borrowers. Believes the financing model's moral hazard &mdash; not student laziness &mdash; created the crisis.</p><div class="vision">"The price of education should follow its value, not precede it."</div></div>
+    <div class="panelist-card education"><div class="num">14</div><h4>Grad School Dean</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Oversees law, medicine, engineering, and PhD programs. Doctors start practicing at 33 with $250K debt. PhDs spend 7 years below poverty for jobs that don't exist. The pipeline is a bottleneck.</p><div class="vision">"The fastest bridge between talent and practice."</div></div>
+    <div class="panelist-card industry"><div class="num">15</div><h4>Innovation Builder</h4><p style="font-size:11px;color:#475569;margin-bottom:6px;">Runs an incubator working with universities and independent founders. Watched dropouts build billion-dollar companies and PhDs struggle to commercialize research. Education should CREATE value.</p><div class="vision">"Measured by what students build before they graduate."</div></div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; font-size:20px; color:var(--navy); margin:32px 0 16px;">Stakeholder Distribution by Category</h3>
+  <div class="pie-container">
+    <div class="pie"></div>
+    <div class="pie-legend">
+      <div class="pie-legend-item"><div class="dot" style="background:var(--blue);"></div> Government &amp; Policy (2)</div>
+      <div class="pie-legend-item"><div class="dot" style="background:var(--teal);"></div> Industry &amp; Technology (5)</div>
+      <div class="pie-legend-item"><div class="dot" style="background:var(--gold);"></div> Community &amp; Families (3)</div>
+      <div class="pie-legend-item"><div class="dot" style="background:var(--purple);"></div> Education Institutions (4)</div>
+      <div class="pie-legend-item"><div class="dot" style="background:var(--green);"></div> Workforce &amp; Trades (0, in Industry)</div>
+      <div class="pie-legend-item"><div class="dot" style="background:var(--red);"></div> Finance &amp; Reform (1)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== POSITION PAPERS: AGENTS 1-5 ========== -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="eyebrow">Position Papers</div>
+    <h2>Voices from the Field</h2>
+    <p>Each panelist's innovations, concerns, and proposals in their own words.</p>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:var(--blue);">1</div>
+      <div><h3>State Government Policy Maker</h3><div class="role" style="color:var(--blue);">Chair, Senate Education Committee</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"The closing of seven Penn State Commonwealth campuses is not a failure of those communities. It is a symptom of a system that has been pricing out the people it was built to serve."</p>
+      <p><strong>1. Pennsylvania Skills Guarantee ($45M/year):</strong> Zero tuition for any credential program of 12 months or less. If the credential doesn't lead to employment at a livable wage within 18 months, the state claws back funding from the institution, not the student.</p>
+      <p><strong>2. Regional Education Hubs ($20M startup):</strong> Convert shuttered campuses into shared-use facilities where community colleges, trade unions, and employers co-locate.</p>
+      <p><strong>3. AI Readiness Audits:</strong> Every publicly funded program must report biennially on how its curriculum addresses automation exposure in its target occupations.</p>
+      <p><strong>4. Scale Performance-Based Funding to $100M by 2030:</strong> Tie 15% of all state appropriations to completion rates, post-graduation earnings, and debt-to-income ratios.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"Every Pennsylvanian earns a living-wage credential within 30 miles of home and 18 months of starting &mdash; and never goes broke doing it."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:var(--teal);">2</div>
+      <div><h3>Tech Industry CEO</h3><div class="role" style="color:var(--teal);">500-Employee Technology Company</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"I stopped requiring bachelor's degrees three years ago. It was not a publicity stunt. It was a competitive necessity. Our best infrastructure engineer learned Linux administration in a public library."</p>
+      <p><strong>1. Competency Marketplaces:</strong> Replace credit-hours with portable, verifiable skills ledgers. Candidates demonstrate ability through project portfolios and employer-validated assessments.</p>
+      <p><strong>2. Embedded Industry Residencies from Year One:</strong> Structured, paid residencies woven throughout the entire educational experience &mdash; not just a junior-year internship.</p>
+      <p><strong>3. AI Fluency as Core Requirement:</strong> Every graduate &mdash; history, nursing, engineering &mdash; should leave school knowing how to prompt, evaluate, and supervise AI systems.</p>
+      <p><strong>4. Micro-Credential Partnerships:</strong> 12-16 week intensive modules co-designed with employers. Completers get guaranteed first-round interviews.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"The university becomes the place where you learn what no machine can do &mdash; and proves it to employers before you graduate."</p></div>
+  </div>
+</div>
+
+<!-- ========== POSITION PAPERS: AGENTS 3-5 ========== -->
+<div class="page page-break">
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:var(--gold);">3</div>
+      <div><h3>Parent Advocate</h3><div class="role" style="color:#B45309;">Middle-Class Family, Two Teenagers</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"I lie awake at night running the numbers. The system demands I make a quarter-million-dollar bet on two teenagers who can't decide what to eat for dinner. And if I guess wrong, there's no refund."</p>
+      <p><strong>1. Mandatory Outcome Transparency:</strong> Every program publishes graduation rate, median salary at years 1 and 5, and student debt load &mdash; in plain language, before enrollment.</p>
+      <p><strong>2. Modular, Stackable Credentials:</strong> A welding certification in 10 months, then stack toward construction management. No starting over. No wasted credits.</p>
+      <p><strong>3. Universal First Year at Community College Prices:</strong> Gen-ed is gen-ed. No reason to pay $800/credit for freshman comp when it's $150 at community college.</p>
+      <p><strong>4. Skin-in-the-Game Financing:</strong> If a student drops out or can't find employment within two years, the school absorbs a share of the loan risk.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"Higher education should be a launchpad you can afford, not a casino where families bet their futures and institutions always win."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#6366F1;">4</div>
+      <div><h3>College Student</h3><div class="role" style="color:#6366F1;">Junior, State University, $40K in Debt</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"When ChatGPT can write my research paper in twelve minutes, the paper is no longer the point. So what IS the point? That's the question my university has not answered."</p>
+      <p><strong>1. Modular Credentials Over Monolithic Degrees:</strong> Stack micro-credentials and project portfolios into a degree over time &mdash; not in four rigid years.</p>
+      <p><strong>2. AI as Teaching Partner:</strong> Stop banning AI tools. Build courses around them. The skill is judgment, not regurgitation.</p>
+      <p><strong>3. Paid Apprenticeship Semesters:</strong> Full-semester, compensated work experience that counts toward the degree. Work IS learning.</p>
+      <p><strong>4. Student-Directed Learning Budgets:</strong> Return a portion of tuition as a learning budget students allocate toward workshops, certifications, conferences, or mentors.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"College should be a launchpad you return to, not a cage you survive."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#059669;">5</div>
+      <div><h3>Small Town Mayor</h3><div class="role" style="color:#059669;">Borough of 12,000 &mdash; Campus Closing</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"When Penn State announced the closure of our campus, they called it a 'strategic realignment.' I call it an existential threat. Two hundred direct jobs. Three hundred more at the diner, the hardware store."</p>
+      <p><strong>1. Regional Workforce Micro-Campuses:</strong> Convert closing campuses into shared training facilities run jointly by community colleges, trade unions, and employers.</p>
+      <p><strong>2. Broadband-Enabled Hybrid Degree Completion:</strong> The campus becomes a "degree completion hub" &mdash; a shared front door to the entire state system.</p>
+      <p><strong>3. Employer-Anchored Apprenticeships:</strong> The hospital needs radiology techs. Manufacturers need machinists. Build programs where the employer guarantees a job.</p>
+      <p><strong>4. Community Ownership of Campus Assets:</strong> Transfer land and buildings to a local development authority. Lease space to workforce programs, telemedicine, childcare, and incubators.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"Every rural community near a closing campus should gain a workforce hub &mdash; not lose its future."</p></div>
+  </div>
+</div>
+
+<!-- ========== POSITION PAPERS: AGENTS 6-8 ========== -->
+<div class="page page-break">
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:var(--purple);">6</div>
+      <div><h3>Land-Grant University President</h3><div class="role" style="color:var(--purple);">40,000 Students, $2B Budget, R1 Research</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"Lower-division lecture courses with 400 students and a graduate TA are not education; they are revenue extraction. We are defending territory that is already lost."</p>
+      <p><strong>1. Eliminate the Traditional Freshman Year:</strong> Accept transfer/AP/dual enrollment for all gen-ed. Students arrive as sophomores. Redirect resources to upper-division mentorship-intensive education.</p>
+      <p><strong>2. AI-Native Pedagogy Institutes:</strong> Permanent units staffed by learning engineers who redesign courses around AI-augmented problem-solving. Tenure criteria must reward pedagogical innovation.</p>
+      <p><strong>3. Distributed Research Apprenticeships:</strong> Every student completes a two-semester embedded research or applied-project sequence. This is what justifies the cost premium.</p>
+      <p><strong>4. Lifelong Alumni Learning Compact:</strong> 380,000 living alumni get continuous credential access &mdash; micro-credentials, executive intensives, AI-skills bootcamps &mdash; for life. The diploma becomes a subscription.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"The flagship university becomes the place you join once and never leave &mdash; a lifelong engine of discovery, not a four-year transaction."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#0891B2;">7</div>
+      <div><h3>Community College President</h3><div class="role" style="color:#0891B2;">8,000 Students, $4K/Year Tuition</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"We enroll nearly half of all undergraduates yet receive a fraction of the funding. Our average student is 26, works 32 hours/week, and pays $3,800/year. She is the typical American learner."</p>
+      <p><strong>1. AI-Powered Guided Pathways:</strong> Adaptive systems that build personalized academic and career plans, adjusting in real time as life changes. No advising staff can do this at scale. AI can.</p>
+      <p><strong>2. Guaranteed Transfer Compacts:</strong> Complete our associate degree &rarr; transfer with junior standing, full credit, priority registration. No petitioning. No ambiguity.</p>
+      <p><strong>3. Employer-Embedded Credentials:</strong> Co-designed certificates where completion guarantees an interview and the credential stacks into a degree.</p>
+      <p><strong>4. Community Learning Hub Model:</strong> Campuses operate 16 hours/day, 7 days/week. ESL at 7AM. GED at noon. Digital literacy at 6PM. The public library of skill development.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"The community college is America's universal talent platform &mdash; where any person, at any stage of life, can walk in with ambition and walk out with a credential employers trust."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#7C3AED;">8</div>
+      <div><h3>AI & Technology Futurist</h3><div class="role" style="color:#7C3AED;">Researcher, AI &amp; Future of Work</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"The university was designed for information scarcity. By 2030, an AI tutor will outperform the median human instructor at knowledge transfer. The question is what remains worth paying for."</p>
+      <p><strong>1. Portfolio-Verified Competency:</strong> Living portfolios of demonstrated work, continuously assessed by AI against evolving industry competency maps. Graduate when your portfolio proves mastery, not when you finish credit hours.</p>
+      <p><strong>2. The Human Studio Model:</strong> Campus time restructured around debates, design sprints, ethical case deliberations. AI handles knowledge before students walk in the door.</p>
+      <p><strong>3. AI-Augmented Mentorship Networks:</strong> AI matches students with mentors based on goals and trajectory, then tracks the relationship's impact over years. Mentorship becomes the core academic unit.</p>
+      <p><strong>4. Adaptive Societal Challenge Curricula:</strong> Students assemble around real-world problems. AI dynamically constructs interdisciplinary learning paths. The curriculum updates as the problem evolves.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"The university of 2035 does not deliver knowledge &mdash; it builds humans capable of wielding knowledge that machines have made infinite."</p></div>
+  </div>
+</div>
+
+<!-- ========== POSITION PAPERS: AGENTS 9-11 ========== -->
+<div class="page page-break">
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#2563EB;">9</div>
+      <div><h3>Workforce Development Expert</h3><div class="role" style="color:#2563EB;">Apprenticeship &amp; Employer Partnerships</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"The pipeline between education and employment is fractured at both ends. Germany routes 60% through earn-and-learn apprenticeships. America apprentices fewer than 1%."</p>
+      <p><strong>1. Universal Earn-and-Learn Accounts:</strong> Federally backed accounts (Singapore's SkillsFuture model) funding employer-validated training at any age. Funds follow the learner, not the institution.</p>
+      <p><strong>2. Verified Skill Passports:</strong> Interoperable digital records &mdash; like a credit score for capabilities &mdash; where employers, colleges, and training providers write to a shared ledger.</p>
+      <p><strong>3. Employer Co-Design Mandates:</strong> Any publicly funded program must have employers co-designing curriculum and committing to interviews for completers.</p>
+      <p><strong>4. Soft Skill Simulation Labs:</strong> AI-driven scenario simulations rated by industry professionals, generating portable evidence of communication, teamwork, and adaptability.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"Not a place you go for four years, but a system you access for life &mdash; where every hour of learning is a visible step toward work that matters."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#9333EA;">10</div>
+      <div><h3>K-12 Superintendent</h3><div class="role" style="color:#9333EA;">District of 15,000 Students</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"The 'college for all' orthodoxy has failed a generation. 40% of our graduates who start college don't finish. Meanwhile, our CTE completers report 94% employment within six months."</p>
+      <p><strong>1. Pathway Transcripts:</strong> Every graduate leaves with a documented record of competencies, work experiences, and credentials &mdash; not just a GPA. Accepted by colleges and employers alike.</p>
+      <p><strong>2. Structured Bridge Years:</strong> Graduates who choose gap years, service years, or apprenticeships can defer admission without penalty. Time away is credited, not punished.</p>
+      <p><strong>3. Shared Faculty Between High Schools and Colleges:</strong> Co-appointment models where college faculty teach in high schools and CTE instructors receive adjunct standing.</p>
+      <p><strong>4. AI Career Navigation from 9th Grade:</strong> AI tools that map interests, aptitudes, and labor market data to multiple post-secondary options &mdash; not just college brochures.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"Higher education should not be a destination students are sent to &mdash; it should be a resource they draw from, whenever and however they need it."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#B45309;">11</div>
+      <div><h3>Trades & Vocational Advocate</h3><div class="role" style="color:#B45309;">Master Electrician, $140K/Year, Zero Debt</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"An electrician averages $65K by age 22 with no debt. A college grad averages $55K at 22 with $35K debt. That's a $100,000 net-worth gap before either worker turns 25."</p>
+      <p><strong>1. "Trades Honors" Tracks in Every High School:</strong> Competitive, prestigious pre-apprenticeship programs with AP-equivalent rigor, GPA weighting, and national credentials.</p>
+      <p><strong>2. Federal Financial Aid Parity:</strong> Registered apprenticeships qualify for Pell Grants, GI Bill benefits, and 529 plans on identical terms as four-year degrees.</p>
+      <p><strong>3. Employer-Sponsored Apprenticeship Tax Credits:</strong> Triple the Work Opportunity Tax Credit for companies sponsoring registered apprenticeships.</p>
+      <p><strong>4. National "Earn While You Learn" Campaign:</strong> Reframe apprenticeships as paid, debt-free professional education &mdash; not a fallback.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"The most respected diploma in America is the one you earned with your hands &mdash; debt-free, in demand, and built to last."</p></div>
+  </div>
+</div>
+
+<!-- ========== POSITION PAPERS: AGENTS 12-15 ========== -->
+<div class="page page-break">
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#0D9488;">12</div>
+      <div><h3>International Comparativist</h3><div class="role" style="color:#0D9488;">Germany, Singapore, Finland, Australia, South Korea</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"America spends $35,000 per student annually &mdash; double the OECD average &mdash; yet produces 46% underemployment among recent graduates. South Korea's SKY obsession is a cautionary tale we're already repeating."</p>
+      <p><strong>1. Germany's Dual-Track Apprenticeships:</strong> Integrate paid apprenticeships into secondary/post-secondary. Youth unemployment: Germany 6%, US 8-9%.</p>
+      <p><strong>2. Singapore's SkillsFuture Credit:</strong> $10,000 lifetime learning account per citizen. Government, industry, and educators co-design curricula.</p>
+      <p><strong>3. Australia's HECS Income-Contingent Repayment:</strong> Repay only when earning above threshold. Eliminates default. Aligns institutional incentives with outcomes.</p>
+      <p><strong>4. Finland's Selectivity for Teaching Faculty:</strong> Top 10% of graduates into teaching, compensated accordingly. Create a national post-secondary teaching fellowship.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"A lifelong public utility &mdash; funded when you learn, repaid when you earn, measured by what you can do, not where you sat."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:var(--red);">13</div>
+      <div><h3>Student Debt & Financial Reformer</h3><div class="role" style="color:var(--red);">$1.7T Crisis, 45 Million Borrowers</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"Federal loans created a textbook moral hazard. Schools raised tuition because money was guaranteed. Students borrowed because they were told not to was irrational. Every incentive pointed toward more borrowing."</p>
+      <p><strong>1. Universal Free Community College:</strong> The administrative cost of means-testing exceeds the cost of making it free. Eliminate the bureaucracy.</p>
+      <p><strong>2. Australian HECS-Style Repayment:</strong> Income-contingent, collected through taxes. Nothing below threshold. Forgiveness after 20 years.</p>
+      <p><strong>3. Institutional Risk-Sharing:</strong> Schools co-sign a percentage of student loans. Defaults = school pays. Forces accountability on pricing and quality.</p>
+      <p><strong>4. Graduate Debt Caps Tied to Field Earnings:</strong> Cap borrowing based on median earnings in each field, updated annually. Medical degree justifies borrowing. Low-placement law school does not.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"No American should have to bet their financial future on a degree before they know what it's worth."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#4338CA;">14</div>
+      <div><h3>Graduate & Professional School Dean</h3><div class="role" style="color:#4338CA;">Law, Medicine, Engineering, PhD Programs</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"A physician begins independent practice at age 33 with $250K debt. A PhD spends 7 years below the poverty line for a tenure-track job that statistically won't exist. We are rationing access to professions the public desperately needs."</p>
+      <p><strong>1. Competency-Gated Acceleration:</strong> Replace fixed time with validated milestones. A med student who demonstrates readiness in 36 months shouldn't wait 48.</p>
+      <p><strong>2. Integrated AI Fluency:</strong> Every professional program teaches students to work WITH AI. Law students direct AI legal research. Med students train on AI-augmented diagnostics.</p>
+      <p><strong>3. Debt-Free Service Pathways:</strong> Zero tuition for accelerated nursing, psychiatric, and primary care tracks in exchange for 5-year service in underserved communities.</p>
+      <p><strong>4. Modular, Stackable Graduate Credentials:</strong> A certificate in biomedical AI counts toward a master's. A legal tech specialization integrates into a JD. Programs respond in semesters, not decades.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"Graduate education should be the fastest bridge between talent and practice &mdash; not the longest, most expensive obstacle course."</p></div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-header">
+      <div class="paper-avatar" style="background:#EA580C;">15</div>
+      <div><h3>Innovation & Startup Ecosystem Builder</h3><div class="role" style="color:#EA580C;">Incubator Director, University Partnerships</div></div>
+    </div>
+    <div class="paper-body">
+      <p>"The institutions that produced the internet, mRNA vaccines, and GPS also produced a system so rigid that Jobs, Gates, Zuckerberg, and Dell had to leave it to build the most valuable companies in history."</p>
+      <p><strong>1. Builder Semesters:</strong> Replace one semester/year with venture-building. Students work on real problems from local governments, hospitals, nonprofits. Credit is earned by shipping.</p>
+      <p><strong>2. Open IP by Default:</strong> Student-built projects belong to students. Universities can negotiate equity if they provide meaningful resources, but the default must be founder-friendly.</p>
+      <p><strong>3. Practitioner-Led Teaching:</strong> At least half of entrepreneurship instruction from operators who've built, failed, and rebuilt &mdash; not academics reading case studies.</p>
+      <p><strong>4. AI-Native Curriculum:</strong> Stop teaching what AI does better. Teach students to direct AI, architect systems, and identify problems worth solving. Every student builds something functional before graduating.</p>
+    </div>
+    <div class="paper-vision"><div class="lbl">Headline Vision</div><p>"The best universities will not be measured by what they teach students to know, but by what their students build before they graduate."</p></div>
+  </div>
+</div>
+
+<!-- ========== CONSENSUS ========== -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="eyebrow">Synthesis</div>
+    <h2>7 Points of Universal Consensus</h2>
+    <p>Despite representing radically different constituencies, all 15 panelists converged on these principles.</p>
+  </div>
+
+  <div class="consensus-item">
+    <div class="consensus-num">1</div>
+    <div><h4>The 4-year residential degree cannot remain the default</h4><p>All 15 panelists &mdash; from the trades advocate to the land-grant president &mdash; agree the monolithic bachelor's as the primary pathway is over. The system must support multiple on-ramps, timelines, and exit points.</p></div>
+  </div>
+  <div class="consensus-item">
+    <div class="consensus-num">2</div>
+    <div><h4>AI changes everything about what's worth teaching</h4><p>Knowledge transfer is no longer scarce. Critical thinking, judgment, creativity, collaboration, and AI fluency ARE the curriculum now. Every panelist cited this transformation.</p></div>
+  </div>
+  <div class="consensus-item">
+    <div class="consensus-num">3</div>
+    <div><h4>Institutions must have skin in the game</h4><p>If students bear 100% of financial risk and institutions bear 0%, pricing will never be rational. Risk-sharing &mdash; where schools absorb costs of student failure &mdash; is non-negotiable.</p></div>
+  </div>
+  <div class="consensus-item">
+    <div class="consensus-num">4</div>
+    <div><h4>Lifelong learning is the new degree</h4><p>The 18-22 age window is arbitrary. Singapore's SkillsFuture, the alumni learning compact, universal learning accounts &mdash; everyone envisions a system you access for life, not once.</p></div>
+  </div>
+  <div class="consensus-item">
+    <div class="consensus-num">5</div>
+    <div><h4>Stackable, portable credentials must replace credit hours</h4><p>From the student's modular vision to the workforce expert's skill passport to the tech CEO's competency marketplace &mdash; learning should be measured by what you can demonstrate, not how long you sat in a chair.</p></div>
+  </div>
+  <div class="consensus-item">
+    <div class="consensus-num">6</div>
+    <div><h4>Community colleges are the backbone</h4><p>The most underfunded institutions serve the most students. Free community college is the highest-ROI policy intervention available &mdash; cited by the legislator, parent, debt reformer, and international expert.</p></div>
+  </div>
+  <div class="consensus-item">
+    <div class="consensus-num">7</div>
+    <div><h4>Closed campuses must become community workforce hubs</h4><p>Don't demolish or sell shuttered campuses. Repurpose them as shared-use facilities for training, healthcare, childcare, and economic development. The buildings and people are already there.</p></div>
+  </div>
+</div>
+
+<!-- ========== CREATIVE TENSIONS ========== -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="eyebrow">Tensions</div>
+    <h2>Where the Panelists Disagree</h2>
+    <p>Productive disagreements that must be resolved through policy and experimentation.</p>
+  </div>
+
+  <table class="tension-table">
+    <thead>
+      <tr><th style="width:20%">Tension</th><th style="width:37%">Side A</th><th style="width:6%"></th><th style="width:37%">Side B</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Research vs. Access</strong></td>
+        <td>Land-grant president: preserve elite research mission at all costs</td>
+        <td class="vs">vs</td>
+        <td>Community college: research subsidized by undergrad tuition is exploitation</td>
+      </tr>
+      <tr>
+        <td><strong>Speed vs. Rigor</strong></td>
+        <td>Grad school dean: competency-gated acceleration &mdash; finish when ready</td>
+        <td class="vs">vs</td>
+        <td>Trades advocate: time-served apprenticeships build character and craft mastery</td>
+      </tr>
+      <tr>
+        <td><strong>Universal vs. Targeted</strong></td>
+        <td>International expert: Singapore-style universal credits for all citizens</td>
+        <td class="vs">vs</td>
+        <td>Legislator: performance-based funding that rewards outcomes, not enrollment</td>
+      </tr>
+      <tr>
+        <td><strong>Credentials vs. Experience</strong></td>
+        <td>Tech CEO: portfolios and demonstrated work beat degrees</td>
+        <td class="vs">vs</td>
+        <td>Parent: still wants a "real credential" employers universally recognize</td>
+      </tr>
+      <tr>
+        <td><strong>AI as Liberator vs. Threat</strong></td>
+        <td>AI futurist: AI tutors will replace most instructors at knowledge transfer</td>
+        <td class="vs">vs</td>
+        <td>K-12 superintendent: fears losing human development and mentorship</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-header" style="margin-top:48px;">
+    <div class="eyebrow">The Model</div>
+    <h2>A Unified Architecture for 2035</h2>
+    <p>Synthesizing all 15 perspectives into a tiered, interconnected system.</p>
+  </div>
+
+  <div class="tier tier-1">
+    <h3>Tier 1: Universal Foundation</h3>
+    <div class="subtitle">Free &bull; Ages 16+ &bull; Community Colleges &amp; Workforce Hubs</div>
+    <ul>
+      <li>Community colleges + repurposed closed campuses as regional hubs</li>
+      <li>AI-powered guided pathways from 9th grade onward</li>
+      <li>Stackable credentials: certificates in 6-12 months, associate degrees in 2 years</li>
+      <li>Trades apprenticeships with full federal financial aid parity</li>
+      <li>Dual enrollment bridges from high school</li>
+    </ul>
+  </div>
+  <div class="tier tier-2">
+    <h3>Tier 2: Applied & Professional Education</h3>
+    <div class="subtitle">Low-Cost (HECS Model) &bull; Any Age &bull; Universities &amp; Employer Partners</div>
+    <ul>
+      <li>Students enter as sophomores (gen-ed completed at Tier 1)</li>
+      <li>Embedded industry residencies every semester (paid, for credit)</li>
+      <li>AI-native pedagogy: studios and projects, not lectures</li>
+      <li>Builder semesters where students ship real products</li>
+      <li>Employer co-designed curricula with guaranteed interview pipelines</li>
+    </ul>
+  </div>
+  <div class="tier tier-3">
+    <h3>Tier 3: Research & Advanced Professional</h3>
+    <div class="subtitle">Selective &bull; Subsidized for Shortage Fields &bull; Flagship Universities</div>
+    <ul>
+      <li>Competency-gated acceleration (finish when ready, not on a clock)</li>
+      <li>Research apprenticeships for all students</li>
+      <li>Debt-free service pathways for doctors, nurses, lawyers in underserved areas</li>
+      <li>Lifelong alumni learning compact (continuous credential access)</li>
+    </ul>
+  </div>
+  <div class="tier tier-infra">
+    <h3>Cross-Cutting Infrastructure</h3>
+    <div class="subtitle">The Connective Tissue</div>
+    <ul>
+      <li><strong>Universal Skills Passport:</strong> Portable, verified digital competency record</li>
+      <li><strong>Lifetime Learning Account:</strong> $10K per citizen, replenished via tax credits</li>
+      <li><strong>AI Readiness Audits:</strong> Every program reports automation exposure biennially</li>
+      <li><strong>Institutional Risk-Sharing:</strong> Schools co-sign student loans; default = school pays</li>
+      <li><strong>Outcome Transparency:</strong> Graduation rate, salary, and debt published before enrollment</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== YOUR PORTFOLIO ========== -->
+<div class="page page-break">
+  <div class="page-header">
+    <div class="eyebrow">The Opportunity</div>
+    <h2>You're Already Building This</h2>
+    <p>Every piece of the unified model maps to a product in the Transform Learning AI portfolio.</p>
+  </div>
+
+  <div class="connect-grid">
+    <div class="connect-card" style="border-color:var(--teal);">
+      <h4>Campus Transformation</h4>
+      <div class="url">transformlearning.ai/campus-transformation</div>
+      <p>Transforms closing campuses into workforce and community hubs. Directly addresses what the <strong>Small Town Mayor</strong> and <strong>State Legislator</strong> independently proposed: Regional Education Hubs in closed campus facilities.</p>
+      <div class="match" style="background:#ECFDF5;color:#059669;">Matches Panelists 1, 5, 7</div>
+    </div>
+    <div class="connect-card" style="border-color:var(--blue);">
+      <h4>CivicFeed PA</h4>
+      <div class="url">civicfeed-pa.vercel.app</div>
+      <p>Transparent tracking of PA legislation, legislators, and committees. <strong>Performance-based funding</strong> requires public accountability &mdash; this is the transparency infrastructure the system needs.</p>
+      <div class="match" style="background:#DBEAFE;color:var(--blue);">Matches Panelists 1, 3, 12</div>
+    </div>
+    <div class="connect-card" style="border-color:var(--purple);">
+      <h4>FindMyWay</h4>
+      <div class="url">findmyway.today</div>
+      <p>Free AI career exploration for high school students. 15 pathways including trades, military, entrepreneurship. Exactly what the <strong>K-12 Superintendent</strong> called for: "AI-integrated career navigation starting in 9th grade."</p>
+      <div class="match" style="background:#F5F3FF;color:var(--purple);">Matches Panelists 4, 10, 11</div>
+    </div>
+    <div class="connect-card" style="border-color:var(--gold);">
+      <h4>Soltas</h4>
+      <div class="url">soltas.ai</div>
+      <p>AI career coaching for formerly incarcerated individuals. Bilingual. The <strong>Workforce Expert's</strong> earn-and-learn model for underserved populations &mdash; a proof point that AI-powered guidance works for everyone.</p>
+      <div class="match" style="background:#FEF9EC;color:#B45309;">Matches Panelists 9, 13</div>
+    </div>
+    <div class="connect-card" style="border-color:var(--green);">
+      <h4>Transform Learning AI</h4>
+      <div class="url">transformlearning.ai</div>
+      <p>AI skill mapping and proficiency tracking for higher ed. Maps skills from syllabi, tracks competencies via adaptive assessments. The <strong>Tech CEO's competency marketplace</strong> + the <strong>AI Futurist's portfolio-verified model</strong>.</p>
+      <div class="match" style="background:#ECFDF5;color:var(--green);">Matches Panelists 2, 6, 8</div>
+    </div>
+    <div class="connect-card" style="border-color:var(--red);">
+      <h4>Entry Ticket App</h4>
+      <div class="url">In Development</div>
+      <p>Per-assignment readiness checks for professors. Compiles student responses before class. Supports the shift from <strong>lectures to studios</strong> &mdash; students arrive prepared, class time becomes active learning.</p>
+      <div class="match" style="background:#FEF2F2;color:var(--red);">Matches Panelists 6, 8, 14</div>
+    </div>
+  </div>
+
+  <div style="background:var(--navy); color:white; border-radius:16px; padding:32px; margin-top:32px; text-align:center;">
+    <p style="font-size:13px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">The Bottom Line</p>
+    <p style="font-family:'Playfair Display',serif; font-size:24px; font-weight:700; line-height:1.3; max-width:600px; margin:0 auto;">
+      You're not pitching a single product.<br>
+      You're pitching the infrastructure for<br>
+      <span style="color:var(--gold);">a new post-secondary system.</span>
+    </p>
+    <p style="font-size:14px; color:rgba(255,255,255,0.6); margin-top:16px;">15 independent stakeholders just validated every piece of it.</p>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="page-footer">
+  <p><strong>The Future of Post-Secondary Education</strong> &mdash; 15-Stakeholder Innovation Summit</p>
+  <p>Prepared by Transform Learning AI &bull; September 2026 &bull; jeff@yourclassroom.ai</p>
+</div>
+
+</body>
+</html>

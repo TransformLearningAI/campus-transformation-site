@@ -29,6 +29,12 @@ export default function BlogPost({ params }) {
 
   const renderBody = (text) => {
     return text.split('\n\n').map((paragraph, i) => {
+      if (paragraph.startsWith('## ')) {
+        return <h2 key={i} style={{ fontWeight: 800, fontSize: 22, color: 'var(--navy)', marginTop: 40, marginBottom: 14 }}>{paragraph.replace(/^## /, '').replace(/\*\*/g, '')}</h2>
+      }
+      if (paragraph.startsWith('### ')) {
+        return <h3 key={i} style={{ fontWeight: 700, fontSize: 18, color: 'var(--navy)', marginTop: 32, marginBottom: 10 }}>{paragraph.replace(/^### /, '').replace(/\*\*/g, '')}</h3>
+      }
       if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
         return <h2 key={i} style={{ fontWeight: 800, fontSize: 19, color: 'var(--navy)', marginTop: 32, marginBottom: 12 }}>{paragraph.replace(/\*\*/g, '')}</h2>
       }

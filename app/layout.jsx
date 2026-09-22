@@ -22,6 +22,9 @@ export const metadata = {
   alternates: {
     canonical: 'https://campustransformation.org',
   },
+  verification: {
+    google: 'RomWcwbs7h5Fr5tTMM7_CtA8flQ0vnRixlgn7TOaPGo',
+  },
 }
 
 const jsonLd = {

@@ -186,6 +186,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Academic Redesign */}
+      <section className="v2-section" id="academic">
+        <div className="wrap">
+          <h2 className="v2-h2">The other half: reimagining the academic enterprise</h2>
+          <p className="v2-lede">New revenue from buildings and land buys time. But if the academic model stays the same, the clock is still ticking. The colleges that survive the next decade will be the ones that redesign how learning works &mdash; not just who pays for the buildings.</p>
+
+          <div style={{ display: 'grid', gap: 16, marginTop: 28 }}>
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '20px 24px' }}>
+              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--navy)', margin: '0 0 8px' }}>Individualized learning &mdash; the Hampshire model, scaled with AI</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.65 }}>Hampshire College proved fifty years ago that student-designed curricula, competency-based assessment, and mentorship-driven learning produce extraordinary outcomes. What it couldn&rsquo;t do was scale. AI changes that. An AI system can extract every skill from a syllabus, build a personalized learning map for each student, identify gaps in understanding, and coach through them &mdash; freeing faculty to do what they were trained to do: mentor, challenge, and inspire. We&rsquo;ve built this technology. It&rsquo;s called <a href="https://www.transformlearning.ai" style={{ color: 'var(--amber-deep)', fontWeight: 600 }}>Transform Learning</a>, and it&rsquo;s being used by students on four continents right now.</p>
+            </div>
+
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '20px 24px' }}>
+              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--navy)', margin: '0 0 8px' }}>Lower costs without cutting quality</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.65 }}>The cost crisis in higher ed is an instructional delivery problem, not a staffing problem. When one professor lectures to 200 students and another grades 60 papers by hand, the model is expensive because it&rsquo;s inefficient, not because faculty are overpaid. AI handles the repetitive work &mdash; skill assessment, gap identification, practice drills, progress tracking &mdash; while faculty focus on the high-value interactions that no machine can replace. The result: better learning outcomes at significantly lower cost per student. Not by replacing professors, but by giving them tools that multiply their impact.</p>
+            </div>
+
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '20px 24px' }}>
+              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--navy)', margin: '0 0 8px' }}>Extend the audience &mdash; degrees are one product, not the only product</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.65 }}>The 18-year-old seeking a bachelor&rsquo;s degree is a shrinking market. The growing markets are everywhere else: working adults who need certifications and authenticated skills. Employers who need customized workforce training. Career changers who need six months, not four years. Retirees who want to learn for the joy of it. High school students earning early credit. Local startups that need research partnerships and talent pipelines. A campus that serves all of these audiences has six revenue streams instead of one &mdash; and when enrollment dips, the other five keep the lights on.</p>
+            </div>
+
+            <div style={{ background: '#fff', border: '1px solid var(--rule)', padding: '20px 24px' }}>
+              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--navy)', margin: '0 0 8px' }}>Intersect with the local economy &mdash; startups, research, small business</p>
+              <p style={{ fontSize: 14.5, color: 'var(--ink-2)', margin: 0, lineHeight: 1.65 }}>A college campus has labs, equipment, expertise, meeting space, and young talent. The businesses around it have problems to solve, products to test, workers to train, and money to spend. The intersection creates new revenue for the campus and new capacity for the region &mdash; incubators, applied research partnerships, shared facilities, apprenticeships, and consulting arrangements that generate income while giving students real-world experience. This isn&rsquo;t theory. It&rsquo;s happening at Alvernia, at Lackawanna, at Cheyney. The campuses that connect to their local economies don&rsquo;t just survive &mdash; they become indispensable.</p>
+            </div>
+          </div>
+
+          <p style={{ fontSize: 14.5, color: 'var(--ink-2)', maxWidth: '62ch', marginTop: 28, lineHeight: 1.65 }}>
+            <strong style={{ color: 'var(--navy)' }}>Buildings and curriculum are not separate problems.</strong> A campus that leases space to a health system but still teaches nursing the way it did in 1995 has bought time, not a future. A campus that redesigns its academic model but can&rsquo;t pay the heating bill won&rsquo;t survive long enough to prove it works. Campus Transformation works both sides &mdash; the buildings <em>and</em> the learning &mdash; because that&rsquo;s what an actual transformation requires.
+          </p>
+        </div>
+      </section>
+
       {/* One-Pathway Scan */}
       <div className="v2-offer" id="scan">
         <div className="wrap">
@@ -242,6 +276,18 @@ export default function HomePage() {
             We conduct these studies &mdash; one campus, one report, the realistic uses ranked, the funding programs named. And if the college is still open, a town-initiated conversation is often the least threatening way for its board to start one.
           </p>
           <Link className="v2-btn v2-btn-a" href="/inquiry">Talk to us about your campus</Link>
+        </div>
+      </section>
+
+      {/* Research — Future of Higher Ed */}
+      <section className="v2-section" style={{ background: 'var(--navy)', color: '#fff' }}>
+        <div className="wrap" style={{ textAlign: 'center', maxWidth: '64ch' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--amber)', marginBottom: 12 }}>New Research</p>
+          <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.03em', margin: '0 0 16px', color: '#fff' }}>The Future of Post-Secondary Education in America</h2>
+          <p style={{ fontSize: 16, color: '#9CB3CE', lineHeight: 1.65, marginBottom: 28 }}>
+            15 stakeholders &mdash; a state legislator, tech CEO, parent, student, small-town mayor, university president, community college leader, AI futurist, workforce expert, K-12 superintendent, trades advocate, international comparativist, debt reformer, graduate school dean, and innovation builder &mdash; each independently proposed reforms. Their consensus is striking: close campuses should become workforce hubs, community colleges should be free, credentials should be stackable, and institutions must share financial risk with students.
+          </p>
+          <a className="v2-btn v2-btn-a" href="/future-of-higher-ed-summit.html" target="_blank" rel="noopener noreferrer">Read the Full Report</a>
         </div>
       </section>
     </>

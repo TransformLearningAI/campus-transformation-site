@@ -6,6 +6,300 @@
 
 export const CT_POSTS = [
   {
+    slug: 'my-college-is-closing',
+    title: 'My College Is Closing. Yours Doesn\'t Have To.',
+    date: '2026-09-15',
+    author: 'Jeff Ritter',
+    summary: 'Hampshire College is closing in December. I went there. I watched it happen. And I built Campus Transformation because I believe the answer for a struggling college is almost never to close it.',
+    body: `Hampshire College is closing in December.
+
+I went there. B.A. in Folklore, class of whenever they decided I was done — Hampshire didn't do things the usual way. That was the point.
+
+I watched the slow unraveling from a distance. The enrollment targets missed by half. The accreditation warnings. The financial projections that never quite worked. The board meetings that got quieter each year. And then the announcement, which felt both shocking and inevitable — the way all closures feel to the people who loved the place.
+
+*Non Satis Scire* — to know is not enough. It's on Hampshire's seal. It's basically my operating system. And it's the reason I'm writing this.
+
+---
+
+**Knowing the problem isn't enough. You have to do something about it.**
+
+My colleagues and I built Campus Transformation because we watched schools die and asked the question nobody was asking: *what if the answer isn't to reinvent everything or close?*
+
+What if there's a third option?
+
+What if the buildings, the land, the location, the workforce training capacity, the institutional knowledge — what if all of it has value that doesn't depend on 18-year-olds showing up for a four-year degree?
+
+Because here's what the closure narrative misses: **the demand for education isn't shrinking. It's changing shape.** The 18-year-old residential student is one audience. There are five more that most colleges aren't serving — and they're growing.
+
+---
+
+## The New Audiences Nobody Is Designing For
+
+The traditional four-year degree is one product. It's an important one. But it's not the only one a campus can deliver, and for many struggling colleges, it's the one with the most competition and the thinnest margins.
+
+Here's who else needs what a college campus can provide:
+
+**The one-month learner.** A medical assistant who needs a certification update. A machinist learning a new CNC system. A restaurant manager getting a food safety credential. These people don't need a semester. They need four weeks, a credential, and a path back to work. Employers will pay for it. Workforce boards will fund it.
+
+**The six-month learner.** A career changer getting into cybersecurity, medical coding, HVAC, or phlebotomy. Too long for a weekend workshop, too short for a degree. This is the fastest-growing segment of postsecondary education and most traditional colleges have ceded it entirely to for-profits and bootcamps.
+
+**The one-year learner.** Community health workers. Paralegals. Dental hygienists. Welding technicians. One year of focused training, a credential that means something, and a job waiting. Community colleges own this space — but a four-year college with empty classrooms and lab space can compete, especially in regions where the community college is 45 minutes away.
+
+**The two-year learner.** The associate degree audience. Nursing. IT. Business administration. Early childhood education. Some of these students will transfer to a four-year program. Some won't. Both outcomes have value. A struggling four-year college that adds two-year pathways isn't diluting its mission — it's expanding its market.
+
+**The five-year learner.** The student who works full-time, takes two courses a semester, stops out for a year when life happens, and comes back. This is the majority of American college students, and most institutional structures are designed to punish them for it. Flexible scheduling, stackable credentials, and competency-based progression aren't trends — they're the reality that most colleges refuse to build for.
+
+**Every one of these audiences represents revenue.** WIOA funding for workforce training. Employer-paid tuition for incumbent workers. State grants for healthcare pipeline programs. Federal Pell for returning adults. The money exists. The students exist. What's missing is a college that designs for them.
+
+---
+
+## The Accreditation Problem — And Why It Has to Change
+
+Here's the part nobody wants to say out loud: **the current accreditation system is one of the biggest barriers to saving struggling colleges.**
+
+A college facing closure needs to move fast. It needs to launch a six-month welding certificate, a one-year healthcare credential, a workforce partnership with the regional hospital. It needs to do this in months, not years.
+
+But accreditation doesn't move in months. New program approval can take one to three years. Substantive change applications require documentation, site visits, waiting periods. A college that needs revenue now is told to submit a proposal and wait.
+
+This isn't a complaint about quality. Accreditation matters. Standards matter. But the current process was designed for a world where colleges grew slowly and changed rarely. That world is gone.
+
+**Some colleges need to consider changing accreditors entirely.** A regional accreditor focused on traditional four-year institutions may not be the right fit for a college that's transforming into a workforce development hub. National accreditors, programmatic accreditors, and state authorization pathways may offer faster, more appropriate oversight for the institution the college is becoming — not the one it used to be.
+
+This is a conversation most boards aren't having because it feels like giving up. It's not. It's designing the accreditation relationship around the mission you're pursuing, not the mission you inherited.
+
+---
+
+## What We've Learned From the Colleges That Survived
+
+**Cheyney University** had close to 400,000 square feet sitting empty. They opened it to private tenants — agribusiness, cancer research, solar manufacturing, additive manufacturing. A $7.4M deficit became a $2.1M surplus. First balanced budget in eight years.
+
+**Purchase College (SUNY)** ground-leased 40 acres to a senior living community. No college capital at risk. $2 million a year in rent, directed to student scholarships and new faculty lines.
+
+**Warren Wilson College** sold 191 of its 1,100 acres to a land conservancy — with a cooperative management agreement that kept the college grazing the pasture and teaching in the forest. $4.7 million against a $5.5 million deficit. They sold the asset without losing the use of it.
+
+The pattern is the same every time: **someone looked at what the campus had and asked what the region needed.** Not what the catalog said. Not what the strategic plan promised. What the actual community, within driving distance, would pay for.
+
+---
+
+## The Three Things "Saving" a College Actually Means
+
+Saving a college doesn't mean keeping it on life support. It means transforming it. And transformation means three things:
+
+### 1. Lower the Costs
+
+The cost structure of most small colleges was built for a world that doesn't exist anymore. Full-time faculty teaching twelve credits to residential 18-year-olds who graduate in four years — that model serves a shrinking market at an increasing cost.
+
+Redesigning operations isn't cutting. It's rebuilding for sustainability. Shared services. Flexible staffing models. Technology that reduces administrative overhead. And here's the part boards miss: **lowering costs opens up a huge new market.** Students and families who were priced out at $35,000 a year can afford $8,000 for a one-year credential. The market gets bigger when you build something people can actually pay for.
+
+### 2. Transform the Curriculum
+
+AI isn't a topic for the computer science department. It's a subject matter for every possible job and career path — and for the unknown ones that don't exist yet. Nursing students need AI. Business students need AI. Criminal justice students need AI. Art students need AI. Not as a gimmick. As a fundamental skill that will define their professional lives.
+
+Every program at every college needs AI integrated — not bolted on, woven in. And while we're at it: return to teaching students how to learn, how to think, how to be independent. The liberal arts got this right fifty years ago. Critical thinking, communication, ethical reasoning, adaptability — these are the skills AI can't replace. It's time to get it right again with new tools.
+
+The academic enterprise, even at colleges doing experiential learning well, is not built for the transformation happening right now. Curricula designed in 2015 are preparing students for a world that ended in 2023. This isn't a tweak. It's a rebuild.
+
+### 3. Build Real Partnerships
+
+Local business. Industry. Local and state government. Workforce boards. Health systems. Community development organizations. The community around your campus has needs your campus can serve — and revenue streams that don't depend on tuition.
+
+WIOA funding for workforce training. Employer-paid programs for incumbent workers. Ground leases on underused land. Health system partnerships that put clinics on campus. State workforce grants for pipeline programs in nursing, manufacturing, IT.
+
+The money is there. The students are there. Nobody's connecting the dots. That's what we do.
+
+---
+
+## What We Actually Do
+
+We're not consultants who hand you a binder. We're academics, researchers, and creative problem solvers who do the actual work:
+
+**Contacts.** We identify the people in your region — workforce board directors, employers, health systems, government officials — who need what your campus has. Then we make the introductions.
+
+**Meetings.** We sit in the room with you. We help shape the conversation. We translate between academic culture and business culture, because those are two languages and most people only speak one.
+
+**Hand-holding.** Transformation is terrifying. Boards resist it. Faculty fight it. Communities misunderstand it. We help you navigate the politics, the fear, and the inertia.
+
+**Community buy-in.** A campus transformation that the community doesn't understand is a campus transformation that fails. We help design the communication strategy that brings your region along with you.
+
+**Strategy that sticks.** Not a five-year plan that sits on a shelf. An implementation roadmap with real milestones, real partners, and real revenue attached.
+
+---
+
+**442 private colleges are at risk of closing or merging in the next decade.** Sixteen closed last year. Sixteen the year before. Hampshire will close in December.
+
+If your college is struggling — if you're a president staring at enrollment numbers that don't work, a board member who's heard "monitor the situation" one too many times, a community leader watching your local college go quiet — we'd like to talk.
+
+**Free phone call. Free initial analysis of regional opportunities. No cost, no obligation.**
+
+There's a lot to do. We can help.
+
+*Campus Transformation — [campustransformation.org](https://campustransformation.org). jeff@transformlearning.ai. 412-559-9534.*`,
+  },
+  {
+    slug: 'the-ones-who-made-it',
+    title: 'The Ones Who Made It',
+    date: '2026-09-02',
+    author: 'Jeff Ritter',
+    summary: 'Three colleges that were genuinely dying and genuinely came back. What they did, what it cost, and the pattern nobody in higher ed wants to talk about.',
+    body: `Most stories about colleges in trouble end the same way. A board meeting. A press release. A campus that goes dark.
+
+But not all of them. A handful of schools were genuinely on the edge — accreditation threats, single-digit graduation rates, boards voting to close — and came back. Not through hope or fundraising galas or strategic plans that sat on shelves. Through acts of reinvention so radical that the institution on the other side barely resembled the one that almost died.
+
+Here are three. They're worth studying not because they're comforting, but because they reveal a pattern that most boards refuse to see.
+
+---
+
+**Sweet Briar College — The $160 Million Revolt**
+
+On March 3, 2015, Sweet Briar's board announced the college would close. Insurmountable financial challenges. Done.
+
+What happened next is the most extraordinary story in modern higher education.
+
+The alumni revolted. Not with letters and petitions — with lawyers and checkbooks. They raised $21 million in weeks. They filed lawsuits. They forced out the board. By July 1, a new president and a new board were installed, and the college never closed.
+
+By 2018, alumni had raised $44 million. By 2026 — ten years after the attempted closure — they had contributed $160 million. Enrollment climbed 60 percent over six years. Budgets balanced. Audits came back clean. Sweet Briar is not just alive. It\u2019s thriving.
+
+**What it took:** A passionate, wealthy alumni base that was willing to replace the entire leadership structure and fund the turnaround personally. Not every school has that. Most don\u2019t. But the lesson isn\u2019t "find rich alumni." The lesson is that the board that announced the closure was wrong, and someone with standing had to say so and back it up with money.
+
+**What it didn\u2019t take:** A new academic model. Sweet Briar is still a small women\u2019s liberal arts college. The product didn\u2019t change. The management did.
+
+---
+
+**Paul Quinn College — The Organic Farm Where the Football Field Used to Be**
+
+Paul Quinn was dying the slow death. Enrollment collapsing. Single-digit graduation rates. Accreditation on the line. A small historically Black college in Dallas that nobody outside the alumni network was thinking about.
+
+Then Michael Sorrell became president and did something nobody in higher education does: he killed football.
+
+He didn\u2019t just cut the program. He turned the football field into an organic farm. Students work it. The Dallas Cowboys buy the produce. It became the most visible symbol of a complete reinvention.
+
+Sorrell converted Paul Quinn into a "work college" — one of only eight in the country. Every student works 10 to 15 hours a week on campus, which offsets tuition and builds the habits that employers actually care about. The school ran six- or seven-figure surpluses for eight of the last ten years. It now has a waiting list.
+
+**What it took:** A leader willing to be hated for a while. Cutting football at an HBCU is not a spreadsheet decision. It\u2019s a cultural one. Sorrell bet that outcomes would matter more than tradition, and he was right — but it took years for people to stop being furious.
+
+**What it didn\u2019t take:** More money from the outside. Paul Quinn didn\u2019t get a $160 million alumni rescue. It redesigned the model so the model could sustain itself.
+
+---
+
+**Cheyney University — The Campus as Economic Engine**
+
+Cheyney is the oldest historically Black institution in America, founded in 1837. By 2015, it was in free fall — enrollment had dropped from 1,470 to under 500. The deficit was $19 million. The campus had close to 400,000 square feet of building space sitting empty.
+
+Instead of trying to fill those buildings with students who weren\u2019t coming, Cheyney opened them to private tenants. Eight companies moved onto campus — agribusiness, cancer research, solar manufacturing, additive manufacturing. The stadium and auditorium became rental venues. The campus became a business park that also happened to have a university in it.
+
+The $7.4 million deficit became a $2.1 million surplus. First balanced budget in eight years. Enrollment rebounded to over 700. Retention hit its highest rate in 25 years.
+
+**What it took:** Someone who looked at 400,000 square feet of empty space and saw revenue instead of failure. And a willingness to let non-academic tenants onto a campus, which is harder culturally than it sounds.
+
+**What it didn\u2019t take:** A new curriculum. New programs. A rebranding. Cheyney is still Cheyney. It just stopped pretending that tuition was the only way a campus makes money.
+
+---
+
+**The Pattern Nobody Wants to Talk About**
+
+All three schools did at least two of these four things:
+
+1. **Replaced leadership.** Sweet Briar fired the board. Paul Quinn brought in a transformational president. You cannot transform an institution with the people who created the crisis still making decisions.
+
+2. **Reinvented the model.** Paul Quinn became a work college. That\u2019s not a tweak. That\u2019s a different institution with the same name. The schools that just cut costs and waited for enrollment to bounce back are the ones that closed.
+
+3. **Found non-tuition revenue.** Cheyney leased its buildings. Paul Quinn turned a football field into a farm. Sweet Briar\u2019s alumni wrote checks. In every case, the survival money came from somewhere other than the 18-year-olds who weren\u2019t showing up.
+
+4. **Had someone on the outside who cared enough to fight.** Sweet Briar\u2019s alumni. Paul Quinn\u2019s president (who came from outside). Cheyney\u2019s state system, which finally let the campus try something different. Internal leadership alone could not save any of them.
+
+**Now look at the one that didn\u2019t make it.**
+
+Hampshire College did many things right — launched a $60 million fundraising drive, revamped the curriculum, went all-in on innovation. For a few years it looked like a turnaround story. But enrollment never fully recovered. Staff was cut. And in 2026, Hampshire announced it would close.
+
+The difference? Hampshire changed the product but never found a second revenue stream. It was still 100 percent dependent on tuition from a shrinking market of 18-year-olds willing to pay for an experimental liberal arts education. When the market didn\u2019t come back fast enough, the clock ran out.
+
+---
+
+**What This Means for Your Campus**
+
+If your college is in trouble — or heading there — the playbook is not mysterious. It\u2019s just difficult:
+
+\u2014 The leadership that got you here probably can\u2019t get you out. That\u2019s not an insult. It\u2019s structural.
+\u2014 Cutting costs buys time. It does not buy a future.
+\u2014 Your campus has assets that someone would pay to use. Finding that someone is a job that doesn\u2019t exist in your org chart.
+\u2014 The students who aren\u2019t coming are not going to start coming. Build revenue from the people and businesses who are already there.
+
+Sweet Briar, Paul Quinn, and Cheyney are alive because someone did something unreasonable. Fired a board. Killed a football program. Invited strangers onto sacred ground. The reasonable response to a dying college is to manage the decline gracefully. The unreasonable response is the one that works.
+
+*Campus Transformation helps colleges find non-tuition revenue, redesign academic delivery, and build the partnerships that keep campuses open. [campustransformation.org](https://campustransformation.org). jeff@transformlearning.ai*`,
+  },
+  {
+    slug: 'its-not-just-the-small-ones',
+    title: 'It\u2019s Not Just the Small Ones',
+    date: '2026-09-01',
+    author: 'Jeff Ritter',
+    summary: 'Steven Shulman\u2019s financial analysis shows that mid-size, well-known colleges are running out of cash too. They should know how to fix this. Most of them can\u2019t. Here\u2019s why \u2014 and what a real transformation looks like.',
+    body: `Steven Shulman did something nobody in higher education wanted done. He looked at the actual cash.
+
+Not the endowment. Not the net assets. Not the carefully worded financial statements that boards present to accreditors. He looked at how much liquid money 44 private, mid-size New England colleges actually have \u2014 and how long they can keep the lights on at current burn rates.
+
+The answer, for more than a third of them: not long.
+
+[His analysis](https://michaelbhorn.substack.com/p/a-looming-crisis-new-analysis-shows), amplified by Michael Horn, showed that 15 schools already face serious liquidity challenges. Another six are drawing down their endowments at more than double the sustainable rate. And if enrollment drops just 10 percent \u2014 which is not a catastrophe, it\u2019s a Tuesday in demographic terms \u2014 21 of the 44 are in trouble.
+
+A parallel study of 27 West Coast schools was even worse.
+
+**Here\u2019s what caught our attention:** these aren\u2019t the tiny schools everyone expected to close. These are mid-size institutions with brand recognition, athletic programs, alumni networks, and boards full of people who run businesses. They should know how to do this. Most of them can\u2019t.
+
+**Why not?**
+
+Because the problem isn\u2019t financial management. It\u2019s structural. The entire model \u2014 tuition-dependent, four-year, degree-granting, residential \u2014 was built for a demographic and economic reality that no longer exists. You can\u2019t spreadsheet your way out of a structural crisis. You have to reimagine what the institution actually is.
+
+**What reimagining actually looks like**
+
+At Campus Transformation, we\u2019ve been building a framework that combines three things nobody in higher education is combining:
+
+**1. Academic reform \u2014 not cuts, redesign.**
+
+The Hampshire College model showed decades ago that individualized learning, student-designed curricula, and competency-based assessment work. Today, AI makes that model scalable at a fraction of the cost. Imagine a campus where every student has a personalized skill map, where AI coaches handle the repetitive instruction, and where faculty focus on mentorship, research, and the things humans actually do better than machines. That\u2019s not a fantasy. The technology exists right now.
+
+This isn\u2019t about replacing professors. It\u2019s about freeing them from the assembly line so they can do what they were trained to do. And it lowers the cost of delivery dramatically \u2014 which means you can serve more learners without hiring proportionally more staff.
+
+**2. Community and economic integration \u2014 the campus as a regional asset.**
+
+A college campus is the most underutilized real estate in most towns. Empty buildings, dark conference centers, idle kitchens, half-filled dorms, sports facilities used ten hours a week.
+
+Meanwhile, the town around it is short on workforce training facilities, health clinics, child care, co-working space, and commercial kitchen access. The employers in the region can\u2019t find trained workers. The small businesses can\u2019t afford their own facilities.
+
+The intersection is obvious and almost nobody is working it. Not because it\u2019s impossible \u2014 because nobody on a college staff was hired to do it. There\u2019s no VP of Local Economic Integration. There\u2019s no Director of Community Revenue. Those roles don\u2019t exist in the org chart, so the work doesn\u2019t get done.
+
+We do that work. We scan the region, identify the gaps, make the calls, and find the partners who\u2019ll pay to use what the campus is heating for free.
+
+**3. Extending the audience \u2014 beyond degree-seeking 18-year-olds.**
+
+The biggest structural mistake in higher ed is defining the customer as an 18-year-old who wants a bachelor\u2019s degree. That\u2019s a shrinking market. The growing markets are:
+
+\u2014 Working adults who need certifications and authenticated skills, not four-year degrees
+\u2014 Employers who need training facilities and customized workforce programs
+\u2014 Career changers who need six months, not four years
+\u2014 Retirees who want to learn for the sake of learning
+\u2014 High school students who want dual enrollment and early college credit
+\u2014 Local startups and small businesses who need research partnerships, testing facilities, and talent pipelines
+
+A campus that serves all of these audiences has six revenue streams instead of one. When enrollment dips, the other five keep the lights on.
+
+**The multidisciplinary team this requires**
+
+Shulman\u2019s analysis is the diagnosis. Campus Transformation is the treatment plan. But the treatment requires a team that doesn\u2019t exist inside most institutions \u2014 experienced educators who understand curriculum reform, administrators who\u2019ve run budgets, technology people who can implement AI-driven learning at scale, and business development professionals who know how to negotiate with employers, municipalities, and investors.
+
+That\u2019s our team. We\u2019re not theorists. We\u2019re people who\u2019ve taught classes, run departments, built technology platforms, and negotiated deals. We\u2019ve seen what works from inside the system and what\u2019s needed from outside it.
+
+**The wealthier schools should be leading this. They\u2019re not.**
+
+The schools Shulman identified aren\u2019t poor. Many have endowments, facilities, and brand equity that smaller schools would envy. What they lack is imagination and permission. Their boards are conservative. Their faculty governance moves slowly. Their accreditors reward the status quo. And their presidents are too busy managing the current crisis to design the next model.
+
+That\u2019s where we come in. Not to replace leadership, but to be the outside team that does the work the inside team wasn\u2019t hired to do \u2014 and to do it before the cash runs out.
+
+If you\u2019re at one of these schools \u2014 or you know someone who is \u2014 the time to start is before the next board meeting, not after it.
+
+*Campus Transformation is an initiative of Transform Learning. Contact jeff@transformlearning.ai.*`,
+  },
+  {
     slug: 'whose-job-is-this',
     title: 'Whose Job Is This?',
     date: '2026-08-18',
